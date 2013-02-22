@@ -58,5 +58,18 @@ for (auto & e : _index)
     }
   };
 
+  pos_list_t getPositionsForRange(const T& lower, const T& upper) {
+    assert(inverted_index_t::key_comp()(lower, upper) == -1);
+    const auto& lb = _index.lower_bound(lower);
+    const auto& ub = _index.upper_bound(upper);
+    pos_list_t positions;
+    for (auto it = lb; it != ub; ++it) {
+      const auto& pos = it->second;
+      positions.insert(std::end(positions), std::begin(pos), std::end(pos));
+    }
+    return positions;
+  }
+  
+  
 };
 #endif  // SRC_LIB_STORAGE_INVERTEDINDEX_H_
