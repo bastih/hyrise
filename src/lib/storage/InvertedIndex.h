@@ -48,18 +48,18 @@ for (auto & e : _index)
   /**
    * returns a list of positions where key was found.
    */
-  pos_list_t getPositionsForKey(T key) {
-    typename inverted_index_t::iterator it = _index.find(key);
+  const pos_list_t& getPositionsForKey(T key) const {
+    const auto& it = _index.find(key);
     if (it != _index.end()) {
       return it->second;
     } else {
-      pos_list_t empty;
+      static   pos_list_t empty;
       return empty;
     }
   };
 
-  pos_list_t getPositionsForRange(const T& lower, const T& upper) {
-    assert(inverted_index_t::key_comp()(lower, upper) == -1);
+  pos_list_t getPositionsForRange(const T& lower, const T& upper) const {
+    assert((_index.key_comp()(lower, upper) == true) || (lower == upper));
     const auto& lb = _index.lower_bound(lower);
     const auto& ub = _index.upper_bound(upper);
     pos_list_t positions;
