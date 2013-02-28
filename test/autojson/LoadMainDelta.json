@@ -1,0 +1,14 @@
+{
+    "operators" : {
+        "load" : {
+            "type" : "LoadMainDelta",
+            "mainfile" : "tables/employees.tbl",
+            "deltafile" : "tables/employees.tbl"
+        },
+        "set" : {
+            "type": "SetTable",
+            "name": "employees_md"
+        }
+    },
+    "edges" : [ ["load", "set"] ]
+}
