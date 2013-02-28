@@ -18,6 +18,7 @@ auto register_delete = QueryParser::registerPlanOperation<DeleteOp>("InsertOnlyD
 auto register_valid = QueryParser::registerPlanOperation<ValidPositionsRawOp>("ValidPositionsRaw");
 auto register_valid_main = QueryParser::registerPlanOperation<ValidPositionsMainOp>("ValidPositionsMain");
 auto register_delta_extract = QueryParser::registerPlanOperation<ExtractDelta>("ExtractDelta");
+auto register_main_extract = QueryParser::registerPlanOperation<ExtractMain>("ExtractMain");
 }
 
 LoadOp::LoadOp(const std::string &filename) : _filename(filename) {
@@ -124,6 +125,20 @@ void ExtractDelta::executePlanOperation() {
 
 const std::string ExtractDelta::vname() {
   return "ExtractDelta";
+};
+
+std::shared_ptr<_PlanOperation> ExtractMain::parse(Json::Value&) {
+  return std::make_shared<ExtractMain>();
+}
+
+void ExtractMain::executePlanOperation() {
+  const auto& store = std::dynamic_pointer_cast<const storage::SimpleStore>(getInputTable());
+  if (store == nullptr) { throw std::runtime_error("Passed table is not a SimpleStore!"); }
+  addResult(store->getMain());
+}
+
+const std::string ExtractMain::vname() {
+  return "ExtractMain";
 };
 
 

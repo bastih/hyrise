@@ -17,6 +17,12 @@ class PointerCalculator;
 
 namespace hyrise {
 
+template <class T>
+using ptr_t = std::shared_ptr<T>;
+
+template <class T>
+using const_ptr_t = std::shared_ptr<const T>;
+
 namespace tx {
 typedef int64_t transaction_id_t;
 static const transaction_id_t START_TID = 1;

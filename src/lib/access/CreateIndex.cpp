@@ -29,14 +29,15 @@ std::shared_ptr<_PlanOperation> CreateIndex::parse(Json::Value &data) {
   return i;
 }
 
+template <typename T>
 struct CreateIndexFunctor {
   typedef std::shared_ptr<AbstractIndex> value_type;
 
-  const hyrise::storage::c_atable_ptr_t& in;
+  const const_ptr_t<T>& in;
 
   size_t column;
 
-  CreateIndexFunctor(const hyrise::storage::c_atable_ptr_t& t, size_t c):
+  CreateIndexFunctor(const const_ptr_t<T>& t, size_t c):
     in(t), column(c) {}
 
   template<typename R>
@@ -52,7 +53,7 @@ void CreateIndex::executePlanOperation() {
 
   auto column = _field_definition[0];
 
-  CreateIndexFunctor fun(in, column);
+  CreateIndexFunctor<AbstractTable> fun(in, column);
   hyrise::storage::type_switch<hyrise_basic_types> ts;
   _index = ts(in->typeOfColumn(column), fun);
 

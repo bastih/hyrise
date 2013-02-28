@@ -111,6 +111,20 @@ class ExtractDelta: public _PlanOperation {
   virtual const std::string vname();
 };
 
+/// Operation to extract main table from SimpleStore
+class ExtractMain: public _PlanOperation {
+ public:
+
+  /// Query graph inputs:
+  /// 1. store
+  /// Query graph output:
+  /// 1. abstracttable
+  static std::shared_ptr<_PlanOperation> parse(Json::Value& data);
+  void executePlanOperation();
+  virtual const std::string vname();
+};
+
+
 
 }}
 

@@ -12,9 +12,9 @@
 #include "storage/storage_types.h"
 #include "storage/AbstractIndex.h"
 #include "storage/AbstractTable.h"
-
+#include "storage/RawTable.h"
 #include <memory>
-
+    
 template<typename T>
 class InvertedIndex : public AbstractIndex {
 private:
@@ -31,19 +31,33 @@ for (auto & e : _index)
 
   explicit InvertedIndex(const hyrise::storage::c_atable_ptr_t& in, field_t column) {
     if (in != NULL) {
-      for (size_t row = 0; row < in->size(); ++row) {
-        T tmp = in->getValue<T>(column, row);
-        typename inverted_index_t::iterator find = _index.find(tmp);
-        if (find == _index.end()) {
-          pos_list_t pos;
-          pos.push_back(row);
-          _index[tmp] = pos;
-        } else {
-          find->second.push_back(row);
+      if (const auto& raw = std::dynamic_pointer_cast<const fgRawTable<>>(in)) {
+        for (size_t row = 0; row < in->size(); ++row) {
+          T tmp = raw->getValue<T>(column, row);
+          typename inverted_index_t::iterator find = _index.find(tmp);
+          if (find == _index.end()) {
+            pos_list_t pos;
+            pos.push_back(row);
+            _index[tmp] = pos;
+          } else {
+            find->second.push_back(row);
+          }
+        }
+      } else {
+        for (size_t row = 0; row < in->size(); ++row) {
+          T tmp = in->getValue<T>(column, row);
+          typename inverted_index_t::iterator find = _index.find(tmp);
+          if (find == _index.end()) {
+            pos_list_t pos;
+            pos.push_back(row);
+            _index[tmp] = pos;
+          } else {
+            find->second.push_back(row);
+          }
         }
       }
     }
-  };
+  }
 
   /**
    * returns a list of positions where key was found.
