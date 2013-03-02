@@ -320,7 +320,7 @@ for (const field_t & field: *fields) {
     }
   }
 
-  auto result = std::make_shared<Table<>>(&metadata, dictionaries, initial_size);
+  auto result = std::make_shared<Table<>>(&metadata, dictionaries, initial_size, reuse_dict);
   delete dictionaries;
   return result;
 }

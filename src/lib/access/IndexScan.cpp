@@ -64,7 +64,7 @@ void IndexScan::executePlanOperation() {
   hyrise::storage::type_switch<hyrise_basic_types> ts;
   ScanIndexFunctor fun(_value, idx);
   pos_list_t *pos = ts(input.getTable(0)->typeOfColumn(_field_definition[0]), fun);
-
+  std::cout << _indexName << " " << pos->size() << std::endl;
   // Add result
   addResult(PointerCalculatorFactory::createPointerCalculatorNonRef(input.getTable(0),
             nullptr,
