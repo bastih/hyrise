@@ -58,8 +58,8 @@ void MaterializingMainDeltaScan::executePlanOperation() {
   const auto main_sz = main_pc->size();
   const auto delta_sz = delta_pc->size();
 
-  auto result = checked_pointer_cast<Table<>>(main_pc->copy_structure(nullptr, false, main_sz + delta_sz, false));
-  result->resize(main_sz + delta_sz);
+  auto result = checked_pointer_cast<Table<>>(main_pc->copy_structure(nullptr, false, 0, false));
+  /*result->resize(main_sz + delta_sz);
   for (size_t row = 0, sz = main_sz; row < sz; ++row) {
     result->copyRowFrom(main_pc, row, row, true);
   }
@@ -67,7 +67,7 @@ void MaterializingMainDeltaScan::executePlanOperation() {
   const auto& raw_delta = checked_pointer_cast< const RawTable<> >(delta_pc->getTable());
   const pos_list_t* raw_positions = delta_pc->getPositions();
   appendRows(result, main_sz, raw_delta, *raw_positions);
-  output.add(result);
+  output.add(result);*/
 }
 
 std::shared_ptr<_PlanOperation> MaterializingMainDeltaScan::parse(Json::Value&) {

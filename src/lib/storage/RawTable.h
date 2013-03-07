@@ -144,11 +144,10 @@ ALLOC_CLASS(RawTable) {
   byte *_data;
   byte *_endOfData;
   byte *_endOfStorage;
-
 public:
 
   RawTable(const metadata_vec_t& m,
-           size_t initial_size = 0) : _metadata(m), _width(m.size()), _size(0) {
+           size_t initial_size = 0) : _metadata(m), _width(m.size()), _size(0), _offsets(initial_size) {
 
     // Simple memory allocation,
     //TODO this should use the defined allocator strategy
@@ -196,10 +195,10 @@ public:
     return 0;
   }
 
-  byte* computePosition(const size_t& column, const size_t& row) const {
-    if (column > _metadata.size() ) {
+  inline byte* computePosition(const size_t& column, const size_t& row) const {
+    /*if (column > _metadata.size() ) {
       throw std::out_of_range("Column out of range in getValue()");
-    }
+      }*/
     byte* tuple = getRow(row);
     tuple += sizeof(hyrise::storage::rawtable::record_header);
     for(size_t i=0; i < column; ++i) {
@@ -213,7 +212,7 @@ public:
   }
 
   template <typename T>
-  T getValue(const size_t column, const size_t row) const {
+  T getValue(const size_t& column, const size_t& row) const {
     const byte* tuple = computePosition(column, row);
     return hyrise::storage::rawtable::RowHelper::convert<T>(tuple, _metadata[column].getType());
   }
@@ -252,18 +251,18 @@ public:
     convert_to_string_functor<this_type> f(*this, col, row);
     return ts(_metadata.at(col).getType(), f);
   }
-
+  
   /**
    * Retrieve the row from the table based on the index, this will
    * return a pointer to the actual values, which cannot be modified
    * and the ownership will not be transferred.
    */
-  byte* getRow(size_t index) const {
-    if (index >= _size) throw std::out_of_range("Index out of range for getRow()");
-    byte *data = _data;
+  byte* getRow(const size_t& index) const {
+    //if (index >= _size) throw std::out_of_range("Index out of range for getRow()");
+    /*byte *data = _data;
     for(size_t i=0; i < index; ++i)
-      data += ((hyrise::storage::rawtable::record_header*) data)->width;
-    return data;
+    data += ((hyrise::storage::rawtable::record_header*) data)->width*/;
+    return _data + _offsets[index];
   }
 
   /**
@@ -281,7 +280,8 @@ public:
       _endOfData = _data + dist;
       _endOfStorage = _data + amount;
     }
-
+    _offsets.resize(_size+1);
+    _offsets[_size] = _endOfData - _data;
     memcpy(_endOfData, tuple, width);
     _endOfData += width;
     _size++;
