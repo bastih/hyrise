@@ -69,11 +69,13 @@ void SimpleTableScan::executePlanOperation() {
   // In case we are creating positions copy the pos
   // list
   if (producesPositions) {
-    if (!pos_list->empty()) {
-      result = PointerCalculatorFactory::createPointerCalculatorNonRef(input.getTable(), nullptr, pos_list);
+    result = PointerCalculatorFactory::createPointerCalculatorNonRef(input.getTable(), nullptr, pos_list);
+    /*if (!pos_list->empty()) {
+      std::cout <<  "positions" << std::endl;
+
     } else {
       result = input.getTable()->copy_structure_modifiable();
-    }
+      }*/
   } else {
     result = result_table;
   }

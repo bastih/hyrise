@@ -4,6 +4,7 @@
 #include "io/StorageManager.h"
 #include "io/Loader.h"
 #include "io/CSVLoader.h"
+#include "io/StringLoader.h"
 
 namespace hyrise {
 namespace access {
@@ -12,12 +13,16 @@ namespace {
 auto _ = QueryParser::registerPlanOperation<LoadMainDelta>("LoadMainDelta");
 }
 
-LoadMainDelta::LoadMainDelta(const std::string& main, const std::string& delta) : _main(main), _delta(delta) {}
+LoadMainDelta::LoadMainDelta(const std::string& main, const std::string& delta, const std::string& header) : _main(main), _delta(delta), _header(header) {}
 
 void LoadMainDelta::executePlanOperation() {
+  std::unique_ptr<AbstractHeader> header;
+  if (_header.empty()) {
+    header.reset(new CSVHeader(_main));
+  } else { header.reset(new StringHeader(_header)); }
   auto main = Loader::load(Loader::params()
                            .setBasePath(StorageManager::getInstance()->makePath(""))
-                           .setHeader(CSVHeader(_main))
+                           .setHeader(*header)
                            .setInput(CSVInput(_main))
                            .setReturnsMutableVerticalTable(true));
   auto delta = Loader::load(Loader::params()
@@ -32,7 +37,7 @@ void LoadMainDelta::executePlanOperation() {
 }
 
 std::shared_ptr<_PlanOperation> LoadMainDelta::parse(Json::Value& value) {
-  return std::make_shared<LoadMainDelta>(value["mainfile"].asString(), value["deltafile"].asString());
+  return std::make_shared<LoadMainDelta>(value["mainfile"].asString(), value["deltafile"].asString(), value["header"].asString());
 }
 
 }}
