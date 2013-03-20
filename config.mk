@@ -89,6 +89,7 @@ endif
 
 ifeq ($(USE_GOOGLE_PROFILER), 1)
 	LINKER_FLAGS += -lprofiler
+	BUILD_FLAGS += -D PROFILER_ENABLED
 endif
 
 ifeq ($(COVERAGE_TESTING), 1)

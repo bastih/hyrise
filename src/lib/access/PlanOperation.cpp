@@ -7,6 +7,10 @@
 
 #include <boost/lexical_cast.hpp>
 
+#ifdef PROFILER_ENABLED
+#include  <gperftools/profiler.h>
+#endif
+
 #include "helper/epoch.h"
 #include "helper/PapiTracer.h"
 #include "io/StorageManager.h"
@@ -23,8 +27,8 @@ _PlanOperation::_PlanOperation() :
       _part(0),
       _count(0),
       producesPositions(true),
-      _planId(),
-      _operatorId() {}
+      _profiling(false)
+    {}
 
 _PlanOperation::~_PlanOperation() {
 }
@@ -223,8 +227,28 @@ void _PlanOperation::operator()() noexcept {
   setState(OpFail);
 }
 
+struct Profiler {
+  bool _profiling;
+  Profiler(bool profiling, const std::string& name) : _profiling(profiling) {
+    if (_profiling) {
+#ifdef PROFILER_ENABLED
+      ProfilerStart((name + ".prof").c_str() );
+#endif
+    }
+  }
+  ~Profiler() {
+    if (_profiling) {
+#ifdef PROFILER_ENABLED
+      ProfilerStop();
+#endif
+    }
+  }
+};
+
 const _PlanOperation *_PlanOperation::execute() {
   epoch_t startTime = get_epoch_nanoseconds();
+
+  Profiler prof(_profiling, _operatorId + std::to_string(_transaction_id));
 
   refreshInput();
 
@@ -283,6 +307,10 @@ void _PlanOperation::setPlanId(std::string i) {
 }
 void _PlanOperation::setOperatorId(std::string i) {
   _operatorId = i;
+}
+
+void _PlanOperation::setProfiling(bool profiling) {
+  _profiling = profiling;
 }
 
 const std::string& _PlanOperation::planOperationName() const {

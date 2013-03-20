@@ -41,6 +41,7 @@ void QueryParser::buildTasks(
     planOperation->setPlanOperationName(typeName);
     planOperation->setPart(planOperationSpec["part"].asUInt());
     planOperation->setCount(planOperationSpec["count"].asUInt());
+    planOperation->setProfiling(planOperationSpec["profiling"].asBool());
     planOperation->setOperatorId(members[i]);
     if (planOperationSpec.isMember("core"))
       planOperation->setPreferredCore(planOperationSpec["core"].asInt());

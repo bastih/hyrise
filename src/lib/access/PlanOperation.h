@@ -29,6 +29,8 @@ class _PlanOperation : public OutputTask {
 
   bool producesPositions;
 
+  bool _profiling;
+
   std::string _planId;
   std::string _operatorId;
   std::string _planOperationName;
@@ -106,6 +108,7 @@ class _PlanOperation : public OutputTask {
   void setCount(size_t count);
   void setPlanId(std::string i);
   void setOperatorId(std::string i);
+  void setProfiling(bool profiling);
   const std::string& planOperationName() const;
   void setPlanOperationName(const std::string& name);
 
