@@ -5,15 +5,10 @@
 #include "access/OutputTask.h"
 #include "access/OperationData.h"
 #include "access/QueryParser.h"
-
-#include "storage/storage_types.h"
 #include "helper/types.h"
-#include "storage/AbstractTable.h"
+#include "storage/storage_types.h"
 
 #include "json.h"
-
-
-
 
 /**
  * This is the default interface for a plan operation. Our basic assumption is
@@ -22,33 +17,12 @@
  */
 class _PlanOperation : public OutputTask {
  protected:
-  /*!
-   *  Container to store and handle input/output or rather result data.
-   */
+  /// Container to store and handle input/output or rather result data.
   hyrise::access::OperationData input;
   hyrise::access::OperationData output;
 
-  void addResult(hyrise::storage::c_atable_ptr_t result) {
-    output.add(result);
-  }
-  void addResultHash(hyrise::storage::c_ahashtable_ptr_t result);
-
-  // Limits the number of rows read
+  /// Limits the number of rows read
   uint64_t _limit;
-
-  // Transaction number
-  hyrise::tx::transaction_id_t _transaction_id;
-
-  /**
-   * The fields used in the projection etc.
-   */
-  field_list_t _field_definition;
-  field_name_list_t _named_field_definition;
-  field_list_t _indexed_field_definition;
-
-  unsigned int findColumn(const std::string &);
-
-  virtual void computeDeferredIndexes();
 
   size_t _part;
   size_t _count;
@@ -58,7 +32,18 @@ class _PlanOperation : public OutputTask {
   std::string _planId;
   std::string _operatorId;
   std::string _planOperationName;
-  
+
+  /// Current transaction number
+  hyrise::tx::transaction_id_t _transaction_id;
+
+  /// Fields populated from json field "fields"
+  field_list_t _field_definition;
+  field_name_list_t _named_field_definition;
+  field_list_t _indexed_field_definition;
+
+  unsigned int findColumn(const std::string &);
+  void computeDeferredIndexes();
+
   /*!
    *  Uses _part and _count member as specification for the enumeration of
    *  parallel instances to distribute the number of elements between all
@@ -69,6 +54,9 @@ class _PlanOperation : public OutputTask {
       u_int64_t &first,
       u_int64_t &last) const;
 
+
+  void addResult(hyrise::storage::c_atable_ptr_t result);
+  void addResultHash(hyrise::storage::c_ahashtable_ptr_t result);
 
   /*!
    *  Fetches output data of dependencies as input data.
@@ -92,12 +80,6 @@ class _PlanOperation : public OutputTask {
   std::string getDependencyErrorMessages();
 
  public:
-
-
-  /*
-   * Determines whether this PlanOp should generate Positions
-   */
-
   _PlanOperation();
   virtual ~_PlanOperation();
 

@@ -29,6 +29,10 @@ _PlanOperation::_PlanOperation() :
 _PlanOperation::~_PlanOperation() {
 }
 
+void _PlanOperation::addResult(hyrise::storage::c_atable_ptr_t result) {
+    output.add(result);
+}
+
 void _PlanOperation::addResultHash(hyrise::storage::c_ahashtable_ptr_t result) {
     output.addHash(result);
 }
