@@ -46,9 +46,6 @@ class _PlanOperation : public OutputTask {
   field_name_list_t _named_field_definition;
   field_list_t _indexed_field_definition;
 
-  // Used containers
-  std::vector<int> container_list;
-
   unsigned int findColumn(const std::string &);
 
   virtual void computeDeferredIndexes();
