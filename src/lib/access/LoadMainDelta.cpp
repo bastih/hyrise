@@ -27,7 +27,7 @@ void LoadMainDelta::executePlanOperation() {
                            .setReturnsMutableVerticalTable(true));
   auto delta = Loader::load(Loader::params()
                             .setBasePath(StorageManager::getInstance()->makePath(""))
-                            .setHeader(CSVHeader(_delta))
+                            .setHeader(*header)
                             .setInput(CSVInput(_delta)));
 
   auto store = std::make_shared<storage::SimpleStore>(main);
