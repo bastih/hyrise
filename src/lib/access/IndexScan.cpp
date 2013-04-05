@@ -18,6 +18,7 @@ namespace hyrise { namespace access {
 
 namespace {
 bool reg_ix = QueryParser::registerPlanOperation<IndexScan>("IndexScan");
+bool reg_ixr = QueryParser::registerPlanOperation<IndexRangeScan>("IndexRangeScan");
 bool reg_mix = QueryParser::registerTrivialPlanOperation<MergeIndexScan>("MergeIndexScan");
 }
 
@@ -57,6 +58,48 @@ void IndexScan::executePlanOperation() {
 std::shared_ptr<_PlanOperation> IndexScan::parse(Json::Value &data) {
   std::shared_ptr<IndexScan> s = BasicParser<IndexScan>::parse(data);
   s->_value = data["value"];
+  s->_indexName = data["index"].asString();
+  return s;
+}
+
+struct RangeIndexFunctor {
+  typedef pos_list_t value_type;
+
+  const Json::Value& _from, & _to;
+  const std::shared_ptr<AbstractIndex>& _index;
+
+  RangeIndexFunctor(const Json::Value& from,
+                    const Json::Value& to,
+                    const std::shared_ptr<AbstractIndex>& d) :
+      _from(from), _to(to), _index(d) {}
+
+  template<typename ValueType>
+  value_type operator()() {
+    auto idx = std::dynamic_pointer_cast<InvertedIndex<ValueType> >(_index);
+    auto fromValue = json_converter::convert<ValueType>(_from);
+    auto toValue = json_converter::convert<ValueType>(_to);
+    return idx->getPositionsForRange(fromValue, toValue);
+  }
+};
+
+void IndexRangeScan::executePlanOperation() {
+  const auto& idx = StorageManager::getInstance()->getInvertedIndex(_indexName);
+
+  storage::type_switch<hyrise_basic_types> ts;
+  RangeIndexFunctor fun(_value_from, _value_to, idx);
+
+  const auto& tbl = input.getTable(0);
+  pos_list_t pos = ts(tbl->typeOfColumn(_field_definition[0]), fun);
+
+  // Hello ugly
+  auto pos_ptr = new pos_list_t(std::move(pos));
+  output.add(PointerCalculatorFactory::createPointerCalculatorNonRef(tbl, nullptr, pos_ptr));
+}
+
+std::shared_ptr<_PlanOperation> IndexRangeScan::parse(Json::Value &data) {
+  auto s = BasicParser<IndexRangeScan>::parse(data);
+  s->_value_from = data["value_from"];
+  s->_value_to = data["value_to"];
   s->_indexName = data["index"].asString();
   return s;
 }

@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
   SharedScheduler::getInstance().init(scheduler_name);
   AbstractTaskScheduler *scheduler = SharedScheduler::getInstance().getScheduler();
   if (scheduler != NULL) {
-    scheduler->resize(getNumberOfCoresOnSystem());
+    scheduler->resize(8);//getNumberOfCoresOnSystem());
   }
 
   signal(SIGINT, &shutdown);

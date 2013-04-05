@@ -26,7 +26,8 @@ struct PredicateType {
     MultiTableBetweenExpression = 12,
     EqualsExpressionRaw = 13,
     LessThanExpressionRaw = 14,
-    GreaterThanExpressionRaw = 15
+    GreaterThanExpressionRaw = 15,
+    BetweenExpressionRaw = 16
   } type;
 };
 

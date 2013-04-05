@@ -57,6 +57,7 @@ struct expression_factory {
       GENERATE_EXPRESSION(EqualsExpressionRaw);
       GENERATE_EXPRESSION(LessThanExpressionRaw);
       GENERATE_EXPRESSION(GreaterThanExpressionRaw);
+      //GENERATE_EXPRESSION(BetweenExpressionRaw);
       GENERATE_EXPRESSION(MultiTableEqualsExpression);
       GENERATE_EXPRESSION(MultiTableLessThanExpression);
       GENERATE_EXPRESSION(MultiTableGreaterThanExpression);

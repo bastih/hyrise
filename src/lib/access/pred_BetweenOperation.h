@@ -4,6 +4,7 @@
 
 #include "helper/types.h"
 #include "pred_common.h"
+#include "storage/RawTable.h"
 
 template <typename T>
 class BetweenExpression : public SimpleFieldExpression {
@@ -63,6 +64,31 @@ class BetweenExpression : public SimpleFieldExpression {
     }
 
     T value = table->getValue<T>(field, row);
+    return (value <= upper_value) && (value >= lower_value);
+  }
+};
+
+
+template <typename T>
+class BetweenExpressionRaw : public SimpleFieldExpression {
+ private:
+  T lower_value;
+  T upper_value;
+ public:
+  BetweenExpressionRaw(size_t i, field_t f, T _lower_value, T _upper_value):
+      SimpleFieldExpression(i, f), lower_value(_lower_value), upper_value(_upper_value)
+  {}
+
+  BetweenExpressionRaw(size_t i, field_name_t f, T _lower_value, T _upper_value):
+      SimpleFieldExpression(i, f), lower_value(_lower_value), upper_value(_upper_value)
+  {}
+
+  BetweenExpressionRaw(hyrise::storage::c_atable_ptr_t _table, field_t _field, T _lower_value, T _upper_value) :
+      SimpleFieldExpression(_table, _field), lower_value(_lower_value), upper_value(_upper_value)
+  {}
+
+  inline virtual bool operator()(size_t row) {
+    auto value = std::static_pointer_cast<RawTable<>>(table)->getValue<T>(field, row);
     return (value <= upper_value) && (value >= lower_value);
   }
 };

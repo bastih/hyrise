@@ -23,6 +23,16 @@ class IndexScan : public _PlanOperation {
   Json::Value _value;
 };
 
+class IndexRangeScan : public _PlanOperation {
+ public:
+  void executePlanOperation();
+  static std::shared_ptr<_PlanOperation> parse(Json::Value &data);
+ private:
+  /// index name
+  std::string _indexName;
+  /// values for range
+  Json::Value _value_from, _value_to;
+};
 
 class MergeIndexScan : public _PlanOperation {
 public:

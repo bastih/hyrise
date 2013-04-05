@@ -20,6 +20,7 @@ predicate_map_t getPredicateMap() {
   d["EQ_R"] = PredicateType::EqualsExpressionRaw;
   d["LT_R"] = PredicateType::LessThanExpressionRaw;
   d["GT_R"] = PredicateType::GreaterThanExpressionRaw;
+  d["BETWEEN_R"] = PredicateType::BetweenExpressionRaw;
   d["BETWEEN"] = PredicateType::BetweenExpression;
   d["COMPOUND"] = PredicateType::CompoundExpression;
   d["NEG"] = PredicateType::NegateExpression;
