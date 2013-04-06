@@ -78,7 +78,7 @@ std::vector<std::string> GetParameterStrings() {
             directory_iterator(),
             back_it,
             pathname_of());
-
+  std::sort(begin(files), end(files));
   std::vector<std::string> result;
   for (const auto& filename: files) {
     if ((filename.substr(filename.size() - 5).compare(".json") == 0)
