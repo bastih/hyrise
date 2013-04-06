@@ -1,0 +1,25 @@
+{
+    "operators" : {
+    "-1" : {
+      "type" : "TableLoad",
+      "filename" : "tables/revenue_extended_between_2010_and_2011.tbl",
+      "table" : "reference"
+    },
+    "load" : {
+      "type" : "TableLoad",
+      "filename" : "tables/revenue_extended.tbl",
+      "table" : "revenue",
+      "raw" : true
+    },
+    "scan" : {
+      "type" : "SimpleRawTableScan",
+      "predicates" : [
+	{"type" : "BETWEEN_R", "in" : 0, "f" : "year", "value_from" : 2010, "value_to": 2011}
+      ]
+    },
+    "materialize" : {
+      "type" : "MaterializingScan",
+      "memcpy" : true
+    }
+  }, "edges" : [["load", "scan"], ["scan", "materialize"]]
+}

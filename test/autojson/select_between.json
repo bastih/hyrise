@@ -1,0 +1,20 @@
+{
+    "operators" : {
+    "-1" : {
+      "type" : "TableLoad",
+      "filename" : "tables/revenue_extended_between_2010_and_2011.tbl",
+      "table" : "reference"
+    },
+    "load" : {
+      "type" : "TableLoad",
+      "filename" : "tables/revenue_extended.tbl",
+      "table" : "revenue"
+    },
+    "scan" : {
+      "type" : "SimpleTableScan",
+      "predicates" : [
+	{"type" : "BETWEEN", "in" : 0, "f" : "year", "value_from" : 2010, "value_to": 2011}
+      ]
+    }
+  }, "edges" : [["load", "scan"]]
+}

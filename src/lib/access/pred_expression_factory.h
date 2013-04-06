@@ -8,9 +8,9 @@
 
 #define GENERATE_EXPRESSION(EXPRESSION)  case PredicateType::EXPRESSION: \
   if (_field_name.size() > 0)                                           \
-    return new EXPRESSION<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value)); \
+    return new EXPRESSION<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value"])); \
   else                                                                  \
-    return new EXPRESSION<ValueType>(_input_index, _field, json_converter::convert<ValueType>(_value)); \
+    return new EXPRESSION<ValueType>(_input_index, _field, json_converter::convert<ValueType>(_value["value"])); \
   break;
 
 namespace hyrise {
@@ -61,6 +61,10 @@ struct expression_factory {
       GENERATE_EXPRESSION(MultiTableEqualsExpression);
       GENERATE_EXPRESSION(MultiTableLessThanExpression);
       GENERATE_EXPRESSION(MultiTableGreaterThanExpression);
+      case PredicateType::BetweenExpression:
+        return new BetweenExpression<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
+      case PredicateType::BetweenExpressionRaw:
+        return new BetweenExpressionRaw<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
       default:
         throw std::runtime_error("Expression Type not supported");
     }
