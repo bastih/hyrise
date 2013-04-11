@@ -103,7 +103,7 @@ def baseplan(table, papi):
         }
     return bp
 
-def index_scan(wing, index, column, value):
+def index_selection(wing, index, column, value):
     return { "type": "IndexScan",
              "fields": [column],
              "index": index,
@@ -117,7 +117,7 @@ def index_range(wing, index, column, values):
              "value_from": values[0],
              "value_to": values[1] }
 
-def selection_scan(wing, index, column, value): 
+def scan_selection(wing, index, column, value): 
     if (wing == "Main"):
         return { "type": "SimpleTableScan",
                  "materializing": False,
@@ -132,6 +132,23 @@ def selection_scan(wing, index, column, value):
                 ]}
     else:
         print "unmatched", wing
+
+def scan_range(wing, index, column, values):
+    if (wing == "Main"):
+        return { 
+            "type": "SimpleTableScan",
+            "materializing": False,
+            "predicates": [{"type": "BETWEEN", "in": 0, "f": column, "value_from": values[0], "value_to": values[1]}]
+            }
+    elif (wing == "Delta"):
+        return { 
+            "type": "SimpleRawTableScan",
+            "materializing": False,
+            "predicates": [{"type": "BETWEEN_R", "in": 0, "f": column, "value_from": values[0], "value_to": values[1]}]
+            }
+    else:
+        print "unmatched", wing
+
              
 
 def get_start_end(side):
@@ -150,7 +167,7 @@ def query(table, column_values, selection_operator_generator, papi, combo_str):
     return execute(bp, combo_str)
 
 RATIOS = [0.5, 0.2, 0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001]
-SCALES = [10, 20, 40]
+SCALES = [1]#, 10, 20, 40]
 def _setup(fname):
     for sf in SCALES:
         print "generating", sf
@@ -164,15 +181,13 @@ def setup(fname):
     if not os.path.exists(".setupdone"):
         _setup(fname)
 
-def setup_results():
-    pass
-
 def extract_ratio(name):
     return int(name[name.rindex("_")+1:])
 
-
-SCAN_TYPES = { "index" : index_scan, 
-               "select": selection_scan }
+SCAN_TYPES = { "index_selection" : index_selection,
+               "index_range" : index_range,
+               "scan_selection": scan_selection,
+               "scan_range" : scan_range }
 
 HEADERS = { 
     "column": """OL_O_ID|OL_D_ID|OL_W_ID|OL_NUMBER|OL_I_ID|OL_SUPPLY_W_ID|OL_DELIVERY_D|OL_QUANTITY|OL_AMOUNT|OL_DIST_INFO
@@ -184,7 +199,7 @@ INTEGER|INTEGER|INTEGER|INTEGER|INTEGER|INTEGER|STRING|FLOAT|FLOAT|STRING
 
 values = {
     0 : lambda: random.randint(0, 3000),
-    3 : lambda: random.randint(0, 10)
+    3 : lambda x: random.randint(0, x)
 }
 
 server = None
