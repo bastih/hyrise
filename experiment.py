@@ -5,19 +5,22 @@ import signal
 class Server(object):
     def __init__(self):
         DEVNULL = open(os.devnull, 'wb')
-        #self.p = subprocess.Popen("./build/hyrise_server")#, stdout=DEVNULL)
+        self.p = subprocess.Popen("./build/hyrise_server")#, stdout=DEVNULL)
         time.sleep(3)
         self.port = int(open("hyrise_server.port").readlines()[0])
         assert(self.port != 0)
         print "started server", self.port
 
     def query(self, d):
-        #print json.dumps(d, sort_keys=True, indent=4)
-        conn = httplib.HTTPConnection("localhost", self.port, strict=False)
-        conn.request("POST", "", urllib.urlencode([("query",json.dumps(d))]))
-        r = conn.getresponse()
-        data = r.read()
-        conn.close()
+        try:
+            #print json.dumps(d, sort_keys=True, indent=4)
+            conn = httplib.HTTPConnection("localhost", self.port, strict=False)
+            conn.request("POST", "", urllib.urlencode([("query",json.dumps(d))]))
+            r = conn.getresponse()
+            data = r.read()
+            conn.close()
+        except Exception:
+            print d
         return data
 
     def __del__(self):
@@ -167,7 +170,7 @@ def query(table, column_values, selection_operator_generator, papi, combo_str):
     return execute(bp, combo_str)
 
 RATIOS = [0.5, 0.2, 0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001]
-SCALES = [1]#, 10, 20, 40]
+SCALES = [2]#, 10, 20, 40]
 def _setup(fname):
     for sf in SCALES:
         print "generating", sf
@@ -233,7 +236,6 @@ def main():
     global server
     fname = "order_line.tbl"
     setup(fname)
-    setup_results()
     for sf in SCALES:
         d = "sf%s" % sf
         for ratio in RATIOS:
@@ -250,7 +252,12 @@ def main():
                         combo_str = "sf%s/%s/%s/%s/%s" % (sf, layout_name, nth, scan_t, papi)
                         print combo_str
                         for i in range(10):
-                            query(tablename, {0: values[0](), 3: values[3]()}, scan_f, papi, combo_str)
+                            if scan_t.endswith("_range"):
+                                x = (values[0]() - 10) % 3000
+                                y = values[3](sf-1)
+                                query(tablename, {0: [x, x+10], 3: [y, y+1]}, scan_f, papi, combo_str)
+                            else:
+                                query(tablename, {0: values[0](), 3: values[3](sf)}, scan_f, papi, combo_str)
             delete(main)
             delete(delta)
                         
