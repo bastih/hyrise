@@ -29,3 +29,15 @@ TEST(InvertedIndexTest, range_single_value) {
   auto s2008range = ii.getPositionsForRange(2008, 2008).size();
   ASSERT_EQ(s2008, s2008range) << "the range should cover the same positions as the value";
 }
+
+TEST(InvertedIndexTest, range_all) {
+  InvertedIndex<hyrise_int_t> ii(table, 0);
+  auto range = ii.getPositionsForRange(2008, 2012).size();
+  ASSERT_EQ(table->size(), range) << "the range should cover the whole table";
+}
+
+TEST(InvertedIndexTest, range_outofbounds) {
+  InvertedIndex<hyrise_int_t> ii(table, 0);
+  auto range = ii.getPositionsForRange(2013, 2020).size();
+  ASSERT_EQ(0, range) << "the range should be empty";
+}
