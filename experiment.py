@@ -5,7 +5,7 @@ import signal
 class Server(object):
     def __init__(self):
         DEVNULL = open(os.devnull, 'wb')
-        self.p = subprocess.Popen("./build/hyrise_server")#, stdout=DEVNULL)
+        self.p = subprocess.Popen("./build/hyrise_server", stdout=DEVNULL)
         time.sleep(3)
         self.port = int(open("hyrise_server.port").readlines()[0])
         assert(self.port != 0)
@@ -19,8 +19,8 @@ class Server(object):
             r = conn.getresponse()
             data = r.read()
             conn.close()
-        except Exception:
-            print d
+        except Exception, e:
+            print e, d
         return data
 
     def __del__(self):
@@ -44,10 +44,13 @@ def write_result(ppath, result):
 def execute(query, query_group="default"):
     global server
     result = server.query(query)
-    if eval(result).has_key("error"):
+    r = eval(result)
+    if r.has_key("error"):
         print query
         print result
         exit()
+    if r.has_key("rows"):
+        print len(r["rows"])
     write_result(query_group, result)
 
 def index_names(table, column):
@@ -90,7 +93,7 @@ def create_index(table, column):
 
 def baseplan(table, papi):
     bp = { 
-        "limit" : 1, #only retrieve one result row
+        #"limit" : 1, #only retrieve one result row
         "papi" : papi,
         "operators" : {
             "get" : {"type" : "GetTable",
@@ -100,9 +103,14 @@ def baseplan(table, papi):
             "mergeMain" : { "type": "MergePositions" },
             "mergeDelta" : {"type": "MergePositions" },
             "materialize" : { "type" : "MaterializingMainDelta" },
-            "noop" : {"type": "NoOp"}
+            #"noop" : {"type": "NoOp"}
             },
-        "edges" : [["get", "exMain"], ["get", "exDelta"], ["mergeMain", "materialize"], ["mergeDelta", "materialize"], ["materialize", "noop"]]
+        "edges" : [["get", "exMain"], 
+                   ["get", "exDelta"], 
+                   ["mergeMain", "materialize"], 
+                   ["mergeDelta", "materialize"], 
+                   #["materialize", "noop"]
+                   ]
         }
     return bp
 
@@ -152,11 +160,8 @@ def scan_range(wing, index, column, values):
     else:
         print "unmatched", wing
 
-             
-
 def get_start_end(side):
     return "ex"+side, "merge"+side
-
 
 def query(table, column_values, selection_operator_generator, papi, combo_str):
     bp = baseplan(table, papi)
@@ -170,7 +175,7 @@ def query(table, column_values, selection_operator_generator, papi, combo_str):
     return execute(bp, combo_str)
 
 RATIOS = [0.5, 0.2, 0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001]
-SCALES = [2]#, 10, 20, 40]
+SCALES = [10, 20, 40]
 def _setup(fname):
     for sf in SCALES:
         print "generating", sf
@@ -187,10 +192,12 @@ def setup(fname):
 def extract_ratio(name):
     return int(name[name.rindex("_")+1:])
 
-SCAN_TYPES = { "index_selection" : index_selection,
+SCAN_TYPES = { #"index_selection" : index_selection,
                "index_range" : index_range,
-               "scan_selection": scan_selection,
+               #"scan_selection": scan_selection,
                "scan_range" : scan_range }
+
+RUNS = 1
 
 HEADERS = { 
     "column": """OL_O_ID|OL_D_ID|OL_W_ID|OL_NUMBER|OL_I_ID|OL_SUPPLY_W_ID|OL_DELIVERY_D|OL_QUANTITY|OL_AMOUNT|OL_DIST_INFO
@@ -216,24 +223,31 @@ def filenames_for_ratio(basename, ratio):
 from contextlib import nested
 
 def create_ratio(filename, ratio):
-    #lines = int(subprocess.check_output(["wc", "-l", filename]))
+    #lines = 
     nth = int(1/ratio)
+    print ratio, nth
     main, delta = filenames_for_ratio(filename, nth)
     with nested(open(filename), open(main, "w"), open(delta, "w")) as (f, m, d):
         for _ in range(4):
             f.readline()
         lineno = 0
         for line in f:
-            if lineno == nth:
-                lineno = 0
+            if lineno == 0:
                 d.write(line)
             else:
                 m.write(line)
-                lineno += 1 
+            lineno += 1
+            if lineno == nth:
+                lineno = 0
+    print subprocess.check_output(["wc", "-l", main])
+    print subprocess.check_output(["wc", "-l", delta])
     return main, delta 
+
 
 def main():
     global server
+
+
     fname = "order_line.tbl"
     setup(fname)
     for sf in SCALES:
@@ -248,16 +262,18 @@ def main():
                 create_index(tablename, 0)
                 create_index(tablename, 3)
                 for papi in ["PAPI_TOT_INS"]:
+                    x = (values[0]() - 11) % 3000
+                    y = values[3](sf-1)
+                    
                     for scan_t, scan_f in SCAN_TYPES.iteritems():
                         combo_str = "sf%s/%s/%s/%s/%s" % (sf, layout_name, nth, scan_t, papi)
                         print combo_str
-                        for i in range(10):
+                        for i in range(RUNS):
                             if scan_t.endswith("_range"):
-                                x = (values[0]() - 10) % 3000
-                                y = values[3](sf-1)
+                                print x, x+10, y, y+1
                                 query(tablename, {0: [x, x+10], 3: [y, y+1]}, scan_f, papi, combo_str)
                             else:
-                                query(tablename, {0: values[0](), 3: values[3](sf)}, scan_f, papi, combo_str)
+                                query(tablename, {0: x, 3: y}, scan_f, papi, combo_str)
             delete(main)
             delete(delta)
                         
