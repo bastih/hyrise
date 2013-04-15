@@ -19,8 +19,8 @@ class Server(object):
             r = conn.getresponse()
             data = r.read()
             conn.close()
-        except Exception:
-            print d
+        except Exception, e:
+            print e, d
         return data
 
     def __del__(self):
@@ -170,7 +170,7 @@ def query(table, column_values, selection_operator_generator, papi, combo_str):
     return execute(bp, combo_str)
 
 RATIOS = [0.5, 0.2, 0.1, 0.01, 0.001, 0.0001, 0.00001, 0.000001]
-SCALES = [2]#, 10, 20, 40]
+SCALES = [2, 10, 20, 40]
 def _setup(fname):
     for sf in SCALES:
         print "generating", sf
