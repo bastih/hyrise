@@ -25,6 +25,8 @@ class IndexScan : public _PlanOperation {
 
 class IndexRangeScan : public _PlanOperation {
  public:
+  IndexRangeScan();
+  IndexRangeScan(std::string indexName, Json::Value from, Json::Value to);
   void executePlanOperation();
   static std::shared_ptr<_PlanOperation> parse(Json::Value &data);
  private:

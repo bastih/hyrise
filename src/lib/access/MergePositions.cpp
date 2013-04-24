@@ -14,7 +14,8 @@ void MergePositions::executePlanOperation() {
   }
   for (const auto& input_table: input.getTables()) {
     const auto& input_pc = checked_pointer_cast<const PointerCalculator>(input_table);
-    pc = (pc == nullptr ? input_pc : input_pc->intersect(pc) );
+    pc = (pc == nullptr ? input_pc : pc->intersect(input_pc) );
+
   }
   output.add(pc);
 }

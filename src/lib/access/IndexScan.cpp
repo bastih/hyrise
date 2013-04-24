@@ -78,9 +78,16 @@ struct RangeIndexFunctor {
     auto idx = std::dynamic_pointer_cast<InvertedIndex<ValueType> >(_index);
     auto fromValue = json_converter::convert<ValueType>(_from);
     auto toValue = json_converter::convert<ValueType>(_to);
-    return idx->getPositionsForRange(fromValue, toValue);
+    auto positions = idx->getPositionsForRange(fromValue, toValue);
+    std::sort(std::begin(positions), std::end(positions));
+    return positions;
   }
 };
+
+IndexRangeScan::IndexRangeScan() {}
+
+IndexRangeScan::IndexRangeScan(std::string indexName, Json::Value from, Json::Value to) :
+    _indexName(indexName), _value_from(from), _value_to(to) {}
 
 void IndexRangeScan::executePlanOperation() {
   const auto& idx = StorageManager::getInstance()->getInvertedIndex(_indexName);

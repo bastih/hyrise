@@ -13,7 +13,7 @@ class Server(object):
 
     def query(self, d):
         try:
-            #print json.dumps(d, sort_keys=True, indent=4)
+            json.dumps(d, sort_keys=True, indent=2)
             conn = httplib.HTTPConnection("localhost", self.port, strict=False)
             conn.request("POST", "", urllib.urlencode([("query",json.dumps(d))]))
             r = conn.getresponse()
@@ -239,8 +239,8 @@ def create_ratio(filename, ratio):
             lineno += 1
             if lineno == nth:
                 lineno = 0
-    print subprocess.check_output(["wc", "-l", main])
-    print subprocess.check_output(["wc", "-l", delta])
+    #print subprocess.check_output(["wc", "-l", main])
+    #print subprocess.check_output(["wc", "-l", delta])
     return main, delta 
 
 

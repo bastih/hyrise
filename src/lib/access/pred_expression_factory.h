@@ -62,9 +62,15 @@ struct expression_factory {
       GENERATE_EXPRESSION(MultiTableLessThanExpression);
       GENERATE_EXPRESSION(MultiTableGreaterThanExpression);
       case PredicateType::BetweenExpression:
-        return new BetweenExpression<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
+        if (_field_name.size() > 0)
+          return new BetweenExpression<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
+        else 
+          return new BetweenExpression<ValueType>(_input_index, _field, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
       case PredicateType::BetweenExpressionRaw:
-        return new BetweenExpressionRaw<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
+        if(_field_name.size() > 0)
+          return new BetweenExpressionRaw<ValueType>(_input_index, _field_name, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
+        else
+          return new BetweenExpressionRaw<ValueType>(_input_index, _field, json_converter::convert<ValueType>(_value["value_from"]), json_converter::convert<ValueType>(_value["value_to"]));
       default:
         throw std::runtime_error("Expression Type not supported");
     }

@@ -327,13 +327,15 @@ for (const field_t & field: *fields) {
 
 
 std::shared_ptr<PointerCalculator> PointerCalculator::intersect(const std::shared_ptr<const PointerCalculator>& other) const {
-  pos_list_t *result = new pos_list_t(std::max(pos_list->size(), other->pos_list->size()));
-
+  pos_list_t *result = new pos_list_t;
+  assert((other->table == this->table) && "Should point to same table");
+  assert(std::is_sorted(begin(*other->pos_list), end(*other->pos_list)));
+  assert(std::is_sorted(begin(*this->pos_list),  end(*this->pos_list)));
+  
   std::set_intersection(pos_list->begin(), pos_list->end(),
                         other->pos_list->begin(), other->pos_list->end(),
                         std::back_inserter(*result));
 
-  assert((other->table == this->table) && "Should point to same table");
   return std::make_shared<PointerCalculator>(table, result, fields);  
 }
 

@@ -139,9 +139,7 @@ template <typename T, class Strategy, template <typename K, typename S> class Al
 value_id_t OrderPreservingDictionary<T, Strategy, Allocator>::getValueIdForValueSmaller(T other) {
   auto binary_search = lower_bound(_values->begin(), _values->end(), other);
   size_t index = binary_search - _values->begin();
-
-  assert(index > 0);
-  return index - 1;
+  return index;
 }
 
 template <typename T, class Strategy, template <typename K, typename S> class Allocator>

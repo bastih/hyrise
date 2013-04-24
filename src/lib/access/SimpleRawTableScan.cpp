@@ -104,6 +104,7 @@ void SimpleRawTableScan::executePlanOperation() {
       }
     }
   }
+  
   if (_materializing) {
     addResult(result);
   } else {
