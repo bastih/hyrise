@@ -9,6 +9,8 @@
 
 #include "io/StorageManager.h"
 
+#include "helper/checked_cast.h"
+
 #include "storage/InvertedIndex.h"
 #include "storage/meta_storage.h"
 #include "storage/PointerCalculator.h"
@@ -34,7 +36,7 @@ struct ScanIndexFunctor {
   template<typename ValueType>
   value_type operator()() {
 
-    auto idx = std::dynamic_pointer_cast<InvertedIndex<ValueType> >(_index);
+    auto idx = checked_pointer_cast<InvertedIndex<ValueType> >(_index);
     auto v = json_converter::convert<ValueType>(_indexValue);
     pos_list_t *result = new pos_list_t(idx->getPositionsForKey(v));
     return result;
@@ -44,14 +46,15 @@ struct ScanIndexFunctor {
 void IndexScan::executePlanOperation() {
   StorageManager *sm = StorageManager::getInstance();
   auto idx = sm->getInvertedIndex(_indexName);
-
+  auto tbl = input.getTable();
+  
   // Handle type of index and value
   storage::type_switch<hyrise_basic_types> ts;
   ScanIndexFunctor fun(_value, idx);
 
-  storage::pos_list_t *pos = ts(input.getTable(0)->typeOfColumn(_field_definition[0]), fun);
+  storage::pos_list_t *pos = ts(tbl->typeOfColumn(_field_definition[0]), fun);
 
-  addResult(PointerCalculatorFactory::createPointerCalculatorNonRef(input.getTable(0),
+  addResult(PointerCalculatorFactory::createPointerCalculatorNonRef(tbl,
                                                                     nullptr,
                                                                     pos));
 }
@@ -76,7 +79,7 @@ struct RangeIndexFunctor {
 
   template<typename ValueType>
   value_type operator()() {
-    auto idx = std::dynamic_pointer_cast<InvertedIndex<ValueType> >(_index);
+    auto idx = checked_pointer_cast<InvertedIndex<ValueType> >(_index);
     auto fromValue = json_converter::convert<ValueType>(_from);
     auto toValue = json_converter::convert<ValueType>(_to);
     auto positions = idx->getPositionsForRange(fromValue, toValue);
@@ -116,18 +119,7 @@ void MergeIndexScan::executePlanOperation() {
   auto left = std::dynamic_pointer_cast<const PointerCalculator>(input.getTable(0));
   auto right = std::dynamic_pointer_cast<const PointerCalculator>(input.getTable(1));
 
-  storage::pos_list_t result(std::max(left->getPositions()->size(), right->getPositions()->size()));
-
-  auto it = std::set_intersection(left->getPositions()->begin(),
-                                  left->getPositions()->end(),
-                                  right->getPositions()->begin(),
-                                  right->getPositions()->end(),
-                                  result.begin());
-
-  auto tmp = PointerCalculatorFactory::createPointerCalculator(left->getActualTable(),
-                                                               nullptr,
-                                                               new storage::pos_list_t(result.begin(), it));
-  addResult(tmp);
+  addResult(left->intersect(right));
 }
 
 }

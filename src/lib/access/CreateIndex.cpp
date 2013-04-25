@@ -21,7 +21,10 @@
 namespace hyrise {
 namespace access {
 
+namespace { auto _ = QueryParser::registerPlanOperation<CreateIndex>("CreateIndex"); }
+
 struct CreateIndexFunctor {
+  
   typedef std::shared_ptr<AbstractIndex> value_type;
   const storage::c_atable_ptr_t& in;
   size_t column;
