@@ -564,6 +564,11 @@ public:
 
   /// get underlying attribute vectors for column
   virtual const attr_vectors_t getAttributeVectors(size_t column) const;
+
+  typedef size_t row_iterator_t;
+  /// Iteration interface
+  virtual row_iterator_t beginRowIndexes() const { return 0; } 
+  virtual row_iterator_t endRowIndexes() const { return size(); }
 };
 
 #endif  // SRC_LIB_STORAGE_ABSTRACTTABLE_H_

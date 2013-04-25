@@ -9,19 +9,20 @@ QueryTransformationEngine::parallelInstanceInfix = "_instance_",
   QueryTransformationEngine::unionSuffix           = "_union",
   QueryTransformationEngine::mergeSuffix           = "_merge";
 
-Json::Value &QueryTransformationEngine::transform(Json::Value &query) const {
-  parallelizeOperators(query);
-  return query;
-}
-
-void QueryTransformationEngine::parallelizeOperators(Json::Value &query) const {
+Json::Value &QueryTransformationEngine::transform(Json::Value &query) {
   Json::Value::Members operatorIds = query["operators"].getMemberNames();
   Json::Value operatorConfiguration;
   for (size_t i = 0; i < operatorIds.size(); ++i) {
     operatorConfiguration = query["operators"][operatorIds[i]];
+    // check whether operator should be transformed
+    if (_factory.count(operatorConfiguration["type"].asString()) > 0)
+      _factory[operatorConfiguration["type"].asString()]->transform(operatorConfiguration, operatorIds[i], query);
+    // check whether operator needs to be parallelized
     if (requestsParallelization(operatorConfiguration))
       applyParallelizationTo(operatorConfiguration, operatorIds[i], query);
   }
+  //std::cout << query.toStyledString()<< std::endl;
+  return query;
 }
 
 bool QueryTransformationEngine::requestsParallelization(
@@ -93,7 +94,7 @@ Json::Value QueryTransformationEngine::nextInstanceOf(
 
 Json::Value QueryTransformationEngine::unionOperator() const {
   Json::Value unionOperator(Json::objectValue);
-  unionOperator["type"] = "UnionScan";
+  unionOperator["type"] = "UnionAll";
   unionOperator["positions"] = true;
   return unionOperator;
 }

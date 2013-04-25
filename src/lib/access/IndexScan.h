@@ -35,12 +35,14 @@ class IndexRangeScan : public _PlanOperation {
   /// values for range
   Json::Value _value_from, _value_to;
 };
-
+          
 class MergeIndexScan : public _PlanOperation {
 public:
   void executePlanOperation();
 };
 
+
 }}
+
 
 #endif // SRC_LIB_ACCESS_INDEX_SCAN

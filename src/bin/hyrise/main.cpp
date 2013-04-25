@@ -120,18 +120,15 @@ void bindToNode(int node) {
     char *str;
     int error = errno;
     hwloc_bitmap_asprintf(&str, obj->nodeset);
-    printf("Couldn't bind memory to cpuset %s: %s\n", str, strerror(error));
+    fprintf(stderr, "Couldn't membind to nodeset  %s: %s\n", str, strerror(error));
+    fprintf(stderr, "Continuing as normal, however, no guarantees\n");
     free(str);
-    throw std::runtime_error(strerror(error));
+    //throw std::runtime_error(strerror(error));
   }
 }
 
 
-#include <access/RequestParseTask.h>
-
 int main(int argc, char *argv[]) {
-
-  //hyrise::access::RequestParseTask::registerURL();
 
   // Bind the program to the first NUMA node
   bindToNode(0);
@@ -145,8 +142,7 @@ int main(int argc, char *argv[]) {
   desc.add_options()("help", "Shows this help message")
   ("port,p", po::value<size_t>(&port)->default_value(DEFAULT_PORT), "Server Port")
   ("logdef,l", po::value<std::string>(&logPropertyFile)->default_value("build/log.properties"), "Log4CXX Log Properties File")
-  ("scheduler,s", po::value<std::string>(&scheduler_name)->default_value("SimpleTaskScheduler"), "Name of the scheduler to use");
-  
+  ("scheduler,s", po::value<std::string>(&scheduler_name)->default_value("WSSimpleTaskScheduler"), "Name of the scheduler to use");
   po::variables_map vm;
   po::store(po::parse_command_line(argc, argv, desc), vm);
   po::notify(vm);

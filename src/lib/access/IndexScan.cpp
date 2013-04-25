@@ -1,18 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include "access/IndexScan.h"
+
 #include <memory>
 
-#include <access/BasicParser.h>
-#include <access/IndexScan.h>
-#include <access/json_converters.h>
-#include <access/QueryParser.h>
+#include "access/BasicParser.h"
+#include "access/json_converters.h"
+#include "access/QueryParser.h"
 
-#include <io/StorageManager.h>
+#include "io/StorageManager.h"
 
-#include <storage/AbstractIndex.h>
-#include <storage/InvertedIndex.h>
-#include <storage/meta_storage.h>
-#include <storage/PointerCalculator.h>
-#include <storage/PointerCalculatorFactory.h>
+#include "storage/InvertedIndex.h"
+#include "storage/meta_storage.h"
+#include "storage/PointerCalculator.h"
+#include "storage/PointerCalculatorFactory.h"
 
 namespace hyrise { namespace access {
 
@@ -33,6 +33,7 @@ struct ScanIndexFunctor {
 
   template<typename ValueType>
   value_type operator()() {
+
     auto idx = std::dynamic_pointer_cast<InvertedIndex<ValueType> >(_index);
     auto v = json_converter::convert<ValueType>(_indexValue);
     pos_list_t *result = new pos_list_t(idx->getPositionsForKey(v));
@@ -47,12 +48,12 @@ void IndexScan::executePlanOperation() {
   // Handle type of index and value
   storage::type_switch<hyrise_basic_types> ts;
   ScanIndexFunctor fun(_value, idx);
-  pos_list_t *pos = ts(input.getTable(0)->typeOfColumn(_field_definition[0]), fun);
-  // std::cout << _indexName << " " << pos->size() << std::endl;
+
+  storage::pos_list_t *pos = ts(input.getTable(0)->typeOfColumn(_field_definition[0]), fun);
 
   addResult(PointerCalculatorFactory::createPointerCalculatorNonRef(input.getTable(0),
-            nullptr,
-            pos));
+                                                                    nullptr,
+                                                                    pos));
 }
 
 std::shared_ptr<_PlanOperation> IndexScan::parse(Json::Value &data) {
@@ -115,18 +116,20 @@ void MergeIndexScan::executePlanOperation() {
   auto left = std::dynamic_pointer_cast<const PointerCalculator>(input.getTable(0));
   auto right = std::dynamic_pointer_cast<const PointerCalculator>(input.getTable(1));
 
-  pos_list_t result(std::max(left->getPositions()->size(), right->getPositions()->size()));
+  storage::pos_list_t result(std::max(left->getPositions()->size(), right->getPositions()->size()));
 
-  auto it = std::set_intersection(left->getPositions()->begin(), left->getPositions()->end(),
-                        right->getPositions()->begin(), right->getPositions()->end(),
-                        result.begin());
-
+  auto it = std::set_intersection(left->getPositions()->begin(),
+                                  left->getPositions()->end(),
+                                  right->getPositions()->begin(),
+                                  right->getPositions()->end(),
+                                  result.begin());
 
   auto tmp = PointerCalculatorFactory::createPointerCalculator(left->getActualTable(),
                                                                nullptr,
-                                                               new pos_list_t(result.begin(), it)); 
+                                                               new storage::pos_list_t(result.begin(), it));
   addResult(tmp);
 }
 
+}
+}
 
-}}

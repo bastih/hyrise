@@ -15,13 +15,14 @@ lib_memory  := $(lib_dir)/memory
 lib_taskscheduler	:= $(lib_dir)/taskscheduler
 
 # third party dependencies
-json	    := $(build_dir)/jsoncpp
-ext_gtest := $(build_dir)/gtest
-lib_ebb     := $(lib_dir)/ebb
-lib_ftprinter := $(lib_dir)/ftprinter
+json		:= $(build_dir)/jsoncpp
+ext_gtest	:= $(build_dir)/gtest
+lib_ebb		:= $(lib_dir)/ebb
+lib_ftprinter	:= $(lib_dir)/ftprinter
+lib_backward	:= $(bin_dir)/backward
 
 # a list of all libraries
-libraries := $(json) $(lib_helper) $(lib_storage) $(lib_access) $(lib_io) $(lib_testing) $(lib_net) $(lib_layouter) $(lib_ebb) $(lib_memory) $(ext_gtest) $(lib_taskscheduler) $(lib_ftprinter)
+libraries := $(json) $(lib_helper) $(lib_storage) $(lib_access) $(lib_io) $(lib_testing) $(lib_net) $(lib_layouter) $(lib_ebb) $(lib_memory) $(ext_gtest) $(lib_taskscheduler) $(lib_ftprinter) $(lib_backward)
 
 # binary dependencies
 # - test suites
@@ -51,11 +52,12 @@ datagen_binaries    := $(subst bin/,,$(regression_datagen))
 
 # - other binaries
 server_hyrise 		:= $(bin_dir)/hyrise
+bin_dummy := $(bin_dir)/dummy
 
-binaries :=  $(server_hyrise)
+binaries :=  $(server_hyrise) $(bin_dummy)
 # list all build targets
 
-tgts :=  $(libraries) $(binaries) $(all_test_suites) $(regression_suite) $(regression_datagen) 
+tgts :=  $(libraries) $(binaries) $(all_test_suites) $(regression_suite) $(regression_datagen)
 
 .PHONY: all $(tgts) tags test test_basic hudson_build hudson_test $(all_test_binaries) doxygen docs
 
@@ -73,9 +75,9 @@ $(lib_memory):
 $(lib_taskscheduler): $(lib_helper)
 $(lib_storage): $(lib_helper) $(lib_memory) $(lib_ftprinter) $(ext_gtest) $(lib_ftprinter)
 $(lib_io): $(lib_storage) $(lib_helper)
-$(lib_access): $(lib_storage) $(lib_helper) $(lib_io) $(lib_layouter) $(json) $(lib_taskscheduler)
+$(lib_access): $(lib_storage) $(lib_helper) $(lib_io) $(lib_layouter) $(json) $(lib_taskscheduler) $(lib_net)
 $(lib_testing): $(ext_gtest) $(lib_storage) $(lib_taskscheduler) $(lib_access)
-$(lib_net): $(lib_helper) $(json) $(lib_taskscheduler) $(lib_ebb) $(lib_access)
+$(lib_net): $(lib_helper) $(json) $(lib_taskscheduler) $(lib_ebb)
 
 $(server_hyrise): $(libraries)
 $(unit_tests_helper): $(libraries)
@@ -88,8 +90,10 @@ $(unit_tests_memory): $(libraries)
 $(all_test_suites): $(libraries)
 $(perf_regression): $(libraries)
 $(perf_datagen): $(libraries)
-$(binaries): $(libraries)
 $(test_relation_eq): $(libraries)
+
+$(binaries): $(libraries)
+$(all_test_suites): $(libraries)
 
 # --- Hack: To make the execution of test tasks sensible to errors when
 # running taks `test_basic` or `test`, we set an env variable so the following

@@ -56,6 +56,10 @@ public:
   DataType typeOfColumn(const size_t column) const;
   size_t columnCount() const;
   std::string nameOfColumn(const size_t column) const;
+
+  /// Iteration interface
+  virtual row_iterator_t beginRowIndexes() const { return _start; } 
+  virtual row_iterator_t endRowIndexes() const { return _end; }
 };
 
 #endif /* TABLERANGEVIEW_H_ */
