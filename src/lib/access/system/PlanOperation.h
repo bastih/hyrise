@@ -68,6 +68,7 @@ class _PlanOperation : public OutputTask {
   virtual ~_PlanOperation();
 
   void setLimit(uint64_t l);
+  void setProfiling(bool profiling);
   void setProducesPositions(bool p);
   void setTransactionId(hyrise::tx::transaction_id_t tid);
 
@@ -123,6 +124,7 @@ class _PlanOperation : public OutputTask {
   std::weak_ptr<hyrise::access::ResponseTask> _responseTask;
 
   bool producesPositions = true;
+  bool _profiling = false;
 
   std::string _planId;
   std::string _operatorId;

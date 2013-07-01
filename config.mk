@@ -15,7 +15,6 @@ MANUAL_PERF_IMPRO ?= 0
 COVERAGE_TESTING ?= 0
 PAPI_TRACE ?= 0
 VERBOSE_BUILD ?= 0
-COLOR_TTY ?= 1
 WITH_MYSQL ?= 0
 FLTO ?= 0
 USE_BACKWARD ?= 1
@@ -36,7 +35,6 @@ HYRISE_ALLOCATOR ?=
 # Include actual settings, override environment and others
 -include $(TOP)settings.mk
 
-MAKE := $(MAKE) --no-print-directory -s
 COMPILER ?= g++47
 
 include $(TOP)config.$(COMPILER).mk
@@ -56,7 +54,7 @@ ifneq (,$(findstring linux,$(OSTYPE)))
 	LIB_EXTENSION := so
 	BUILD_FLAGS += -fPIC -D WITH_NUMA
 	LINKER_FLAGS += -lnuma -ldl -Wl,-no-as-needed
-	SHARED_LIB := -shared 	
+	SHARED_LIB := -shared
 else
 	BUILD_FLAGS += -D NO_PREFETCHING
 	LIB_EXTENSION := dylib
@@ -89,6 +87,7 @@ ifeq ($(PAPI_TRACE), 1)
 endif
 
 ifeq ($(USE_GOOGLE_PROFILER), 1)
+	BUILD_FLAGS += -D HYRISE_USE_GOOGLE_PROFILER
 	LINKER_FLAGS += -lprofiler
 endif
 
@@ -118,8 +117,8 @@ ifeq ($(USE_V8), 1)
 	endif
 endif
 
-JSON_PATH	:=	$(IMH_PROJECT_PATH)/third_party/jsoncpp
-FTPRINTER_PATH	:=	$(IMH_PROJECT_PATH)/third_party/ftprinter/include
+JSON_PATH	:= $(IMH_PROJECT_PATH)/third_party/jsoncpp
+FTPRINTER_PATH	:= $(IMH_PROJECT_PATH)/third_party/ftprinter/include
 PROJECT_INCLUDE += $(IMH_PROJECT_PATH)/src/lib $(IMH_PROJECT_PATH)/third_party $(FTPRINTER_PATH) $(JSON_PATH)
 LINKER_FLAGS += -llog4cxx -lpthread
 BINARY_LINKER_FLAGS += -lbackward-hyr

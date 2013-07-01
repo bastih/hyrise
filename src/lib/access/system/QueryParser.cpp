@@ -47,6 +47,8 @@ void QueryParser::buildTasks(
     // check for materialization strategy
     if (planOperationSpec.isMember("positions"))
       planOperation->setProducesPositions(!planOperationSpec["positions"].asBool());
+    if (planOperationSpec.isMember("profiling"))
+      planOperation->setProfiling(planOperationSpec["profiling"].asBool());
 
     tasks.push_back(planOperation);
     task_map[members[i]] = planOperation;

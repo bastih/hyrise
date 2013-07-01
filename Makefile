@@ -68,7 +68,7 @@ all: $(tgts)
 
 $(tgts):
 	@echo 'DIR $@'
-	@$(MAKE) $(MAKEFLAGS) --directory=$@
+	@$(MAKE) $(MAKEFLAGS) --no-print-directory --directory=$@
 
 # dependencies betweeen binaries and libraries
 
@@ -144,7 +144,7 @@ clean_targets :=
 define CLEAN_TGT
 clean_targets += $(1)_clean
 $(1)_clean:
-	@$(MAKE) clean --directory=$(1)  
+	@$(MAKE) clean --no-print-directory --directory=$(1)  
 endef    
 $(foreach tgt,$(tgts),$(eval $(call CLEAN_TGT,$(tgt))))
 

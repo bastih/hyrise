@@ -15,6 +15,10 @@
 #include "storage/TableRangeViewFactory.h"
 #include "storage/TableRangeView.h"
 
+#ifdef HYRISE_USE_GOOGLE_PROFILER
+#include <gperftools/profiler.h>
+#endif
+
 namespace { log4cxx::LoggerPtr logger(log4cxx::Logger::getLogger("access.plan._PlanOperation")); }
 
 _PlanOperation::~_PlanOperation() = default;
@@ -188,9 +192,27 @@ void _PlanOperation::operator()() noexcept {
   setState(OpFail);
 }
 
+struct Profiler {
+#ifdef HYRISE_USE_GOOGLE_PROFILER
+  bool _profile;
+  Profiler(bool profile, const std::string& name) : _profile(profile) {
+    if (_profile) {
+      ProfilerStart((name + std::to_string(get_epoch_nanoseconds()) + ".gprof").c_str());
+    }
+  }
+  ~Profiler() {
+    if (_profile) {
+      ProfilerStop();
+    }
+  }
+#else
+  Profiler(bool, const std::string&) {}
+#endif
+};
+
 const _PlanOperation *_PlanOperation::execute() {
   epoch_t startTime = get_epoch_nanoseconds();
-
+  Profiler prof(_profiling, _operatorId);
   refreshInput();
 
   setupPlanOperation();
@@ -219,6 +241,10 @@ const _PlanOperation *_PlanOperation::execute() {
 
 void _PlanOperation::setLimit(uint64_t l) {
   _limit = l;
+}
+
+void _PlanOperation::setProfiling(bool profiling) {
+  _profiling = profiling;
 }
 
 void _PlanOperation::setProducesPositions(bool p) {

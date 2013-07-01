@@ -1,12 +1,19 @@
-ifneq ($(VERBOSE_BUILD), 1)
-ifeq ($(COLOR_TTY), 1)
+COLOR := \033[33;40m
+NOCOLOR := \033[0m
+
+ifndef COLOR_TTY
+COLOR_TTY := $(shell [ `tput colors` -gt 2 ] && echo true)
+endif
+
+ifneq ($(VERBOSE),1)
+ifeq ($(COLOR_TTY),true)
 echo_prog := $(shell if echo -e | grep -q -- -e; then echo echo; else echo echo -e; fi)
 echo_cmd = @$(echo_prog) "$(COLOR)$(subst $(IMH_PROJECT_PATH)/,,$(1))$(NOCOLOR)";
 else
 echo_cmd = @echo "$(1)";
 endif
 else # Verbose output
-echo_cmd =
+echo_cmd = 
 endif
 
 .PHONY:: clean
@@ -44,11 +51,11 @@ $(lib): $(objects)
 	$(call echo_cmd,LINK $@) $(LD) $(SHARED_LIB) -o $@ $(objects) $(LINKER_FLAGS) $(lib_dependencies) $(linker_dir_flags)
 
 %.cpp.o: %.cpp $(makefiles) $(precompiled_header) 
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	$(call echo_cmd,CXX $<) $(CXX) -MMD -MP $(CXX_BUILD_FLAGS) $(include_flags) -Winvalid-pch -include $(precompiled_header_source) -c -o $@ $< 
 
 %.c.o: %.c $(makefiles)
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	$(call echo_cmd,CC $<) $(CC) -MMD -MP $(CC_BUILD_FLAGS) $(include_flags) -c -o $@ $< 
 
 clean::
