@@ -103,9 +103,9 @@ TEST_F(TableTests, bit_compression_test) {
 }
 
 TEST_F(TableTests, test_different_allocation_1) {
-  auto cols = intList(2);
+  /*auto cols = intList(2);
   Table<MemalignStrategy<64> > *main = new Table<MemalignStrategy<64> >(&cols);
-  delete main;
+  delete main;*/
 }
 
 TEST_F(TableTests, test_modifiable_table) {

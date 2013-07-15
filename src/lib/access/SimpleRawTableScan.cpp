@@ -78,7 +78,7 @@ void SimpleRawTableScan::executePlanOperation() {
   metadata_list meta(table->columnCount());
   for(size_t i=0; i<table->columnCount(); ++i)
     meta[i] = table->metadataAt(i);
-  auto result = std::make_shared<Table<>>(&meta,
+  auto result = std::make_shared<Table>(&meta,
                                           nullptr,
                                           1,  /* initial size */
                                           false, /* sorted */

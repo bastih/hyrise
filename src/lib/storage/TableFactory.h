@@ -47,7 +47,7 @@ hyrise::storage::atable_ptr_t TableFactory<Strategy, Allocator>::generate(std::v
     size_t initial_size,
     bool sorted,
     bool compressed) {
-  return std::make_shared<Table<Strategy, Allocator>>(m, d, initial_size, sorted, compressed);
+  return std::make_shared<Table>(m, d, initial_size, sorted, compressed);
 }
 
 #endif  // SRC_LIB_STORAGE_TABLEFACTORY_H_

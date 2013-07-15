@@ -25,7 +25,7 @@ TEST( FixedLengthVectorTest, increment_test ) {
   size_t rows = 3;
 
   auto tuples = std::dynamic_pointer_cast<FixedLengthVector<value_id_t>>(
-    AttributeVectorFactory::getAttributeVector2<value_id_t, StrategizedAllocator<uint, MallocStrategy>>(cols,rows, false));
+    AttributeVectorFactory::getAttributeVector2<value_id_t>(cols,rows, false));
 
   tuples->resize(rows);
 
@@ -56,10 +56,7 @@ TYPED_TEST_CASE(AttributeVectorTests, Vectors);
 TYPED_TEST(AttributeVectorTests, boundaries_test) {
   size_t cols = 2;
   size_t rows = 3;
-  auto tuples = AttributeVectorFactory::getAttributeVector2<uint32_t, typename TypeParam::Allocator>(cols,
-                                                                                                     rows,
-                                                                                                     TypeParam::compressed,
-                                                                                                     bits);
+  auto tuples = AttributeVectorFactory::getAttributeVector2<value_id_t>(cols, rows, TypeParam::compressed, bits);
   tuples->resize(rows);
 #ifdef EXPENSIVE_ASSERTIONS
   EXPECT_THROW(tuples->get(cols, 0), std::out_of_range);
@@ -70,7 +67,7 @@ TYPED_TEST(AttributeVectorTests, boundaries_test) {
 
 TYPED_TEST(AttributeVectorTests, base_test) {
 
-  auto tuples = AttributeVectorFactory::getAttributeVector2<uint32_t, typename TypeParam::Allocator>(1, 3, TypeParam::compressed, bits);
+  auto tuples = AttributeVectorFactory::getAttributeVector2<value_id_t>(1, 3, TypeParam::compressed, bits);
   tuples->resize(3);
 
   tuples->set(0, 0, 2);
@@ -89,7 +86,7 @@ TYPED_TEST(AttributeVectorTests, base_test) {
 }
 
 TYPED_TEST(AttributeVectorTests, two_columns) {
-  auto tuples = AttributeVectorFactory::getAttributeVector2<uint32_t, typename TypeParam::Allocator>(2, 3, TypeParam::compressed, bits);
+  auto tuples = AttributeVectorFactory::getAttributeVector2<value_id_t>(2, 3, TypeParam::compressed, bits);
   tuples->resize(3);
 
   tuples->set(0, 0, 2);
@@ -115,7 +112,7 @@ TYPED_TEST(AttributeVectorTests, two_columns) {
 
 TYPED_TEST(AttributeVectorTests, copy_test) {
 
-  auto tuples = AttributeVectorFactory::getAttributeVector2<uint32_t, typename TypeParam::Allocator>(2, 3, TypeParam::compressed, bits);
+  auto tuples = AttributeVectorFactory::getAttributeVector2<value_id_t>(2, 3, TypeParam::compressed, bits);
   tuples->resize(3);
 
   tuples->set(0, 0, 2);
@@ -143,7 +140,7 @@ TYPED_TEST(AttributeVectorTests, copy_test) {
 }
 
 TYPED_TEST(AttributeVectorTests, empty_does_not_fail_when_reserve_test) {
-  auto tuples = AttributeVectorFactory::getAttributeVector2<uint32_t, typename TypeParam::Allocator>(1, 0, TypeParam::compressed, bits);
+  auto tuples = AttributeVectorFactory::getAttributeVector2<value_id_t>(1, 0, TypeParam::compressed, bits);
   tuples->resize(3);
 
   // when adding three elements
@@ -160,7 +157,7 @@ TYPED_TEST(AttributeVectorTests, empty_does_not_fail_when_reserve_test) {
 
 TYPED_TEST(AttributeVectorTests, empty_size_does_not_change_with_reserve) {
 
-  auto tuples = AttributeVectorFactory::getAttributeVector2<uint32_t, typename TypeParam::Allocator>(1, 1, TypeParam::compressed, std::vector<uint64_t> {1});
+  auto tuples = AttributeVectorFactory::getAttributeVector2<value_id_t>(1, 1, TypeParam::compressed, std::vector<uint64_t> {1});
   ASSERT_EQ(0u, tuples->size());
   if (TypeParam::compressed)
     ASSERT_EQ(64u, tuples->capacity());
