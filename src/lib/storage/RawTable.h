@@ -10,7 +10,6 @@
 #include "storage/storage_types.h"
 #include "storage/meta_storage.h"
 #include "storage/AbstractTable.h"
-#include "storage/AbstractAllocatedTable.h"
 #include "storage/ColumnMetadata.h"
 
 
@@ -122,8 +121,7 @@ std::string to_string(std::string val);
 
 
 
-ALLOC_CLASS(RawTable) {
-  typedef RawTable<Strategy, Allocator> this_type;
+class RawTable : public AbstractTable {
   typedef unsigned char byte;
   typedef metadata_vec_t MetadataVector;
 
@@ -221,14 +219,13 @@ public:
     throw std::runtime_error("Setting of strings is not implemented");
   }
 
-  template <typename T>
   struct convert_to_string_functor {
     typedef std::string value_type;
-    const T& _table;
+    const RawTable& _table;
     const size_t& _col;
     const size_t& _row;
 
-    convert_to_string_functor(const T& table,
+    convert_to_string_functor(const RawTable& table,
                               const size_t& col,
                               const size_t& row) :
         _table(table), _col(col), _row(row) {};
@@ -241,7 +238,7 @@ public:
 
   std::string printValue(const size_t col, const size_t row) const {
     hyrise::storage::type_switch<hyrise_basic_types> ts;
-    convert_to_string_functor<this_type> f(*this, col, row);
+    convert_to_string_functor f(*this, col, row);
     return ts(_metadata.at(col).getType(), f);
   }
 

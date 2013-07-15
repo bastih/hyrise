@@ -17,7 +17,6 @@
 #include "memory/StrategizedAllocator.h"
 #include "storage/BaseAttributeVector.h"
 
-//template <typename T, typename Allocator = StrategizedAllocator<T, MemalignStrategy<4096> > >
 template <typename T, typename Allocator = StrategizedAllocator<T, MallocStrategy > >
 class FixedLengthVector : public BaseAttributeVector<T> {
  private:
