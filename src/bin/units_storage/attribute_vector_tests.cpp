@@ -5,7 +5,6 @@
 #include <storage/BitCompressedVector.h>
 #include <storage/FixedLengthVector.h>
 #include <storage/AttributeVectorFactory.h>
-#include <memory/strategies.h>
 
 template <typename T>
 class AttributeVectorTests : public ::hyrise::Test {
@@ -13,10 +12,9 @@ public:
 
 };
 
-template<bool Compressed, typename A>
+template<bool Compressed>
 struct TestType {
   static const bool compressed = Compressed;
-  typedef A Allocator;
 };
 
 
@@ -41,8 +39,8 @@ static const std::vector<uint64_t> bits = std::vector<uint64_t> {2, 3};
 using testing::Types;
 
 typedef Types <
-TestType<false, StrategizedAllocator<uint, MallocStrategy> >,
-         TestType<true, StrategizedAllocator<uint, MallocStrategy> >
+TestType<false >,
+         TestType<true >
          // BitCompressedVector<uint>,
          // BitCompressedVector<uint, StrategizedAllocator<uint, MemalignStrategy<16> > >,
          // BitCompressedVector<uint, StrategizedAllocator<uint, NumaNodeStrategy<NumaConfig> > >,

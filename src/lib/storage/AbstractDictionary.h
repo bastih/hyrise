@@ -6,10 +6,7 @@
 #include <string>
 #include <memory>
 
-#include <memory/StrategizedAllocator.h>
-#include <memory/MallocStrategy.h>
-#include <memory/MemalignStrategy.h>
-#include <storage/storage_types.h>
+#include "storage/storage_types.h"
 
 class AbstractDictionary;
 
@@ -37,9 +34,7 @@ struct DictionaryFactory {
 
 
 class AbstractDictionary {
-
 public:
-
   virtual ~AbstractDictionary() {}
 
   virtual bool isOrdered() = 0;

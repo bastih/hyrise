@@ -5,7 +5,7 @@
 #include "memory/MemalignStrategy.h"
 #include "memory/NumaStrategy.h"
 #include "memory/NumaStrategy2.h"
-
+#include "memory/StrategizedAllocator.h"
 template <typename T>
 class StrategyTests : public ::hyrise::Test {};
 
