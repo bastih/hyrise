@@ -131,7 +131,5 @@ public:
   }
 };
 
-#include "Table-impl.h"
-
 #endif  // SRC_LIB_STORAGE_TABLE_H_
 
