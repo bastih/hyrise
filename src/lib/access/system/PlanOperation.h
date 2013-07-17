@@ -117,8 +117,6 @@ class PlanOperation : public OutputTask {
   field_name_list_t _named_field_definition;
   field_list_t _indexed_field_definition;
 
-  /// Used containers
-  std::vector<int> container_list;
   size_t _part = 0;
   size_t _count = 0;
   std::weak_ptr<access::ResponseTask> _responseTask;
