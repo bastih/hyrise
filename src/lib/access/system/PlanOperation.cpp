@@ -1,10 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "PlanOperation.h"
+#include "access/system/PlanOperation.h"
 
 #include <algorithm>
 #include <thread>
-
-#include <boost/lexical_cast.hpp>
 
 #include "helper/epoch.h"
 #include "helper/PapiTracer.h"
@@ -15,7 +13,10 @@
 #include "storage/TableRangeViewFactory.h"
 #include "storage/TableRangeView.h"
 
-namespace { log4cxx::LoggerPtr logger(log4cxx::Logger::getLogger("access.plan._PlanOperation")); }
+#include "boost/lexical_cast.hpp"
+#include "log4cxx/logger.h"
+
+namespace { auto logger = log4cxx::Logger::getLogger("access.plan._PlanOperation"); }
 
 namespace hyrise { namespace access {
 

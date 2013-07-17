@@ -212,7 +212,7 @@ TEST_F(GroupByTests, DISABLED_group_by_performance) {
 
   gs.addInputHash(group_map);
 
-  OutputTask::performance_attributes_t perf;
+  performance_attributes_t perf;
   gs.setPerformanceData(&perf);
 
   gs.execute();

@@ -7,6 +7,8 @@
 #include "storage/PointerCalculator.h"
 #include "storage/PointerCalculatorFactory.h"
 
+#include <log4cxx/logger.h>
+
 namespace hyrise {
 namespace access {
 

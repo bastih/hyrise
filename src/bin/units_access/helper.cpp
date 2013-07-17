@@ -144,6 +144,7 @@ hyrise::storage::c_atable_ptr_t executeAndWait(
     size_t poolSize,
     std::string *evt) {
   using namespace hyrise;
+  using namespace hyrise::access;
   std::unique_ptr<MockedConnection> conn(new MockedConnection("query="+httpQuery));
 
   if(!SharedScheduler::getInstance().isInitialized())

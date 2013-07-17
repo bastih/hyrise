@@ -77,14 +77,14 @@ const std::string ResponseTask::vname() {
 }
 
 void ResponseTask::registerPlanOperation(const std::shared_ptr<_PlanOperation>& planOp) {
-  OutputTask::performance_attributes_t* perf = new OutputTask::performance_attributes_t;
+  performance_attributes_t* perf = new performance_attributes_t;
   planOp->setPerformanceData(perf);
 
   const auto responseTaskPtr = std::dynamic_pointer_cast<ResponseTask>(shared_from_this()); 
   planOp->setResponseTask(responseTaskPtr);
 
   perfMutex.lock();
-  performance_data.push_back(std::unique_ptr<OutputTask::performance_attributes_t>(perf));
+  performance_data.push_back(std::unique_ptr<performance_attributes_t>(perf));
   perfMutex.unlock();
 }
 

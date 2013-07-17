@@ -18,7 +18,7 @@ class ResponseTask : public Task {
   net::AbstractConnection *connection;
   size_t _transmitLimit; // Used for serialization only
   epoch_t queryStart;
-  OutputTask::performance_vector performance_data;
+  performance_vector_t performance_data;
   std::mutex perfMutex;
 
  public:
@@ -44,7 +44,7 @@ class ResponseTask : public Task {
     _transmitLimit = l;
   }
 
-  OutputTask::performance_vector& getPerformanceData() {
+  performance_vector_t& getPerformanceData() {
     return performance_data;
   }
 

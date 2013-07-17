@@ -68,10 +68,10 @@ void RequestParseTask::operator()() {
   // MG response always on the same core
   _responseTask->setPreferredCore(0);
 
-  OutputTask::performance_vector& performance_data = _responseTask->getPerformanceData();
+  performance_vector_t& performance_data = _responseTask->getPerformanceData();
 
   // the performance attribute for this operation (at [0])
-  performance_data.push_back(std::unique_ptr<OutputTask::performance_attributes_t>(new OutputTask::performance_attributes_t));
+  performance_data.push_back(std::unique_ptr<performance_attributes_t>(new performance_attributes_t));
   
   epoch_t queryStart = get_epoch_nanoseconds();
   std::vector<std::shared_ptr<Task> > tasks;
