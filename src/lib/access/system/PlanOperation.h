@@ -29,9 +29,6 @@ class PlanOperation : public OutputTask {
   void addResult(storage::c_atable_ptr_t result);
   void addResultHash(storage::c_ahashtable_ptr_t result);
 
-
-  unsigned int findColumn(const std::string &);
-
   virtual void computeDeferredIndexes();
 
   /*!

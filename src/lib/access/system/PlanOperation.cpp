@@ -86,35 +86,17 @@ void PlanOperation::addField(const Json::Value &field) {
   } else throw std::runtime_error("Can't parse field name, neither numeric nor std::string");
 }
 
-/* This method only returns the column number in each table, assuming the operation knows how to handle positions */
-unsigned int PlanOperation::findColumn(const std::string &col) {
-  for (const auto& table: input.getTables()) {
-    try {
-      return table->numberOfColumn(col);
-    } catch (MissingColumnException e) {}
-  }
-  throw MissingColumnException(col);
-}
-
-size_t widthOfInputs(const std::vector<storage::c_atable_ptr_t > &inputs) {
-  size_t result = 0;
-  for (const auto& table: inputs) {
-    result += table->columnCount();
-  }
-  return result;
-}
-
 void PlanOperation::computeDeferredIndexes() {
   _field_definition = _indexed_field_definition;
   if (!_named_field_definition.empty()) {
-
+    assert(_field_definition.empty());
+    const auto& table = input.getTable(0);
     if ((_named_field_definition.size() == 1) && (_named_field_definition[0] == "*")) {
-      for (size_t field_index = 0; field_index < widthOfInputs(input.getTables()); ++field_index) {
-        _field_definition.push_back(field_index);
-      }
+      _field_definition.resize(table->columnCount());
+      std::iota(std::begin(_field_definition), std::end(_field_definition), 0);
     } else {
       for (size_t i = 0; i < _named_field_definition.size(); ++i) {
-        _field_definition.push_back(findColumn(_named_field_definition[i]));
+        _field_definition.push_back(table->numberOfColumn(_named_field_definition[i]));
       }
     }
   }
