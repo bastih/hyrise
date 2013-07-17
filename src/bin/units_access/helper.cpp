@@ -54,7 +54,7 @@ const hyrise::storage::c_atable_ptr_t hashJoinSameTable(
 	}
 	auto hashJoinProbe = std::make_shared<hyrise::access::HashJoinProbe>();
 	hashJoinProbe->addInput(table);
-	hashJoinProbe->setFields(&columns);
+        for (auto col: columns) { hashJoinProbe->addField(col); }
 	hashJoinProbe->addInput(hashBuild->execute()->getResultHashTable());
 
 	return hashJoinProbe->execute()->getResultTable();

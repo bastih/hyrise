@@ -9,10 +9,6 @@ namespace access {
 
 class ProjectionScan : public _PlanOperation {
 public:
-  ProjectionScan();
-  explicit ProjectionScan(storage::field_list_t *fields);
-  virtual ~ProjectionScan();
-
   void setupPlanOperation();
   void executePlanOperation();
   static std::shared_ptr<_PlanOperation> parse(Json::Value &data);

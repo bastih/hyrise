@@ -15,16 +15,6 @@ namespace {
   auto _ = QueryParser::registerPlanOperation<ProjectionScan>("ProjectionScan");
 }
 
-ProjectionScan::ProjectionScan() {
-}
-
-ProjectionScan::ProjectionScan(storage::field_list_t *fields): _PlanOperation() {
-  setFields(fields);
-}
-
-ProjectionScan::~ProjectionScan() {
-}
-
 void ProjectionScan::setupPlanOperation() {
   computeDeferredIndexes();
 }

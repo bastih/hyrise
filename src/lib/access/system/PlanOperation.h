@@ -80,7 +80,6 @@ class PlanOperation : public OutputTask {
   storage::c_ahashtable_ptr_t getInputHashTable(size_t index = 0) const;
   storage::c_ahashtable_ptr_t getResultHashTable(size_t index = 0) const;
 
-  void setFields(field_list_t *fields);
   void addField(field_t field);
   void addField(const Json::Value &field);
   void addNamedField(const field_name_t& field);

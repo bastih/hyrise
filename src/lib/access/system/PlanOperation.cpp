@@ -70,14 +70,9 @@ std::string PlanOperation::getDependencyErrorMessages() {
   return result;
 }
 
-void PlanOperation::setFields(field_list_t *f) {
-  _indexed_field_definition = field_list_t(*f);
-}
-
 void PlanOperation::addField(field_t field) {
   _indexed_field_definition.push_back(field);
 }
-
 
 void PlanOperation::addNamedField(const field_name_t& field) {
   _named_field_definition.push_back(field);
