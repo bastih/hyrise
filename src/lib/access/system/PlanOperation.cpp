@@ -30,17 +30,6 @@ void PlanOperation::addResultHash(storage::c_ahashtable_ptr_t result) {
   output.addHash(result);
 }
 
-void PlanOperation::addInput(std::vector<storage::c_atable_ptr_t> *input_list) {
-  for (const auto& t: *input_list)
-      addInput(t);
-}
-
-void PlanOperation::addInput(std::vector<storage::c_ahashtable_ptr_t> *input_list) {
-  for (const auto& t: *input_list)
-      addInputHash(t);
-}
-
-
 const storage::c_atable_ptr_t PlanOperation::getInputTable(size_t index) const {
   return input.getTable(index);
 }
@@ -232,12 +221,10 @@ void PlanOperation::setTXContext(tx::TXContext ctx) {
   _txContext = ctx;
 }
 
-void PlanOperation::addInput(storage::c_atable_ptr_t t) {
-  input.add(t);
+void PlanOperation::addInput(storage::c_aresource_ptr_t t) {
+  input.addResource(t);
 }
-void PlanOperation::addInputHash(storage::c_ahashtable_ptr_t t) {
-  input.addHash(t);
-}
+
 
 void PlanOperation::setPart(size_t part) {
     _part = part;

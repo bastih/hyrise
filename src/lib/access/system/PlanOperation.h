@@ -73,10 +73,7 @@ class PlanOperation : public OutputTask {
   
   void setTXContext(tx::TXContext ctx);
 
-  void addInput(storage::c_atable_ptr_t t);
-  void addInputHash(storage::c_ahashtable_ptr_t t);
-  void addInput(std::vector<storage::c_atable_ptr_t> *input_list);
-  void addInput(std::vector<storage::c_ahashtable_ptr_t> *input_list);
+  void addInput(storage::c_aresource_ptr_t t);
 
   const storage::c_atable_ptr_t getInputTable(size_t index = 0) const;
   const storage::c_atable_ptr_t getResultTable(size_t index = 0) const;

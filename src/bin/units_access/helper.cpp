@@ -17,6 +17,7 @@
 #include "net/AbstractConnection.h"
 
 #include "storage/AbstractTable.h"
+#include "storage/AbstractHashTable.h"
 
 #include "taskscheduler/SharedScheduler.h"
 
@@ -54,7 +55,7 @@ const hyrise::storage::c_atable_ptr_t hashJoinSameTable(
 	auto hashJoinProbe = std::make_shared<hyrise::access::HashJoinProbe>();
 	hashJoinProbe->addInput(table);
 	hashJoinProbe->setFields(&columns);
-	hashJoinProbe->addInputHash(hashBuild->execute()->getResultHashTable());
+	hashJoinProbe->addInput(hashBuild->execute()->getResultHashTable());
 
 	return hashJoinProbe->execute()->getResultTable();
 }
