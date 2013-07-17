@@ -17,56 +17,58 @@
 
 namespace { log4cxx::LoggerPtr logger(log4cxx::Logger::getLogger("access.plan._PlanOperation")); }
 
-_PlanOperation::~_PlanOperation() = default;
+namespace hyrise { namespace access {
 
-void _PlanOperation::addResult(hyrise::storage::c_atable_ptr_t result) {
+PlanOperation::~PlanOperation() = default;
+
+void PlanOperation::addResult(storage::c_atable_ptr_t result) {
   output.add(result);
 }
 
-void _PlanOperation::addResultHash(hyrise::storage::c_ahashtable_ptr_t result) {
+void PlanOperation::addResultHash(storage::c_ahashtable_ptr_t result) {
   output.addHash(result);
 }
 
-void _PlanOperation::addInput(std::vector<hyrise::storage::c_atable_ptr_t> *input_list) {
+void PlanOperation::addInput(std::vector<storage::c_atable_ptr_t> *input_list) {
   for (const auto& t: *input_list)
       addInput(t);
 }
 
-void _PlanOperation::addInput(std::vector<hyrise::storage::c_ahashtable_ptr_t> *input_list) {
+void PlanOperation::addInput(std::vector<storage::c_ahashtable_ptr_t> *input_list) {
   for (const auto& t: *input_list)
       addInputHash(t);
 }
 
 
-const hyrise::storage::c_atable_ptr_t _PlanOperation::getInputTable(size_t index) const {
+const storage::c_atable_ptr_t PlanOperation::getInputTable(size_t index) const {
   return input.getTable(index);
 }
 
-static const hyrise::storage::atable_ptr_t empty_result;
+static const storage::atable_ptr_t empty_result;
 
-const hyrise::storage::c_atable_ptr_t _PlanOperation::getResultTable(size_t index) const {
+const storage::c_atable_ptr_t PlanOperation::getResultTable(size_t index) const {
   if (output.numberOfTables())
     return output.getTable(index);
   else
      return empty_result;
 }
 
-hyrise::storage::c_ahashtable_ptr_t _PlanOperation::getInputHashTable(size_t index) const {
+storage::c_ahashtable_ptr_t PlanOperation::getInputHashTable(size_t index) const {
   return input.getHashTable(index);
 }
 
-hyrise::storage::c_ahashtable_ptr_t _PlanOperation::getResultHashTable(size_t index) const {
+storage::c_ahashtable_ptr_t PlanOperation::getResultHashTable(size_t index) const {
   return output.getHashTable(index);
 }
 
-bool _PlanOperation::allDependenciesSuccessful() {
+bool PlanOperation::allDependenciesSuccessful() {
   for (size_t i = 0; i < _dependencies.size(); ++i) {
     if (std::dynamic_pointer_cast<OutputTask>(_dependencies[i])->getState() == OpFail) return false;
   }
   return true;
 }
 
-std::string _PlanOperation::getDependencyErrorMessages() {
+std::string PlanOperation::getDependencyErrorMessages() {
   std::string result;
 
   std::shared_ptr<OutputTask> task;
@@ -78,20 +80,20 @@ std::string _PlanOperation::getDependencyErrorMessages() {
   return result;
 }
 
-void _PlanOperation::setFields(field_list_t *f) {
+void PlanOperation::setFields(field_list_t *f) {
   _indexed_field_definition = field_list_t(*f);
 }
 
-void _PlanOperation::addField(field_t field) {
+void PlanOperation::addField(field_t field) {
   _indexed_field_definition.push_back(field);
 }
 
 
-void _PlanOperation::addNamedField(const field_name_t& field) {
+void PlanOperation::addNamedField(const field_name_t& field) {
   _named_field_definition.push_back(field);
 }
 
-void _PlanOperation::addField(const Json::Value &field) {
+void PlanOperation::addField(const Json::Value &field) {
   if (field.isNumeric()) {
     addField(field.asUInt());
   } else if (field.isString()) {
@@ -100,7 +102,7 @@ void _PlanOperation::addField(const Json::Value &field) {
 }
 
 /* This method only returns the column number in each table, assuming the operation knows how to handle positions */
-unsigned int _PlanOperation::findColumn(const std::string &col) {
+unsigned int PlanOperation::findColumn(const std::string &col) {
   for (const auto& table: input.getTables()) {
     try {
       return table->numberOfColumn(col);
@@ -109,7 +111,7 @@ unsigned int _PlanOperation::findColumn(const std::string &col) {
   throw MissingColumnException(col);
 }
 
-size_t widthOfInputs(const std::vector<hyrise::storage::c_atable_ptr_t > &inputs) {
+size_t widthOfInputs(const std::vector<storage::c_atable_ptr_t > &inputs) {
   size_t result = 0;
   for (const auto& table: inputs) {
     result += table->columnCount();
@@ -117,7 +119,7 @@ size_t widthOfInputs(const std::vector<hyrise::storage::c_atable_ptr_t > &inputs
   return result;
 }
 
-void _PlanOperation::computeDeferredIndexes() {
+void PlanOperation::computeDeferredIndexes() {
   _field_definition = _indexed_field_definition;
   if (!_named_field_definition.empty()) {
 
@@ -134,11 +136,11 @@ void _PlanOperation::computeDeferredIndexes() {
   assert(_field_definition.size() >= (_indexed_field_definition.size() + _named_field_definition.size()));
 }
 
-void _PlanOperation::setupPlanOperation() {
+void PlanOperation::setupPlanOperation() {
   computeDeferredIndexes();
 }
 
-void _PlanOperation::distribute(
+void PlanOperation::distribute(
     const u_int64_t numberOfElements,
     u_int64_t &first,
     u_int64_t &last) const {
@@ -150,17 +152,17 @@ void _PlanOperation::distribute(
   last = _part + 1 == _count ? numberOfElements : elementsPerPart * (_part + 1);
 }
 
-void _PlanOperation::refreshInput() {
+void PlanOperation::refreshInput() {
   size_t numberOfDependencies = _dependencies.size();
   for (size_t i = 0; i < numberOfDependencies; ++i) {
-    const auto& dependency = std::dynamic_pointer_cast<_PlanOperation>(_dependencies[i]);
+    const auto& dependency = std::dynamic_pointer_cast<PlanOperation>(_dependencies[i]);
     input.mergeWith(dependency->output);
   }
 
   splitInput();
 }
 
-void _PlanOperation::splitInput() {
+void PlanOperation::splitInput() {
   const auto& tables = input.getTables();
   if (_count > 0 && !tables.empty()) {
     u_int64_t first, last;
@@ -170,7 +172,7 @@ void _PlanOperation::splitInput() {
 }
 
 
-void _PlanOperation::operator()() noexcept {
+void PlanOperation::operator()() noexcept {
   if (allDependenciesSuccessful()) {
     try {
       LOG4CXX_DEBUG(logger, "Virtual operator called " << vname() << "(" << _operatorId << ")");
@@ -188,7 +190,7 @@ void _PlanOperation::operator()() noexcept {
   setState(OpFail);
 }
 
-const _PlanOperation *_PlanOperation::execute() {
+const PlanOperation * PlanOperation::execute() {
   epoch_t startTime = get_epoch_nanoseconds();
 
   refreshInput();
@@ -217,54 +219,56 @@ const _PlanOperation *_PlanOperation::execute() {
   return this;
 }
 
-void _PlanOperation::setLimit(uint64_t l) {
+void PlanOperation::setLimit(uint64_t l) {
   _limit = l;
 }
 
-void _PlanOperation::setProducesPositions(bool p) {
+void PlanOperation::setProducesPositions(bool p) {
   producesPositions = p;
 }
 
-void _PlanOperation::setTXContext(hyrise::tx::TXContext ctx) {
+void PlanOperation::setTXContext(tx::TXContext ctx) {
   _txContext = ctx;
 }
 
-void _PlanOperation::addInput(hyrise::storage::c_atable_ptr_t t) {
+void PlanOperation::addInput(storage::c_atable_ptr_t t) {
   input.add(t);
 }
-void _PlanOperation::addInputHash(hyrise::storage::c_ahashtable_ptr_t t) {
+void PlanOperation::addInputHash(storage::c_ahashtable_ptr_t t) {
   input.addHash(t);
 }
 
-void _PlanOperation::setPart(size_t part) {
+void PlanOperation::setPart(size_t part) {
     _part = part;
 }
-void _PlanOperation::setCount(size_t count) {
+void PlanOperation::setCount(size_t count) {
   _count = count;
 }
 
-void _PlanOperation::setPlanId(std::string i) {
+void PlanOperation::setPlanId(std::string i) {
   _planId = i;
 }
-void _PlanOperation::setOperatorId(std::string i) {
+void PlanOperation::setOperatorId(std::string i) {
   _operatorId = i;
 }
 
-const std::string& _PlanOperation::planOperationName() const {
+const std::string& PlanOperation::planOperationName() const {
   return _planOperationName;
 }
-void _PlanOperation::setPlanOperationName(const std::string& name) {
+void PlanOperation::setPlanOperationName(const std::string& name) {
   _planOperationName = name;
 }
 
-const std::string _PlanOperation::vname() {
+const std::string PlanOperation::vname() {
   return planOperationName();
 }
 
-void _PlanOperation::setResponseTask(const std::shared_ptr<hyrise::access::ResponseTask>& responseTask) {
+void PlanOperation::setResponseTask(const std::shared_ptr<access::ResponseTask>& responseTask) {
   _responseTask = responseTask;
 }
 
-std::shared_ptr<hyrise::access::ResponseTask> _PlanOperation::getResponseTask() const {
+std::shared_ptr<access::ResponseTask> PlanOperation::getResponseTask() const {
   return _responseTask.lock();
 }
+
+}}
