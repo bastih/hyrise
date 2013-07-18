@@ -22,12 +22,8 @@ namespace hyrise { namespace access {
 
 PlanOperation::~PlanOperation() = default;
 
-void PlanOperation::addResult(storage::c_atable_ptr_t result) {
-  output.add(result);
-}
-
-void PlanOperation::addResultHash(storage::c_ahashtable_ptr_t result) {
-  output.addHash(result);
+void PlanOperation::addResult(storage::c_aresource_ptr_t result) {
+  output.addResource(result);
 }
 
 const storage::c_atable_ptr_t PlanOperation::getInputTable(size_t index) const {
@@ -107,17 +103,6 @@ void PlanOperation::setupPlanOperation() {
   computeDeferredIndexes();
 }
 
-void PlanOperation::distribute(
-    const u_int64_t numberOfElements,
-    u_int64_t &first,
-    u_int64_t &last) const {
-
-  const u_int64_t
-      elementsPerPart     = numberOfElements / _count;
-
-  first = elementsPerPart * _part;
-  last = _part + 1 == _count ? numberOfElements : elementsPerPart * (_part + 1);
-}
 
 void PlanOperation::refreshInput() {
   size_t numberOfDependencies = _dependencies.size();
@@ -125,18 +110,8 @@ void PlanOperation::refreshInput() {
     const auto& dependency = std::dynamic_pointer_cast<PlanOperation>(_dependencies[i]);
     input.mergeWith(dependency->output);
   }
-
-  splitInput();
 }
 
-void PlanOperation::splitInput() {
-  const auto& tables = input.getTables();
-  if (_count > 0 && !tables.empty()) {
-    u_int64_t first, last;
-    distribute(tables[0]->size(), first, last);
-    input.setTable( TableRangeViewFactory::createView(std::const_pointer_cast<AbstractTable>(tables[0]), first, last), 0);
-  }
-}
 
 
 void PlanOperation::operator()() noexcept {
@@ -203,12 +178,7 @@ void PlanOperation::addInput(storage::c_aresource_ptr_t t) {
 }
 
 
-void PlanOperation::setPart(size_t part) {
-    _part = part;
-}
-void PlanOperation::setCount(size_t count) {
-  _count = count;
-}
+
 
 void PlanOperation::setPlanId(std::string i) {
   _planId = i;
@@ -234,6 +204,38 @@ void PlanOperation::setResponseTask(const std::shared_ptr<access::ResponseTask>&
 
 std::shared_ptr<access::ResponseTask> PlanOperation::getResponseTask() const {
   return _responseTask.lock();
+}
+
+
+std::pair<std::uint64_t, std::uint64_t> ParallelizablePlanOperation::distribute(
+    const std::uint64_t numberOfElements,
+    const std::size_t part,
+    const std::size_t count) {
+  auto elementsPerPart = numberOfElements / count;
+  auto first = elementsPerPart * part;
+  auto last = (part + 1 == count) ? numberOfElements : elementsPerPart * (part + 1);
+  return {first, last};
+}
+
+void ParallelizablePlanOperation::splitInput() {
+  const auto& tables = input.getTables();
+  if (_count > 0 && !tables.empty()) {
+    auto r = distribute(tables[0]->size(), _part, _count);
+    input.setTable( TableRangeViewFactory::createView(std::const_pointer_cast<AbstractTable>(tables[0]), r.first, r.second), 0);
+  }
+}
+
+
+void ParallelizablePlanOperation::refreshInput() {
+  PlanOperation::refreshInput();
+  splitInput();
+}
+
+void ParallelizablePlanOperation::setPart(size_t part) {
+    _part = part;
+}
+void ParallelizablePlanOperation::setCount(size_t count) {
+  _count = count;
 }
 
 }}

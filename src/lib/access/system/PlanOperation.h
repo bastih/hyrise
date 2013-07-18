@@ -26,31 +26,14 @@ class ResponseTask;
  */
 class PlanOperation : public OutputTask {
  protected:
-  void addResult(storage::c_atable_ptr_t result);
-  void addResultHash(storage::c_ahashtable_ptr_t result);
+  void addResult(storage::c_aresource_ptr_t result);
 
-  virtual void computeDeferredIndexes();
-
-  /*!
-   *  Uses _part and _count member as specification for the enumeration of
-   *  parallel instances to distribute the number of elements between all
-   *  instances.
-   */
-  void distribute(
-      const u_int64_t numberOfElements,
-      u_int64_t &first,
-      u_int64_t &last) const;
+  void computeDeferredIndexes();
 
   /*!
    *  Fetches output data of dependencies as input data.
    */
   virtual void refreshInput();
-
-  /*!
-   *  If operator is supposed to be a parallel instance of an operator,
-   *  separate input data based on instance enumeration.
-   */
-  virtual void splitInput();
 
   virtual void setupPlanOperation();
   virtual void executePlanOperation() = 0;
@@ -81,8 +64,6 @@ class PlanOperation : public OutputTask {
   void addField(const Json::Value &field);
   void addNamedField(const field_name_t& field);
 
-  void setPart(size_t part);
-  void setCount(size_t count);
   void setPlanId(std::string i);
   void setOperatorId(std::string i);
   const std::string& planOperationName() const;
@@ -95,7 +76,6 @@ class PlanOperation : public OutputTask {
   void setResponseTask(const std::shared_ptr<access::ResponseTask>& responseTask);
   std::shared_ptr<access::ResponseTask> getResponseTask() const;
  protected:
-
   /// Containers to store and handle input/output or rather result data.
   access::OperationData input;
   access::OperationData output;
@@ -110,8 +90,6 @@ class PlanOperation : public OutputTask {
   field_name_list_t _named_field_definition;
   field_list_t _indexed_field_definition;
 
-  size_t _part = 0;
-  size_t _count = 0;
   std::weak_ptr<access::ResponseTask> _responseTask;
 
   bool producesPositions = true;
@@ -124,8 +102,33 @@ class PlanOperation : public OutputTask {
 
 };
 
+class ParallelizablePlanOperation : public PlanOperation {
+ public:
+  /*!
+   *  Uses _part and _count member as specification for the enumeration of
+   *  parallel instances to distribute the number of elements between all
+   *  instances.
+   */
+  static std::pair<std::uint64_t, std::uint64_t> distribute(std::uint64_t numberOfElements,
+                                                            std::size_t part,
+                                                            std::size_t count);
+
+  /*!
+   *  If operator is supposed to be a parallel instance of an operator,
+   *  separate input data based on instance enumeration.
+   */
+  virtual void splitInput();
+  virtual void refreshInput();
+  void setPart(size_t part);
+  void setCount(size_t count);
+ protected:
+  size_t _part = 0;
+  size_t _count = 0;
+
+};
+
 }}
 
-class _PlanOperation : public hyrise::access::PlanOperation {};
+class _PlanOperation : public hyrise::access::ParallelizablePlanOperation {};
 
 #endif  // SRC_LIB_ACCESS_PLANOPERATION_H_

@@ -124,13 +124,12 @@ void GroupByScan::addFunction(AggregateFun *fun) {
 void GroupByScan::splitInput() {
   hash_table_list_t hashTables = input.getHashTables();
   if (_count > 0 && !hashTables.empty()) {
-    uint64_t first, last;
-    distribute(hashTables[0]->numKeys(), first, last);
+    auto r = distribute(hashTables[0]->numKeys(), _part, _count);
 
     if ((_indexed_field_definition.size() + _named_field_definition.size()) == 1)
-      input.setHash(std::dynamic_pointer_cast<const SingleAggregateHashTable>(hashTables[0])->view(first, last), 0);
+      input.setHash(std::dynamic_pointer_cast<const SingleAggregateHashTable>(hashTables[0])->view(r.first, r.second), 0);
     else
-      input.setHash(std::dynamic_pointer_cast<const AggregateHashTable>(hashTables[0])->view(first, last), 0);
+      input.setHash(std::dynamic_pointer_cast<const AggregateHashTable>(hashTables[0])->view(r.first, r.second), 0);
   }
 }
 
