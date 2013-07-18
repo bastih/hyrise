@@ -76,7 +76,7 @@ const std::string ResponseTask::vname() {
   return "ResponseTask";
 }
 
-void ResponseTask::registerPlanOperation(const std::shared_ptr<_PlanOperation>& planOp) {
+void ResponseTask::registerPlanOperation(const std::shared_ptr<PlanOperation>& planOp) {
   performance_attributes_t* perf = new performance_attributes_t;
   planOp->setPerformanceData(perf);
 
@@ -89,9 +89,9 @@ void ResponseTask::registerPlanOperation(const std::shared_ptr<_PlanOperation>& 
 }
 
 
-std::shared_ptr<_PlanOperation> ResponseTask::getResultTask() {
+std::shared_ptr<PlanOperation> ResponseTask::getResultTask() {
   if (getDependencyCount() > 0) {
-    return std::dynamic_pointer_cast<_PlanOperation>(_dependencies[0]);
+    return std::dynamic_pointer_cast<PlanOperation>(_dependencies[0]);
   }
   return nullptr;
 }

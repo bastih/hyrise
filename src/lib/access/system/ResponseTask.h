@@ -8,10 +8,10 @@
 #include "access/system/OutputTask.h"
 #include "net/AbstractConnection.h"
 
-class _PlanOperation;
-
 namespace hyrise {
 namespace access {
+
+class PlanOperation;
 
 class ResponseTask : public Task {
  private:
@@ -34,7 +34,7 @@ class ResponseTask : public Task {
     return queryStart;
   }
 
-  void registerPlanOperation(const std::shared_ptr<_PlanOperation>& planOp);
+  void registerPlanOperation(const std::shared_ptr<PlanOperation>& planOp);
 
   void setQueryStart(epoch_t start) {
     queryStart = start;
@@ -48,7 +48,7 @@ class ResponseTask : public Task {
     return performance_data;
   }
 
-  std::shared_ptr<_PlanOperation> getResultTask();
+  std::shared_ptr<PlanOperation> getResultTask();
   
   virtual void operator()();
 };

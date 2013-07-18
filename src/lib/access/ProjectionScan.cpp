@@ -38,8 +38,8 @@ void ProjectionScan::executePlanOperation() {
   addResult(PointerCalculatorFactory::createPointerCalculatorNonRef(input.getTable(0), tmp_fd, pos_list));
 }
 
-std::shared_ptr<_PlanOperation> ProjectionScan::parse(Json::Value &data) {
-  std::shared_ptr<_PlanOperation> p = BasicParser<ProjectionScan>::parse(data);
+std::shared_ptr<PlanOperation> ProjectionScan::parse(Json::Value &data) {
+  std::shared_ptr<PlanOperation> p = BasicParser<ProjectionScan>::parse(data);
   return p;
 }
 

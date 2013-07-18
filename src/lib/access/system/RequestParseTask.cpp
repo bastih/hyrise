@@ -109,7 +109,7 @@ void RequestParseTask::operator()() {
       auto ctx = tx::TransactionManager::getInstance().buildContext();
       
       for (const auto & func: tasks) {
-        if (auto task = std::dynamic_pointer_cast<_PlanOperation>(func)) {
+        if (auto task = std::dynamic_pointer_cast<PlanOperation>(func)) {
           task->setPlanId(final_hash);
           task->setTXContext(ctx);
           _responseTask->registerPlanOperation(task);

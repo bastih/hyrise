@@ -16,7 +16,7 @@
 #include "boost/lexical_cast.hpp"
 #include "log4cxx/logger.h"
 
-namespace { auto logger = log4cxx::Logger::getLogger("access.plan._PlanOperation"); }
+namespace { auto logger = log4cxx::Logger::getLogger("access.plan.PlanOperation"); }
 
 namespace hyrise { namespace access {
 
@@ -206,36 +206,5 @@ std::shared_ptr<access::ResponseTask> PlanOperation::getResponseTask() const {
   return _responseTask.lock();
 }
 
-
-std::pair<std::uint64_t, std::uint64_t> ParallelizablePlanOperation::distribute(
-    const std::uint64_t numberOfElements,
-    const std::size_t part,
-    const std::size_t count) {
-  auto elementsPerPart = numberOfElements / count;
-  auto first = elementsPerPart * part;
-  auto last = (part + 1 == count) ? numberOfElements : elementsPerPart * (part + 1);
-  return {first, last};
-}
-
-void ParallelizablePlanOperation::splitInput() {
-  const auto& tables = input.getTables();
-  if (_count > 0 && !tables.empty()) {
-    auto r = distribute(tables[0]->size(), _part, _count);
-    input.setTable( TableRangeViewFactory::createView(std::const_pointer_cast<AbstractTable>(tables[0]), r.first, r.second), 0);
-  }
-}
-
-
-void ParallelizablePlanOperation::refreshInput() {
-  PlanOperation::refreshInput();
-  splitInput();
-}
-
-void ParallelizablePlanOperation::setPart(size_t part) {
-    _part = part;
-}
-void ParallelizablePlanOperation::setCount(size_t count) {
-  _count = count;
-}
 
 }}

@@ -12,7 +12,7 @@
 #include <storage/PointerCalculatorFactory.h>
 
 template <typename T>
-class HashValueJoin : public _PlanOperation {
+class HashValueJoin : public PlanOperation {
  public:
 
   typedef std::unordered_multimap<T, pos_t> map_type;

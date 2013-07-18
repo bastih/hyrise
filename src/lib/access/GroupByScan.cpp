@@ -41,7 +41,7 @@ GroupByScan::~GroupByScan() {
 }
 
 void GroupByScan::setupPlanOperation() {
-  _PlanOperation::setupPlanOperation();
+  ParallelizablePlanOperation::setupPlanOperation();
 
   const auto &t = getInputTable(0);
   for (const auto & function: _aggregate_functions) {
@@ -65,7 +65,7 @@ void GroupByScan::executePlanOperation() {
   }
 }
 
-std::shared_ptr<_PlanOperation> GroupByScan::parse(Json::Value &v) {
+std::shared_ptr<PlanOperation> GroupByScan::parse(Json::Value &v) {
   std::shared_ptr<GroupByScan> gs = std::make_shared<GroupByScan>();
 
   if (v.isMember("fields")) {

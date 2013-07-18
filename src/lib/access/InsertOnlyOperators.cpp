@@ -11,6 +11,7 @@ namespace hyrise {
 namespace insertonly {
 
 namespace {
+using access::QueryParser;
 auto register_load = QueryParser::registerPlanOperation<LoadOp>("InsertOnlyLoad");
 auto register_insert = QueryParser::registerPlanOperation<InsertOp>("InsertOnlyInsert");
 auto register_update = QueryParser::registerPlanOperation<UpdateOp>("InsertOnlyUpdate");
@@ -27,7 +28,7 @@ const std::string LoadOp::vname() {
   return "InsertOnlyLoad";
 }
 
-std::shared_ptr<_PlanOperation> LoadOp::parse(Json::Value &data) {
+std::shared_ptr<PlanOperation> LoadOp::parse(Json::Value &data) {
   return std::make_shared<LoadOp>(data["filename"].asString());
 }
 
@@ -39,7 +40,7 @@ const std::string InsertOp::vname() {
   return "InsertOnlyInsert";
 }
 
-std::shared_ptr<_PlanOperation> InsertOp::parse(Json::Value &data) {
+std::shared_ptr<PlanOperation> InsertOp::parse(Json::Value &data) {
   return std::make_shared<InsertOp>();
 }
 
@@ -55,7 +56,7 @@ const std::string UpdateOp::vname() {
   return "InsertOnlyUpdate";
 }
 
-std::shared_ptr<_PlanOperation> UpdateOp::parse(Json::Value &data) {
+std::shared_ptr<PlanOperation> UpdateOp::parse(Json::Value &data) {
   return std::make_shared<UpdateOp>();
 }
 
@@ -73,7 +74,7 @@ const std::string DeleteOp::vname() {
   return "InsertOnlyDelete";
 }
 
-std::shared_ptr<_PlanOperation> DeleteOp::parse(Json::Value &data) {
+std::shared_ptr<PlanOperation> DeleteOp::parse(Json::Value &data) {
   return std::make_shared<DeleteOp>();
 }
 
@@ -90,7 +91,7 @@ const std::string ValidPositionsRawOp::vname() {
   return "ValidPositionsRaw";
 }
 
-std::shared_ptr<_PlanOperation> ValidPositionsRawOp::parse(Json::Value &data) {
+std::shared_ptr<PlanOperation> ValidPositionsRawOp::parse(Json::Value &data) {
   return std::make_shared<ValidPositionsRawOp>();
 }
 
@@ -103,7 +104,7 @@ const std::string ValidPositionsMainOp::vname() {
   return "ValidPositionsMain";
 }
 
-std::shared_ptr<_PlanOperation> ValidPositionsMainOp::parse(Json::Value &data) {
+std::shared_ptr<PlanOperation> ValidPositionsMainOp::parse(Json::Value &data) {
   return std::make_shared<ValidPositionsMainOp>();
 }
 
@@ -112,7 +113,7 @@ void ValidPositionsMainOp::executePlanOperation() {
   addResult(validPositionsMain(store, _txContext));
 }
 
-std::shared_ptr<_PlanOperation> ExtractDelta::parse(Json::Value&) {
+std::shared_ptr<PlanOperation> ExtractDelta::parse(Json::Value&) {
   return std::make_shared<ExtractDelta>();
 }
 
