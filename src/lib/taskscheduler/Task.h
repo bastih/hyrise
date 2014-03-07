@@ -12,7 +12,7 @@
 #include <memory>
 #include <condition_variable>
 #include <string>
-
+#include "tbb/concurrent_vector.h"
 #include "helper/locking.h"
 #include "helper/types.h"
 
@@ -62,17 +62,17 @@ public:
   }
 
 protected:
-  std::vector<task_ptr_t> _dependencies;
+  tbb::concurrent_vector<task_ptr_t> _dependencies;
   std::vector<std::weak_ptr<TaskReadyObserver>> _readyObservers;
   std::vector<std::weak_ptr<TaskDoneObserver>> _doneObservers;
 
-  int _dependencyWaitCount;
+  std::atomic<int> _dependencyWaitCount;
   // mutex for dependencyCount and dependency vector
-  hyrise::locking::Spinlock _depMutex;
+  // hyrise::locking::Spinlock _depMutex;
   // mutex for observer vector
   hyrise::locking::Spinlock _observerMutex;
   // mutex to stop notifications, while task is being scheduled to wait set in SimpleTaskScheduler
-  hyrise::locking::Spinlock _notifyMutex;
+  //hyrise::locking::Spinlock _notifyMutex;
   // indicates on which core the task should run
   int _preferredCore;
   // indicates on which node the task should run

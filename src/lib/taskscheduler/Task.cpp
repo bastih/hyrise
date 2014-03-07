@@ -11,6 +11,7 @@
 #include "log4cxx/logger.h"
 
 #include <iostream>
+#include <cassert>
 #include <thread>
 #include <algorithm>
 
@@ -28,11 +29,11 @@ std::vector<std::shared_ptr<Task>> Task::applyDynamicParallelization(size_t dyna
 }
 
 void Task::lockForNotifications() {
-  _notifyMutex.lock();
+  //_notifyMutex.lock();
 }
 
 void Task::unlockForNotifications() {
-  _notifyMutex.unlock();
+  //_notifyMutex.unlock();
 }
 
 void Task::notifyReadyObservers() {
@@ -69,86 +70,62 @@ Task::Task(): _dependencyWaitCount(0), _preferredCore(NO_PREFERRED_CORE), _prefe
 }
 
 void Task::addDependency(std::shared_ptr<Task> dependency) {
-  {
-    std::lock_guard<decltype(_depMutex)> lk(_depMutex);
-    _dependencies.push_back(dependency);
-    ++_dependencyWaitCount;
-  }
+  _dependencies.push_back(dependency);
+  ++_dependencyWaitCount;
   dependency->addDoneObserver(shared_from_this());
 }
 
 void Task::addDoneDependency(std::shared_ptr<Task> dependency) {
-  {
-    std::lock_guard<decltype(_depMutex)> lk(_depMutex);
-    _dependencies.push_back(dependency);
-  }
+  _dependencies.push_back(dependency);
 }
 
 void Task::removeDependency(std::shared_ptr<Task> dependency) {
-    
-    std::lock_guard<decltype(_depMutex)> lk(_depMutex);
-    // remove from dependencies
-    auto newEnd = std::remove(_dependencies.begin(), _dependencies.end(), dependency);
-    if (newEnd != _dependencies.end()) { // we actually removed something
-      _dependencies.erase(newEnd, _dependencies.end());
-      --_dependencyWaitCount;
-    }
+  std::for_each(_dependencies.begin(), _dependencies.end(), 
+                [&dependency, this] (std::shared_ptr<Task>& t) { if (t == dependency) {
+                    t = nullptr;   
+                    --_dependencyWaitCount;} 
+                });
 }
 
 void Task::changeDependency(std::shared_ptr<Task> from, std::shared_ptr<Task> to) {
-    
-    std::lock_guard<decltype(_depMutex)> lk(_depMutex);
-    // find from dependencies
-    for(size_t i = 0, size = _dependencies.size(); i < size; i++){
-      if(_dependencies[i] == from){
-        _dependencies[i] = to;
-      }
-    }
-    // add new done observer
-    to->addDoneObserver(std::dynamic_pointer_cast<Task>(shared_from_this()));
-}
-
-void Task::setDependencies(std::vector<std::shared_ptr<Task> > dependencies, int count) {
-    std::lock_guard<decltype(_depMutex)> lk(_depMutex);
-    _dependencies = dependencies;
-    _dependencyWaitCount = 0;
+  std::for_each(_dependencies.begin(), _dependencies.end(), 
+                [&] (std::shared_ptr<Task>& t) { 
+                  if (t == from) {
+                    t = to;
+                  } 
+                });
+  to->addDoneObserver(std::dynamic_pointer_cast<Task>(shared_from_this()));
 }
 
 bool Task::isDependency(const task_ptr_t& task) {
-  std::lock_guard<decltype(_depMutex)> lk(_depMutex);
   return std::any_of(
       _dependencies.begin(),
       _dependencies.end(),
-      [task](task_ptr_t t) {return t == task;});
+      [&task](const task_ptr_t& t) {return t == task;});
 }
 
 void Task::addReadyObserver(const std::shared_ptr<TaskReadyObserver>& observer) {
-
   std::lock_guard<decltype(_observerMutex)> lk(_observerMutex);
   _readyObservers.push_back(observer);
 }
 
 void Task::addDoneObserver(const std::shared_ptr<TaskDoneObserver>& observer) {
-
   std::lock_guard<decltype(_observerMutex)> lk(_observerMutex);
   _doneObservers.push_back(observer);
 }
 
 void Task::notifyDone(std::shared_ptr<Task> task) {
-  _depMutex.lock();
-  int t = --_dependencyWaitCount;
-  _depMutex.unlock();
+  auto t = --_dependencyWaitCount;
 
   if (t == 0) {
     if(_preferredCore == NO_PREFERRED_CORE && _preferredNode == NO_PREFERRED_NODE)
       _preferredNode = task->getActualNode();
-    std::lock_guard<decltype(_notifyMutex)> lk(_notifyMutex);
+    //std::lock_guard<decltype(_notifyMutex)> lk(_notifyMutex);
     notifyReadyObservers();
   }
 }
 
 bool Task::isReady() {
-  std::lock_guard<decltype(_depMutex)> lk(_depMutex);
   return (_dependencyWaitCount == 0);
 }
 
