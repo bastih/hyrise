@@ -222,8 +222,8 @@ unsigned Store::partitionCount() const { return _main_table->partitionCount(); }
 size_t Store::partitionWidth(const size_t slice) const { return _main_table->partitionWidth(slice); }
 
 
-void Store::print(const size_t limit, const size_t offset) const {
-  PrettyPrinter::print(this, std::cout, "Store:" + _name, limit, offset);
+void Store::print(const size_t limit) const {
+  PrettyPrinter::print(this, std::cout, "Store:" + _name, limit, 0);
 }
 
 void Store::setMerger(TableMerger* _merger) {

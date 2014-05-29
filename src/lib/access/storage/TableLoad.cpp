@@ -20,7 +20,7 @@ auto _ = QueryParser::registerPlanOperation<TableLoad>("TableLoad");
 log4cxx::LoggerPtr logger(log4cxx::Logger::getLogger("access.plan.PlanOperation"));
 }
 
-TableLoad::TableLoad() : _hasDelimiter(false), _binary(false), _unsafe(false), _raw(false), _nonvolatile(false) {}
+TableLoad::TableLoad() : _hasDelimiter(false), _binary(false), _unsafe(false), _raw(false) {}
 
 TableLoad::~TableLoad() {}
 
@@ -113,6 +113,5 @@ void TableLoad::setDelimiter(const std::string& d) {
   _hasDelimiter = true;
 }
 
-void TableLoad::setNonvolatile(const bool nonvolatile) { _nonvolatile = nonvolatile; }
 }
 }
