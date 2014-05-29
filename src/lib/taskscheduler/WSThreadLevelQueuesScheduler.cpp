@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "WSThreadLevelQueuesScheduler.h"
 #include "SharedScheduler.h"
+#include "WSThreadLevelQueuesScheduler.h"
 
 namespace hyrise {
 namespace taskscheduler {

@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/CreateIndex.h"
-#include "io/shortcuts.h"
 #include "io/StorageManager.h"
+#include "io/shortcuts.h"
 #include "storage/InvertedIndex.h"
 #include "testing/test.h"
 

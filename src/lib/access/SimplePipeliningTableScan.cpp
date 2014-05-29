@@ -1,24 +1,19 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/SimplePipeliningTableScan.h"
-
-#include "access/expressions/pred_buildExpression.h"
-
-#include "access/PipelineObserver.h"
-
-#include "storage/Store.h"
-#include "storage/PointerCalculator.h"
-#include "storage/AbstractTable.h"
-
-#include "helper/checked_cast.h"
-#include "taskscheduler/SharedScheduler.h"
-#include "access/system/ResponseTask.h"
-#include "access/system/OperationData-Impl.h"
-
-#include "log4cxx/logger.h"
-
 #include <boost/uuid/uuid.hpp>  // uuid class
 #include <boost/uuid/uuid_generators.hpp>  // generators
 #include <boost/uuid/uuid_io.hpp>  // streaming operators etc.
+
+#include "access/PipelineObserver.h"
+#include "access/SimplePipeliningTableScan.h"
+#include "access/expressions/pred_buildExpression.h"
+#include "access/system/OperationData-Impl.h"
+#include "access/system/ResponseTask.h"
+#include "helper/checked_cast.h"
+#include "log4cxx/logger.h"
+#include "storage/AbstractTable.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
+#include "taskscheduler/SharedScheduler.h"
 
 namespace hyrise {
 namespace access {

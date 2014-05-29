@@ -1,10 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/StringLoader.h"
-
 #include <iostream>
 #include <sstream>
+
 #include "io/GenericCSV.h"
 #include "io/MetadataCreation.h"
+#include "io/StringLoader.h"
 
 namespace hyrise {
 namespace io {

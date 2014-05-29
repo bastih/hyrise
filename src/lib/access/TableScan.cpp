@@ -1,18 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/TableScan.h"
-
+#include "access/UnionAll.h"
 #include "access/expressions/ExampleExpression.h"
-#include "access/expressions/pred_SimpleExpression.h"
 #include "access/expressions/ExpressionRegistration.h"
+#include "access/expressions/pred_SimpleExpression.h"
+#include "access/system/ResponseTask.h"
+#include "helper/make_unique.h"
+#include "helper/types.h"
+#include "log4cxx/logger.h"
 #include "storage/PointerCalculator.h"
 #include "storage/TableRangeView.h"
-#include "helper/types.h"
-#include "helper/make_unique.h"
-
-#include "log4cxx/logger.h"
-
-#include "access/UnionAll.h"
-#include "access/system/ResponseTask.h"
 
 namespace hyrise {
 namespace access {

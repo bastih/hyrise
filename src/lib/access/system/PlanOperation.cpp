@@ -1,21 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/system/PlanOperation.h"
-
 #include <algorithm>
 #include <thread>
 
+#include "access/system/PlanOperation.h"
 #include "access/system/ResponseTask.h"
-#include "helper/epoch.h"
+#include "boost/lexical_cast.hpp"
 #include "helper/PapiTracer.h"
+#include "helper/epoch.h"
 #include "io/StorageManager.h"
-#include "storage/AbstractResource.h"
+#include "log4cxx/logger.h"
 #include "storage/AbstractHashTable.h"
+#include "storage/AbstractResource.h"
 #include "storage/AbstractTable.h"
 #include "storage/TableRangeView.h"
-
-#include "boost/lexical_cast.hpp"
-#include "log4cxx/logger.h"
-#include <algorithm>
 
 namespace {
 auto logger = log4cxx::Logger::getLogger("access.plan.PlanOperation");

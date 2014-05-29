@@ -1,11 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/ResourceManager.h"
+#include <iostream>
 
-#include "helper/stringhelpers.h"
 #include "helper/Environment.h"
+#include "helper/stringhelpers.h"
+#include "io/ResourceManager.h"
 #include "storage/AbstractResource.h"
 #include "storage/Store.h"
-#include <iostream>
 
 namespace hyrise {
 namespace io {

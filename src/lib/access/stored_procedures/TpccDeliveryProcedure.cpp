@@ -1,13 +1,12 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccDeliveryProcedure.h"
-
 #include <storage/AbstractTable.h>
-#include "access/CompoundIndexScan.h"
-#include "access/HashBuild.h"
-#include "access/GroupByScan.h"
-
 #include <unistd.h>
+
+#include "TpccDeliveryProcedure.h"
+#include "access/CompoundIndexScan.h"
+#include "access/GroupByScan.h"
+#include "access/HashBuild.h"
 
 
 namespace hyrise {

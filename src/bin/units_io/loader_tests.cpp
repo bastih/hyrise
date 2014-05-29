@@ -1,13 +1,13 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include <io/CSVLoader.h>
 #include <io/EmptyLoader.h>
 #include <io/Loader.h>
 #include <io/StringLoader.h>
-#include "io/shortcuts.h"
 #include <storage/MutableVerticalTable.h>
 #include <storage/Store.h>
+
+#include "io/shortcuts.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

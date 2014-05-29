@@ -1,14 +1,13 @@
-#include "helper.h"
-
 #include <random>
 #include <vector>
 
+#include "helper.h"
 #include "helper/types.h"
 #include "storage/AbstractTable.h"
 #include "storage/DictionaryFactory.h"
-#include "storage/Table.h"
-#include "storage/MutableVerticalTable.h"
 #include "storage/FixedLengthVector.h"
+#include "storage/MutableVerticalTable.h"
+#include "storage/Table.h"
 
 using namespace hyrise;
 

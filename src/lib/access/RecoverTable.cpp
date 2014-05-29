@@ -1,6 +1,5 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include <access/RecoverTable.h>
-
 #include <io/StorageManager.h>
 
 namespace hyrise {

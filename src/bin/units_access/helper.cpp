@@ -1,32 +1,26 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "helper.h"
-
-#include <fstream>
-#include <sstream>
-#include <memory>
 #include <chrono>
+#include <fstream>
+#include <memory>
+#include <sstream>
 #include <thread>
 
 #include "access/HashBuild.h"
 #include "access/HashJoinProbe.h"
-#include "access/system/RequestParseTask.h"
-#include "access/system/ResponseTask.h"
 #include "access/SortScan.h"
 #include "access/stored_procedures/TpccStoredProcedure.h"
-#include "io/TransactionManager.h"
-#include "io/GroupCommitter.h"
-
+#include "access/system/RequestParseTask.h"
+#include "access/system/ResponseTask.h"
+#include "helper.h"
 #include "helper/HttpHelper.h"
 #include "helper/make_unique.h"
-
+#include "io/GroupCommitter.h"
+#include "io/TransactionManager.h"
 #include "net/AbstractConnection.h"
 #include "net/Router.h"
-
-#include "storage/AbstractTable.h"
 #include "storage/AbstractHashTable.h"
-
+#include "storage/AbstractTable.h"
 #include "taskscheduler/SharedScheduler.h"
-
 #include "testing/test.h"
 
 namespace hyrise {

@@ -1,10 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "Settings.h"
-#include "Environment.h"
-#include "dir.h"
-
-#include <stdexcept>
 #include <iostream>
+#include <stdexcept>
+
+#include "Environment.h"
+#include "Settings.h"
+#include "dir.h"
 
 Settings::Settings() : threadpoolSize(1) {
 

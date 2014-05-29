@@ -1,8 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/MetadataCreation.h"
-
 #include "helper/stringhelpers.h"
-
+#include "io/MetadataCreation.h"
 #include "storage/AbstractTable.h"
 #include "storage/ColumnMetadata.h"
 

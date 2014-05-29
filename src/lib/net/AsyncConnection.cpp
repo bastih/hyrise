@@ -1,18 +1,17 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "net/AsyncConnection.h"
-
-#include <iostream>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stddef.h>
 #include <ctime>
+#include <iostream>
 #include <memory>
 
-#include "net/Router.h"
-#include "taskscheduler/SharedScheduler.h"
 #include "access/system/RequestParseTask.h"
 #include "helper/Settings.h"
+#include "net/AsyncConnection.h"
+#include "net/Router.h"
+#include "taskscheduler/SharedScheduler.h"
 
 namespace hyrise {
 namespace net {

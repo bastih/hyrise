@@ -1,11 +1,10 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccPaymentProcedure.h"
-
 #include <storage/AbstractTable.h>
 #include <storage/TableBuilder.h>
 #include <storage/storage_types_helper.h>
 
+#include "TpccPaymentProcedure.h"
 #include "access/CompoundIndexScan.h"
 #include "access/expressions/pred_SimpleFieldExpression.h"
 

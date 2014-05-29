@@ -1,17 +1,14 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/IndexScan.h"
-
 #include <memory>
 
-#include "access/system/BasicParser.h"
+#include "access/IndexScan.h"
 #include "access/json_converters.h"
+#include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "io/StorageManager.h"
-
 #include "storage/InvertedIndex.h"
-#include "storage/meta_storage.h"
 #include "storage/PointerCalculator.h"
+#include "storage/meta_storage.h"
 
 namespace hyrise {
 namespace access {

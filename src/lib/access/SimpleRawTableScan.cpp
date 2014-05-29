@@ -1,12 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/SimpleRawTableScan.h"
-
 #include "access/expressions/pred_buildExpression.h"
-
-#include "storage/meta_storage.h"
+#include "storage/MutableVerticalTable.h"
 #include "storage/PointerCalculator.h"
 #include "storage/RawTable.h"
-#include "storage/MutableVerticalTable.h"
+#include "storage/meta_storage.h"
 
 namespace hyrise {
 namespace storage {

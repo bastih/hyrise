@@ -1,14 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/PointerCalculator.h"
-
 #include <iostream>
 #include <string>
 #include <unordered_set>
 
-#include "helper/make_unique.h"
-#include "helper/checked_cast.h"
 #include "helper/PositionsIntersect.h"
-
+#include "helper/checked_cast.h"
+#include "helper/make_unique.h"
+#include "storage/PointerCalculator.h"
 #include "storage/PrettyPrinter.h"
 #include "storage/Store.h"
 #include "storage/TableRangeView.h"

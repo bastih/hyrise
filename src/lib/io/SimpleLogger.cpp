@@ -1,9 +1,8 @@
-#include "io/SimpleLogger.h"
-
 #include <errno.h>
+#include <helper/Settings.h>
 #include <string.h>
 
-#include <helper/Settings.h>
+#include "io/SimpleLogger.h"
 
 namespace hyrise {
 namespace io {

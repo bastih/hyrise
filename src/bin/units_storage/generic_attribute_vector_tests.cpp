@@ -1,12 +1,11 @@
-#include "testing/test.h"
-
 #include <limits>
 
-#include "storage/storage_types.h"
-#include "storage/BitCompressedVector.h"
-#include "storage/FixedLengthVector.h"
-#include "storage/ConcurrentFixedLengthVector.h"
 #include "storage/AttributeVectorFactory.h"
+#include "storage/BitCompressedVector.h"
+#include "storage/ConcurrentFixedLengthVector.h"
+#include "storage/FixedLengthVector.h"
+#include "storage/storage_types.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

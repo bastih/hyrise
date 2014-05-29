@@ -1,12 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <log4cxx/logger.h>
+
 #include "access/HashJoinProbe.h"
-
 #include "access/system/QueryParser.h"
-
 #include "storage/HashTable.h"
 #include "storage/PointerCalculator.h"
-
-#include <log4cxx/logger.h>
 
 namespace hyrise {
 namespace access {

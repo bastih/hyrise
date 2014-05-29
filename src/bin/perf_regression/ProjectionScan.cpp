@@ -3,8 +3,8 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "access/ProjectionScan.h"
 #include "access/MaterializingScan.h"
+#include "access/ProjectionScan.h"
 #include "io/StorageManager.h"
 
 namespace hyrise {

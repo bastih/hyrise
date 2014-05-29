@@ -3,6 +3,8 @@
 
 #include "pred_common.h"
 
+#include "storage/RawTable.h"
+
 namespace hyrise {
 namespace access {
 

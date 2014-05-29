@@ -1,22 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include <string>
 #include <iostream>
+#include <string>
 #include <vector>
 
-#include "helper.h"
-
-#include "layouter/base.h"
-#include "layouter/matrix.h"
-#include "layouter/incremental.h"
-
-#include "io/shortcuts.h"
-
+#include "boost/assign.hpp"
 #include "boost/assign/list_of.hpp"
 #include "boost/assign/std/vector.hpp"
-#include "boost/assign.hpp"
-
 #include "gtest/gtest.h"
+#include "helper.h"
+#include "io/shortcuts.h"
+#include "layouter/base.h"
+#include "layouter/incremental.h"
+#include "layouter/matrix.h"
 
 using namespace boost::assign;
 

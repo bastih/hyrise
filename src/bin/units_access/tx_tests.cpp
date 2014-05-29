@@ -1,10 +1,5 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-#include "testing/TableEqualityTest.h"
-#include "access/TableScan.h"
-
-#include "helper.h"
-
+#include <testing/TableEqualityTest.h>
 #include <algorithm>
 #include <thread>
 
@@ -13,19 +8,20 @@
 #include "access/MergeTable.h"
 #include "access/PosUpdateScan.h"
 #include "access/ProjectionScan.h"
+#include "access/TableScan.h"
 #include "access/expressions/predicates.h"
 #include "access/tx/Commit.h"
 #include "access/tx/ValidatePositions.h"
-#include "access/expressions/predicates.h"
-#include "io/shortcuts.h"
-#include "storage/Store.h"
-#include "storage/PointerCalculator.h"
-#include "storage/TableBuilder.h"
-#include "helper/types.h"
+#include "helper.h"
 #include "helper/HwlocHelper.h"
+#include "helper/types.h"
 #include "io/TransactionManager.h"
-
-#include <testing/TableEqualityTest.h>
+#include "io/shortcuts.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
+#include "storage/TableBuilder.h"
+#include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

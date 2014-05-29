@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "testing/test.h"
-
-#include "io/shortcuts.h"
 #include "access/UnionAll.h"
+#include "io/shortcuts.h"
 #include "storage/HorizontalTable.h"
 #include "storage/PointerCalculator.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

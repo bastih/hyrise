@@ -1,19 +1,16 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include <iostream>
-#include <algorithm>
-#include <iterator>
-#include <ctime>
 #include <sys/time.h>
-
-#include "testing/test.h"
+#include <algorithm>
+#include <ctime>
+#include <iostream>
+#include <iterator>
 
 #include "access/NoOp.h"
-
+#include "helper/HwlocHelper.h"
 #include "taskscheduler/SharedScheduler.h"
 #include "taskscheduler/ThreadLevelQueuesScheduler.h"
 #include "taskscheduler/WSThreadLevelQueuesScheduler.h"
-
-#include "helper/HwlocHelper.h"
+#include "testing/test.h"
 
 
 namespace hyrise {

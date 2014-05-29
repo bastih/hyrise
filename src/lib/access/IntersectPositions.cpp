@@ -1,8 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <algorithm>
+
 #include "access/IntersectPositions.h"
 #include "storage/PointerCalculator.h"
-
-#include <algorithm>
 
 namespace hyrise {
 namespace access {

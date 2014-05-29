@@ -1,9 +1,10 @@
 // Copyright (c) 2014 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <algorithm>
+
 #include "access/PipelineStream.h"
 #include "helper/types.h"
-#include "storage/TableRangeView.h"
 #include "log4cxx/logger.h"
-#include <algorithm>
+#include "storage/TableRangeView.h"
 
 namespace hyrise {
 namespace access {

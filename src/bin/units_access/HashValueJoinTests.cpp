@@ -3,8 +3,9 @@
 #include "io/shortcuts.h"
 #include "storage/MutableVerticalTable.h"
 #include "storage/PointerCalculator.h"
-#include "testing/test.h"
 #include "testing/TableEqualityTest.h"
+#include "testing/test.h"
+
 namespace hyrise {
 namespace access {
 

@@ -6,11 +6,12 @@
  *      Author: jwust
  */
 
-#include "TableRangeView.h"
-#include "storage/PrettyPrinter.h"
-#include "storage/ColumnMetadata.h"
-
 #include <iostream>
+
+#include "TableRangeView.h"
+#include "storage/ColumnMetadata.h"
+#include "storage/PrettyPrinter.h"
+
 namespace hyrise {
 namespace storage {
 

@@ -1,30 +1,26 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccStoredProcedure.h"
-
-#include <ctime>
-
-#include <storage/AbstractTable.h>
-#include <storage/TableBuilder.h>
-#include <storage/storage_types_helper.h>
 #include <helper/HttpHelper.h>
-
 #include <io/ResourceManager.h>
 #include <io/StorageManager.h>
 #include <io/TransactionManager.h>
-
-#include "access/storage/GetTable.h"
-#include "access/SortScan.h"
-#include "access/PosUpdateScan.h"
-#include "access/IndexAwareTableScan.h"
-#include "access/tx/Rollback.h"
-#include "access/Delete.h"
-#include "access/expressions/pred_CompoundExpression.h"
-
-#include "io/TransactionError.h"
-#include "io/GroupCommitter.h"
-#include "helper/Settings.h"
 #include <net/AsyncConnection.h>
+#include <storage/AbstractTable.h>
+#include <storage/TableBuilder.h>
+#include <storage/storage_types_helper.h>
+#include <ctime>
+
+#include "TpccStoredProcedure.h"
+#include "access/Delete.h"
+#include "access/IndexAwareTableScan.h"
+#include "access/PosUpdateScan.h"
+#include "access/SortScan.h"
+#include "access/expressions/pred_CompoundExpression.h"
+#include "access/storage/GetTable.h"
+#include "access/tx/Rollback.h"
+#include "helper/Settings.h"
+#include "io/GroupCommitter.h"
+#include "io/TransactionError.h"
 
 namespace hyrise {
 namespace access {

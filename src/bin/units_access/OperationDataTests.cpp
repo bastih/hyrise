@@ -1,7 +1,6 @@
-#include "testing/test.h"
-
 #include "access/system/OperationData-Impl.h"
 #include "storage/AbstractResource.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

@@ -1,11 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
-#include <io/shortcuts.h>
 #include <io/StorageManager.h>
+#include <io/shortcuts.h>
 #include <storage/MutableVerticalTable.h>
-#include "storage/Store.h"
+
 #include "helper/checked_cast.h"
+#include "storage/Store.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

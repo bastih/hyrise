@@ -1,24 +1,20 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/CreateDeltaIndex.h"
-
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
+#include "access/CreateDeltaIndex.h"
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
+#include "helper/Settings.h"
 #include "io/StorageManager.h"
-
+#include "storage/AbstractIndex.h"
 #include "storage/AbstractTable.h"
+#include "storage/DeltaIndex.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
 #include "storage/meta_storage.h"
 #include "storage/storage_types.h"
-#include "storage/PointerCalculator.h"
-#include "storage/AbstractIndex.h"
-#include "storage/DeltaIndex.h"
-#include "storage/Store.h"
-
-#include "helper/Settings.h"
 
 namespace hyrise {
 namespace access {

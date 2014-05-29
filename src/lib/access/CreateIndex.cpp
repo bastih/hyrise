@@ -1,21 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/CreateIndex.h"
-
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
+#include "access/CreateIndex.h"
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "io/StorageManager.h"
-
+#include "storage/AbstractIndex.h"
 #include "storage/AbstractTable.h"
+#include "storage/InvertedIndex.h"
+#include "storage/PointerCalculator.h"
 #include "storage/meta_storage.h"
 #include "storage/storage_types.h"
-#include "storage/PointerCalculator.h"
-#include "storage/AbstractIndex.h"
-#include "storage/InvertedIndex.h"
 
 namespace hyrise {
 namespace access {

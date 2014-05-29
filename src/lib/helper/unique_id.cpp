@@ -1,8 +1,7 @@
-#include "unique_id.h"
-
 #include "boost/uuid/uuid.hpp"
-#include "boost/uuid/uuid_io.hpp"
 #include "boost/uuid/uuid_generators.hpp"
+#include "boost/uuid/uuid_io.hpp"
+#include "unique_id.h"
 
 unique_id::unique_id(type val) : value(val) {
   static_assert(sizeof(unique_id::type) == sizeof(boost::uuids::uuid), "Sizes need to match for this wrapper to work");

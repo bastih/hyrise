@@ -7,12 +7,13 @@
  */
 
 #include <hwloc.h>
-#include "HwlocHelper.h"
-#include <vector>
 #include <iostream>
+#include <memory>
 #include <numeric>
 #include <stdexcept>
-#include <memory>
+#include <vector>
+
+#include "HwlocHelper.h"
 
 int getNumberOfCoresOnSystem() {
   static int NUM_PROCS = []() {

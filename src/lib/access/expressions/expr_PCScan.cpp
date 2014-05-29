@@ -1,6 +1,5 @@
-#include "expr_PCScan.h"
-
 #include "access/expressions/ExpressionRegistration.h"
+#include "expr_PCScan.h"
 
 namespace hyrise {
 namespace access {

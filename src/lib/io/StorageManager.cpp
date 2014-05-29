@@ -1,40 +1,36 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/StorageManager.h"
-
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/iter_find.hpp>
 #include <dirent.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-
 #include <algorithm>
-#include <dirent.h>
-#include <map>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <string>
 #include <thread>
 #include <vector>
 
-#include "helper/Settings.h"
-#include "helper/stringhelpers.h"
+#include "boost/filesystem.hpp"
+#include "boost/foreach.hpp"
 #include "helper/Environment.h"
+#include "helper/Settings.h"
 #include "helper/dir.h"
-#include "io/Loader.h"
+#include "helper/stringhelpers.h"
 #include "io/CSVLoader.h"
+#include "io/Loader.h"
+#include "io/StorageManager.h"
 #include "io/TableDump.h"
 #include "storage/AbstractIndex.h"
 #include "storage/AbstractTable.h"
 #include "storage/ColumnMetadata.h"
-#include "storage/DictionaryFactory.h"
-#include "storage/TableBuilder.h"
-#include "storage/Store.h"
 #include "storage/DeltaIndex.h"
+#include "storage/DictionaryFactory.h"
 #include "storage/GroupkeyIndex.h"
-
-#include "boost/filesystem.hpp"
-#include "boost/foreach.hpp"
-#include <boost/algorithm/string.hpp>
-#include <boost/algorithm/string/iter_find.hpp>
+#include "storage/Store.h"
+#include "storage/TableBuilder.h"
 
 
 namespace hyrise {

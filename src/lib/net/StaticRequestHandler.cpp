@@ -1,17 +1,13 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "net/StaticRequestHandler.h"
-
-#include <unordered_map>
 #include <fstream>
-
-#include "helper/fs.h"
-#include "net/AsyncConnection.h"
-
+#include <unordered_map>
 
 #include "boost/algorithm/string.hpp"
 #include "boost/filesystem.hpp"
-
+#include "helper/fs.h"
 #include "log4cxx/logger.h"
+#include "net/AsyncConnection.h"
+#include "net/StaticRequestHandler.h"
 
 namespace hyrise {
 namespace net {

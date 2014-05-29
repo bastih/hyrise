@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <io/CSVLoader.h>
+#include <io/Loader.h>
+#include <storage/AbstractTable.h>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
-
-#include <io/Loader.h>
-#include <io/CSVLoader.h>
-#include <storage/AbstractTable.h>
 
 #include "testing/TableEqualityTest.h"
 

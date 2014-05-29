@@ -1,5 +1,4 @@
 #include "access/system/ParallelizablePlanOperation.h"
-
 #include "storage/TableRangeView.h"
 
 namespace hyrise {

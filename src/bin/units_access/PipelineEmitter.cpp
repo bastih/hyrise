@@ -1,15 +1,12 @@
 // Copyright (c) 2014 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "testing/test.h"
-#include "access/PipelineObserver.h"
-
-#include "taskscheduler/ThreadPerTaskScheduler.h"
-
-#include "helper/Synchronized.h"
-
-#include "pipelining.h"
-
 #include <iostream>
+
+#include "access/PipelineObserver.h"
+#include "helper/Synchronized.h"
+#include "pipelining.h"
+#include "taskscheduler/ThreadPerTaskScheduler.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

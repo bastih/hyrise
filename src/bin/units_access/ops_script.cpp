@@ -3,11 +3,12 @@
 
 #ifdef WITH_V8
 
-#include "helper.h"
-#include <io/shortcuts.h>
-#include <helper/Settings.h>
 #include <access/ScriptOperation.h>
+#include <helper/Settings.h>
+#include <io/shortcuts.h>
 #include <testing/TableEqualityTest.h>
+
+#include "helper.h"
 
 namespace hyrise {
 namespace access {

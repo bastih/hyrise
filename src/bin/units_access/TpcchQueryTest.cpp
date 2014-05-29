@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/TableEqualityTest.h"
-#include "io/StorageManager.h"
 #include "helper.h"
+#include "io/StorageManager.h"
+#include "testing/TableEqualityTest.h"
 
 namespace hyrise {
 namespace access {

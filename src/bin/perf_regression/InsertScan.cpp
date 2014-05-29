@@ -1,16 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include <gtest/gtest-bench.h>
 #include <gtest/gtest.h>
-
-#include <string>
 #include <chrono>
+#include <string>
 
-#include "io/EmptyLoader.h"
-#include "io/TransactionManager.h"
-#include "io/CSVLoader.h"
-#include "io/shortcuts.h"
 #include "access/InsertScan.h"
 #include "access/tx/Commit.h"
+#include "io/CSVLoader.h"
+#include "io/EmptyLoader.h"
+#include "io/TransactionManager.h"
+#include "io/shortcuts.h"
 
 namespace hyrise {
 namespace access {

@@ -1,10 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "TableEqualityTest.h"
-
 #include <storage/AbstractTable.h>
-#include <storage/TableDiff.h>
 #include <storage/PrettyPrinter.h>
+#include <storage/TableDiff.h>
 #include <storage/storage_types_helper.h>
+
+#include "TableEqualityTest.h"
 
 namespace hyrise {
 

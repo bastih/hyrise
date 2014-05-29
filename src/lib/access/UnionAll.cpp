@@ -1,8 +1,7 @@
 #include "access/UnionAll.h"
 #include "helper/vector_helpers.h"
-
-#include "storage/PointerCalculator.h"
 #include "storage/HorizontalTable.h"
+#include "storage/PointerCalculator.h"
 
 namespace hyrise {
 namespace access {

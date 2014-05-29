@@ -1,16 +1,12 @@
-#include "Delete.h"
-
 #include <access/system/QueryParser.h>
 #include <access/system/ResponseTask.h>
-
 #include <helper/checked_cast.h>
-
 #include <io/TransactionManager.h>
-
-#include <storage/Store.h>
-#include <storage/PointerCalculator.h>
-
 #include <log4cxx/logger.h>
+#include <storage/PointerCalculator.h>
+#include <storage/Store.h>
+
+#include "Delete.h"
 #include "io/TransactionError.h"
 
 namespace hyrise {

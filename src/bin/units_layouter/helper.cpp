@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "helper.h"
-
 #include <fstream>
+
+#include "helper.h"
 
 std::string loadFromFile(std::string path) {
   std::ifstream data_file(path.c_str());

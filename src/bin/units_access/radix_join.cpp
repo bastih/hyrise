@@ -1,17 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-#include "access/radixjoin/PrefixSum.h"
+#include <storage/TableBuilder.h>
+
+#include "access/Barrier.h"
+#include "access/RadixJoin.h"
 #include "access/radixjoin/Histogram.h"
+#include "access/radixjoin/NestedLoopEquiJoin.h"
+#include "access/radixjoin/PrefixSum.h"
 #include "access/radixjoin/RadixCluster.h"
+#include "access/storage/TableLoad.h"
 #include "helper.h"
 #include "io/shortcuts.h"
-#include "access/radixjoin/NestedLoopEquiJoin.h"
-#include "testing/TableEqualityTest.h"
-#include <storage/TableBuilder.h>
-#include "access/RadixJoin.h"
-#include "access/storage/TableLoad.h"
-#include "access/Barrier.h"
 #include "taskscheduler/ThreadPerTaskScheduler.h"
+#include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

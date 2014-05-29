@@ -1,16 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
 #include <string>
 
-#include "helper.h"
-
-#include "access/SortScan.h"
 #include "access/GroupByScan.h"
 #include "access/HashBuild.h"
+#include "access/SortScan.h"
+#include "helper.h"
 #include "helper/types.h"
 #include "io/shortcuts.h"
 #include "storage/ColumnMetadata.h"
 #include "storage/Table.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

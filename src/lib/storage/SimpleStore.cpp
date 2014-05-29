@@ -1,11 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "SimpleStore.h"
-#include "TableMerger.h"
-#include "SimpleStoreMerger.h"
-#include "AbstractMergeStrategy.h"
-
-#include <iostream>
 #include <helper/types.h>
+#include <iostream>
+
+#include "AbstractMergeStrategy.h"
+#include "SimpleStore.h"
+#include "SimpleStoreMerger.h"
+#include "TableMerger.h"
 
 namespace hyrise {
 namespace storage {

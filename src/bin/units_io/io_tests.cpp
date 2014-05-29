@@ -1,9 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include "io/loaders.h"
 #include "io/shortcuts.h"
 #include "storage/AbstractTable.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

@@ -1,6 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
 #include <io/loaders.h>
+
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

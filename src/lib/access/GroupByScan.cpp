@@ -1,12 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/GroupByScan.h"
-
 #include "access/system/QueryParser.h"
 #include "storage/ColumnMetadata.h"
 #include "storage/DictionaryFactory.h"
 #include "storage/HashTable.h"
-#include "storage/PointerCalculator.h"
 #include "storage/OrderIndifferentDictionary.h"
+#include "storage/PointerCalculator.h"
 #include "storage/meta_storage.h"
 #include "storage/storage_types.h"
 

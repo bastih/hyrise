@@ -1,6 +1,5 @@
 
 #include "GenericExpressions.h"
-
 #include "access/expressions/ExpressionRegistration.h"
 
 namespace hyrise {

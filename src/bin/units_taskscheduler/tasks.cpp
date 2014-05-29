@@ -1,7 +1,7 @@
 // Copyright (c) 2014 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "testing/test.h"
 #include "taskscheduler/Task.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace taskscheduler {

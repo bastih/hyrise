@@ -1,5 +1,4 @@
 #include "Commit.h"
-
 #include "access/system/QueryParser.h"
 #include "io/TransactionManager.h"
 

@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "io/StorageManager.h"
 #include "access/MaterializingScan.h"
 #include "access/SortScan.h"
+#include "io/StorageManager.h"
 
 namespace hyrise {
 namespace access {

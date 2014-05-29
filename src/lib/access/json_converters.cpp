@@ -1,8 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "json_converters.h"
 #include <storage/storage_types.h>
-
 #include <stdexcept>
+
+#include "json_converters.h"
 
 template <typename T>
 T json_converter::convert(Json::Value v) {

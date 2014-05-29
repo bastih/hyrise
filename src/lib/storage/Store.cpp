@@ -1,24 +1,21 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <helper/cas.h>
+#include <helper/locking.h>
+#include <helper/vector_helpers.h>
+#include <io/StorageManager.h>
+#include <io/TransactionManager.h>
+#include <storage/DeltaIndex.h>
+#include <storage/PrettyPrinter.h>
 #include <storage/Store.h>
+#include <storage/meta_storage.h>
+#include <storage/storage_types.h>
 #include <iostream>
 #include <map>
 
-#include <io/TransactionManager.h>
-#include <io/StorageManager.h>
-#include <storage/storage_types.h>
-#include <storage/PrettyPrinter.h>
-#include <storage/DeltaIndex.h>
-#include <storage/meta_storage.h>
-#include <storage/storage_types.h>
-
-#include <helper/vector_helpers.h>
-#include <helper/locking.h>
-#include <helper/cas.h>
-
-#include "storage/DictionaryFactory.h"
-#include "storage/ConcurrentUnorderedDictionary.h"
-#include "storage/ConcurrentFixedLengthVector.h"
 #include "storage/CompoundValueKeyBuilder.h"
+#include "storage/ConcurrentFixedLengthVector.h"
+#include "storage/ConcurrentUnorderedDictionary.h"
+#include "storage/DictionaryFactory.h"
 
 
 #define DELTA_SIZE_DEFAULT_MAX 10000000

@@ -1,28 +1,24 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "base.h"
-#include "layout_utils.h"
-#include "matrix.h"
-
-#include <algorithm>
-#include <float.h>
-#include <functional>
-#include <limits.h>
-#include <math.h>
-#include <map>
-#include <sstream>
-#include <unordered_map>
-#include <list>
-
-
-#include <boost/unordered_set.hpp>
-#include <boost/algorithm/string.hpp>
 #include <boost/algorithm/combination.hpp>
+#include <boost/algorithm/string.hpp>
 #include <boost/assign.hpp>
 #include <boost/foreach.hpp>
 #include <boost/format.hpp>
-
-
+#include <boost/unordered_set.hpp>
+#include <float.h>
+#include <limits.h>
+#include <math.h>
 #include <metis.h>
+#include <algorithm>
+#include <functional>
+#include <list>
+#include <map>
+#include <sstream>
+#include <unordered_map>
+
+#include "base.h"
+#include "layout_utils.h"
+#include "matrix.h"
 
 using namespace boost::assign;
 

@@ -1,5 +1,4 @@
 #include "access/tx/Rollback.h"
-
 #include "io/TransactionManager.h"
 
 namespace hyrise {

@@ -1,20 +1,20 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/TransactionManager.h"
-#include "io/logging.h"
-#include "io/StorageManager.h"
-#include "io/GroupCommitter.h"
 #include <cassert>
-#include <limits>
-#include <stdexcept>
-#include <map>
 #include <chrono>
+#include <limits>
+#include <map>
+#include <stdexcept>
 #include <thread>
 
-#include "optional.hpp"
-#include "helper/make_unique.h"
-#include "helper/checked_cast.h"
-#include "helper/vector_helpers.h"
 #include "helper/cas.h"
+#include "helper/checked_cast.h"
+#include "helper/make_unique.h"
+#include "helper/vector_helpers.h"
+#include "io/GroupCommitter.h"
+#include "io/StorageManager.h"
+#include "io/TransactionManager.h"
+#include "io/logging.h"
+#include "optional.hpp"
 #include "storage/Store.h"
 
 #define MAX_INFLIGHT_SIZE 1024 * 1024

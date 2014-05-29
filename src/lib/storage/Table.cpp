@@ -1,12 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/Table.h"
-
+#include <algorithm>
 #include <cassert>
 #include <cmath>
 #include <iostream>
-#include <algorithm>
+
 #include "storage/AttributeVectorFactory.h"
 #include "storage/DictionaryFactory.h"
+#include "storage/Table.h"
 #include "storage/ValueIdMap.hpp"
 
 

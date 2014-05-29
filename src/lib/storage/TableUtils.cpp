@@ -1,7 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/TableUtils.h"
-
 #include "storage/AbstractTable.h"
+#include "storage/TableUtils.h"
 
 namespace hyrise {
 namespace storage {

@@ -4,6 +4,8 @@
 #include <functional>
 #include <numeric>
 #include <iterator>
+#include <vector>
+#include <memory>
 
 namespace hyrise {
 namespace functional {

@@ -1,25 +1,21 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "MPassCSVLoader.h"
-
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
-
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <algorithm>
 #include <set>
 #include <thread>
 
-#include "boost/lexical_cast.hpp"
+#include "MPassCSVLoader.h"
 #include "boost/algorithm/string.hpp"
-
-#include "io/GenericCSV.h"
+#include "boost/lexical_cast.hpp"
 #include "io/ColumnLoader.h"
+#include "io/GenericCSV.h"
 #include "io/MetadataCreation.h"
-
 #include "storage/AbstractTable.h"
-#include "storage/Store.h"
-#include "storage/OrderPreservingDictionary.h"
 #include "storage/ColumnMetadata.h"
+#include "storage/OrderPreservingDictionary.h"
+#include "storage/Store.h"
 #include "storage/meta_storage.h"
 
 namespace hyrise {

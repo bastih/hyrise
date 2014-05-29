@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "RawTable.h"
-
 #include <cassert>
 #include <iostream>
 
-#include "storage/meta_storage.h"
+#include "RawTable.h"
 #include "storage/ColumnMetadata.h"
+#include "storage/meta_storage.h"
 
 namespace hyrise {
 namespace storage {

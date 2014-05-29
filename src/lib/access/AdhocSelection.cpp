@@ -1,10 +1,8 @@
 #include "access/AdhocSelection.h"
-
-#include "storage/meta_storage.h"
+#include "mpParser.h"
 #include "storage/AbstractTable.h"
 #include "storage/PointerCalculator.h"
-
-#include "mpParser.h"
+#include "storage/meta_storage.h"
 
 namespace hyrise {
 namespace access {

@@ -1,8 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include <gtest/gtest.h>
 
-#include "net/Router.h"
 #include "net/RouteRequestHandler.h"
+#include "net/Router.h"
 
 namespace hyrise {
 namespace net {

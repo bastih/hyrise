@@ -2,20 +2,19 @@
 #include <json.h>
 #include <string>
 
-#include "helper.h"
-
-#include "testing/test.h"
 #include "access/ExpressionScan.h"
 #include "access/InsertScan.h"
 #include "access/MaterializingScan.h"
 #include "access/ProjectionScan.h"
-#include "access/SimpleTableScan.h"
 #include "access/SimpleRawTableScan.h"
+#include "access/SimpleTableScan.h"
 #include "access/expressions/predicates.h"
+#include "helper.h"
+#include "io/TransactionManager.h"
+#include "io/shortcuts.h"
 #include "storage/AbstractTable.h"
 #include "storage/ColumnMetadata.h"
-#include "io/shortcuts.h"
-#include "io/TransactionManager.h"
+#include "testing/test.h"
 
 
 namespace hyrise {

@@ -1,6 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "AggregateFunctions.h"
 #include <storage/meta_storage.h>
+
+#include "AggregateFunctions.h"
 #include "json.h"
 
 namespace hyrise {

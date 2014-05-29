@@ -1,8 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/MergeTable.h"
-
 #include "access/system/QueryParser.h"
-
 #include "helper/checked_cast.h"
 #include "storage/Store.h"
 

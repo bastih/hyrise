@@ -1,14 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/CreateGroupkeyIndex.h"
-#include "access/CreateDeltaIndex.h"
 #include "access/CompoundIndexRangeScan.h"
+#include "access/CreateDeltaIndex.h"
+#include "access/CreateGroupkeyIndex.h"
 #include "access/InsertScan.h"
 #include "access/tx/Commit.h"
-
-#include "storage/Store.h"
-#include "io/shortcuts.h"
 #include "io/TransactionManager.h"
-
+#include "io/shortcuts.h"
+#include "storage/Store.h"
 #include "testing/test.h"
 
 namespace hyrise {

@@ -1,8 +1,6 @@
 #include "RadixCluster.h"
-
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "storage/ColumnMetadata.h"
 #include "storage/MutableVerticalTable.h"
 

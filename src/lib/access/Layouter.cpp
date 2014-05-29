@@ -1,6 +1,5 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/Layouter.h"
-
 #include "access/system/QueryParser.h"
 #include "storage/DictionaryFactory.h"
 #include "storage/OrderIndifferentDictionary.h"

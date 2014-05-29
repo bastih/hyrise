@@ -1,18 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/PipeliningHashProbe.h"
-
-#include "access/system/QueryParser.h"
-#include "access/PipelineObserver.h"
-#include "access/system/OperationData.h"
-#include "access/system/OperationData-Impl.h"
-
-#include "helper/types.h"
-
-#include "storage/HashTable.h"
-#include "storage/AbstractTable.h"
-#include "storage/PointerCalculator.h"
-
 #include <log4cxx/logger.h>
+
+#include "access/PipelineObserver.h"
+#include "access/PipeliningHashProbe.h"
+#include "access/system/OperationData-Impl.h"
+#include "access/system/OperationData.h"
+#include "access/system/QueryParser.h"
+#include "helper/types.h"
+#include "storage/AbstractTable.h"
+#include "storage/HashTable.h"
+#include "storage/PointerCalculator.h"
 
 namespace hyrise {
 namespace access {

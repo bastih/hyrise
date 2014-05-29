@@ -1,16 +1,14 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "HttpHelper.h"
-
-#include <sstream>
-#include <vector>
-
 #include <boost/algorithm/string.hpp>
-
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <iomanip>
+#include <sstream>
+#include <vector>
+
+#include "HttpHelper.h"
 
 namespace test {
 

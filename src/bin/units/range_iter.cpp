@@ -1,8 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "gtest/gtest.h"
-
 #include <algorithm>
 
+#include "gtest/gtest.h"
 #include "helper/RangeIter.h"
 
 TEST(RangeIterTest, basic_test) {

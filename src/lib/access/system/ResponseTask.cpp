@@ -1,22 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/system/ResponseTask.h"
-
 #include <thread>
 
-#include "log4cxx/logger.h"
-#include "boost/lexical_cast.hpp"
-
-#include "access/system/PlanOperation.h"
 #include "access/system/OutputTask.h"
-#include "io/TransactionManager.h"
+#include "access/system/PlanOperation.h"
+#include "access/system/ResponseTask.h"
+#include "boost/lexical_cast.hpp"
 #include "helper/PapiTracer.h"
-
+#include "io/GroupCommitter.h"
+#include "io/TransactionManager.h"
+#include "log4cxx/logger.h"
 #include "net/AsyncConnection.h"
-
 #include "storage/AbstractTable.h"
 #include "storage/SimpleStore.h"
 #include "storage/meta_storage.h"
-#include "io/GroupCommitter.h"
 
 
 namespace hyrise {

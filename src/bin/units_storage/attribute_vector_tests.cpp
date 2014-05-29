@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include <limits>
 
-#include "storage/storage_types.h"
 #include "storage/BitCompressedVector.h"
 #include "storage/FixedLengthVector.h"
+#include "storage/storage_types.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

@@ -1,9 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/LayoutTable.h"
-
 #include "io/EmptyLoader.h"
 #include "io/StringLoader.h"
-
 #include "storage/SequentialHeapMerger.h"
 #include "storage/Store.h"
 

@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
-#include "helper.h"
-
 #include <access/storage/TableLoad.h>
 #include <access/storage/UnloadAll.h>
 #include <io/StorageManager.h>
+
+#include "helper.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

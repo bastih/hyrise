@@ -2,21 +2,18 @@
 
 #include <string>
 
-#include "gtest/gtest.h"
-#include "gtest/gtest-bench.h"
-
 #include "access/Delete.h"
 #include "access/InsertScan.h"
 #include "access/tx/Commit.h"
-
+#include "gtest/gtest-bench.h"
+#include "gtest/gtest.h"
 #include "helper/checked_cast.h"
 #include "helper/types.h"
-#include "storage/TableBuilder.h"
-#include "storage/Store.h"
-#include "storage/PointerCalculator.h"
-
-#include "io/shortcuts.h"
 #include "io/TransactionManager.h"
+#include "io/shortcuts.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
+#include "storage/TableBuilder.h"
 
 using namespace hyrise;
 

@@ -1,9 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "NestedLoopEquiJoin.h"
-
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "storage/FixedLengthVector.h"
 #include "storage/MutableVerticalTable.h"
 #include "storage/PointerCalculator.h"

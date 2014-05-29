@@ -1,19 +1,14 @@
-#include "IndexJoin.h"
-
-#include <set>
 #include <functional>
+#include <set>
 
-#include "io/StorageManager.h"
-
-#include "storage/PointerCalculator.h"
-#include "storage/storage_types.h"
-#include "storage/InvertedIndex.h"
-#include "storage/meta_storage.h"
-#include "storage/PointerCalculator.h"
-
-
-#include "access/system/QueryParser.h"
+#include "IndexJoin.h"
 #include "access/expressions/ExpressionRegistration.h"
+#include "access/system/QueryParser.h"
+#include "io/StorageManager.h"
+#include "storage/InvertedIndex.h"
+#include "storage/PointerCalculator.h"
+#include "storage/meta_storage.h"
+#include "storage/storage_types.h"
 
 namespace hyrise {
 namespace access {

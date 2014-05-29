@@ -1,27 +1,24 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <boost/algorithm/string.hpp>
+#include <boost/program_options.hpp>
 #include <fcntl.h>
+#include <hwloc.h>
+#include <signal.h>
+#include <sys/time.h>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <sys/time.h>
 #include <stdexcept>
-#include <boost/algorithm/string.hpp>
 
-#include <hwloc.h>
-#include <signal.h>
-
-#include "log4cxx/logger.h"
-#include "log4cxx/basicconfigurator.h"
-#include "log4cxx/propertyconfigurator.h"
-#include "log4cxx/helpers/exception.h"
-
-#include <boost/program_options.hpp>
-
+#include "access/CheckpointDaemon.h"
 #include "helper/HwlocHelper.h"
 #include "helper/Settings.h"
-#include "net/AsyncConnection.h"
 #include "io/StorageManager.h"
-#include "access/CheckpointDaemon.h"
+#include "log4cxx/basicconfigurator.h"
+#include "log4cxx/helpers/exception.h"
+#include "log4cxx/logger.h"
+#include "log4cxx/propertyconfigurator.h"
+#include "net/AsyncConnection.h"
 #include "taskscheduler/SharedScheduler.h"
 
 namespace po = boost::program_options;

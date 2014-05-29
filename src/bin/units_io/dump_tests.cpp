@@ -1,30 +1,28 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-#include "helper.h"
-
-#include <boost/filesystem.hpp>
-
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <vector>
-
-#include <access/CreateGroupkeyIndex.h>
-#include <access/CreateDeltaIndex.h>
-#include <access/IndexAwareTableScan.h>
 #include <access/CompoundIndexScan.h>
+#include <access/CreateDeltaIndex.h>
+#include <access/CreateGroupkeyIndex.h>
+#include <access/IndexAwareTableScan.h>
+#include <boost/filesystem.hpp>
 #include <io/CSVLoader.h>
 #include <io/EmptyLoader.h>
 #include <io/Loader.h>
-#include <io/shortcuts.h>
 #include <io/StorageManager.h>
 #include <io/TableDump.h>
+#include <io/shortcuts.h>
+#include <storage/AbstractMergeStrategy.h>
 #include <storage/AbstractTable.h>
+#include <storage/SequentialHeapMerger.h>
 #include <storage/Store.h>
 #include <storage/TableMerger.h>
-#include <storage/AbstractMergeStrategy.h>
-#include <storage/SequentialHeapMerger.h>
 #include <storage/storage_types.h>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
+#include "helper.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

@@ -1,9 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include "storage/OrderIndifferentDictionary.h"
 #include "storage/OrderPreservingDictionary.h"
 #include "storage/PassThroughDictionary.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

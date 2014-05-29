@@ -1,7 +1,6 @@
 #include "storage/HashTable.h"
-
-#include "storage/meta_storage.h"
 #include "storage/hash_functor.h"
+#include "storage/meta_storage.h"
 
 namespace hyrise {
 namespace storage {

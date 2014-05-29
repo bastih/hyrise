@@ -1,17 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include <algorithm>
 
 #include "access/HashBuild.h"
 #include "access/HashJoinProbe.h"
 #include "helper/types.h"
 #include "io/shortcuts.h"
-#include "storage/AbstractTable.h"
 #include "storage/AbstractHashTable.h"
+#include "storage/AbstractTable.h"
 #include "storage/Store.h"
-
 #include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

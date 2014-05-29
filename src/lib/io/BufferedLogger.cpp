@@ -58,27 +58,25 @@
  */
 
 
+#include <boost/filesystem.hpp>
+#include <dirent.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <helper/Settings.h>
+#include <helper/dir.h>
+#include <helper/types.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <iostream>
+#include <thread>
+
 #include "io/BufferedLogger.h"
 #include "io/StorageManager.h"
 #include "io/TransactionManager.h"
-#include "storage/Store.h"
 #include "storage/ConcurrentUnorderedDictionary.h"
-
-#include <unistd.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-
-#include <helper/Settings.h>
-#include <helper/types.h>
-#include <helper/dir.h>
-
-#include <iostream>
-#include <thread>
-#include <boost/filesystem.hpp>
+#include "storage/Store.h"
 
 namespace hyrise {
 namespace io {

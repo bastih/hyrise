@@ -1,9 +1,8 @@
-#include "testing/test.h"
-
-#include <limits>
 #include <fstream>
+#include <limits>
 
 #include "io/TransactionManager.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace tx {

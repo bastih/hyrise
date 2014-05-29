@@ -1,10 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/expressions/ExampleExpression.h"
-
-#include "storage/AbstractTable.h"
-
-#include "helper/make_unique.h"
 #include "access/expressions/ExpressionRegistration.h"
+#include "helper/make_unique.h"
+#include "storage/AbstractTable.h"
 #include "storage/FixedLengthVector.h"
 
 namespace hyrise {

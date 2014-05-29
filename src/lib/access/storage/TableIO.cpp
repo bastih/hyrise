@@ -1,16 +1,13 @@
-#include "TableIO.h"
-
 #include <helper/Settings.h>
-
+#include <helper/checked_cast.h>
 #include <io/CSVLoader.h>
 #include <io/EmptyLoader.h>
 #include <io/Loader.h>
-#include <io/shortcuts.h>
 #include <io/TableDump.h>
-
+#include <io/shortcuts.h>
 #include <storage/Store.h>
 
-#include <helper/checked_cast.h>
+#include "TableIO.h"
 
 namespace hyrise {
 namespace access {

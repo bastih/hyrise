@@ -1,17 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-#include "helper.h"
-
-#include <algorithm>
-
-#include <io/shortcuts.h>
-#include <storage/Store.h>
-#include <storage/PointerCalculator.h>
-#include <storage/TableBuilder.h>
 #include <helper/types.h>
 #include <io/TransactionManager.h>
-
+#include <io/shortcuts.h>
+#include <storage/PointerCalculator.h>
+#include <storage/Store.h>
+#include <storage/TableBuilder.h>
 #include <testing/TableEqualityTest.h>
+#include <algorithm>
+
+#include "helper.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

@@ -1,7 +1,8 @@
-#include "net/ShutdownHandler.h"
 #include <iostream>
-#include "net/AsyncConnection.h"
+
 #include "ebb/ebb.h"
+#include "net/AsyncConnection.h"
+#include "net/ShutdownHandler.h"
 
 namespace hyrise {
 namespace net {

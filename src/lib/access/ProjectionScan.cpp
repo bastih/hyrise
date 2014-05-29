@@ -1,11 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/ProjectionScan.h"
-
-#include "access/system/QueryParser.h"
 #include "access/system/BasicParser.h"
-
-#include "storage/storage_types.h"
+#include "access/system/QueryParser.h"
 #include "storage/PointerCalculator.h"
+#include "storage/storage_types.h"
 
 namespace hyrise {
 namespace access {

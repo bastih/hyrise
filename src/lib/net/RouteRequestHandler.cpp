@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "net/RouteRequestHandler.h"
-
 #include <sstream>
 #include <string>
 
 #include "json.h"
 #include "net/AsyncConnection.h"
+#include "net/RouteRequestHandler.h"
 
 namespace hyrise {
 namespace net {

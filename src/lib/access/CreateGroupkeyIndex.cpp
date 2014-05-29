@@ -1,22 +1,19 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/CreateGroupkeyIndex.h"
-
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
+#include "access/CreateGroupkeyIndex.h"
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "io/StorageManager.h"
-
+#include "storage/AbstractIndex.h"
 #include "storage/AbstractTable.h"
+#include "storage/GroupkeyIndex.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
 #include "storage/meta_storage.h"
 #include "storage/storage_types.h"
-#include "storage/PointerCalculator.h"
-#include "storage/AbstractIndex.h"
-#include "storage/GroupkeyIndex.h"
-#include "storage/Store.h"
 
 namespace hyrise {
 namespace access {

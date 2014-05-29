@@ -1,7 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "QueryTransformationEngine.h"
-#include <stdexcept>
 #include <storage/storage_types.h>
+#include <stdexcept>
+
+#include "QueryTransformationEngine.h"
 
 
 const std::string QueryTransformationEngine::parallelInstanceInfix = "_instance_",

@@ -1,15 +1,13 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccStoredProceduresTest.h"
+#include <io/ResourceManager.h>
+#include <json.h>
+#include <fstream>
 
+#include "TpccStoredProceduresTest.h"
+#include "helper.h"
 #include "io/shortcuts.h"
 #include "testing/test.h"
-
-#include "helper.h"
-#include <fstream>
-#include <json.h>
-
-#include <io/ResourceManager.h>
 
 namespace hyrise {
 namespace access {

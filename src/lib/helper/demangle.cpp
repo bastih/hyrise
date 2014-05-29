@@ -1,7 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "helper/demangle.h"
-#include <stdlib.h>
 #include <cxxabi.h>
+#include <stdlib.h>
+
+#include "helper/demangle.h"
 
 #if (__GNUC__ && __cplusplus && __GNUC__ >= 3)
 const char* demangle(const char* name) {

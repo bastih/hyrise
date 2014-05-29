@@ -1,13 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/Distinct.h"
-
 #include <unordered_map>
 
+#include "access/Distinct.h"
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "helper/types.h"
-
 #include "storage/PointerCalculator.h"
 
 namespace hyrise {

@@ -11,10 +11,11 @@
  * Based on TPC-C Standard Specification Revision 5.0.
  */
 
+#include <math.h>
 #include <pthread.h>
 #include <stdarg.h>
-#include <math.h>
 #include <string.h>
+
 #include "common.h"
 #include "transaction_data.h"
 

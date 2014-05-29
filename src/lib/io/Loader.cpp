@@ -1,19 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/Loader.h"
-
 #include <log4cxx/logger.h>
 
 #include "helper/types.h"
 #include "io/EmptyLoader.h"
+#include "io/Loader.h"
 #include "io/LoaderException.h"
-#include "storage/AbstractTable.h"
 #include "storage/AbstractMergeStrategy.h"
+#include "storage/AbstractTable.h"
 #include "storage/DictionaryFactory.h"
 #include "storage/FixedLengthVector.h"
+#include "storage/MutableVerticalTable.h"
 #include "storage/SequentialHeapMerger.h"
 #include "storage/SimpleStore.h"
 #include "storage/Store.h"
-#include "storage/MutableVerticalTable.h"
 
 namespace hyrise {
 namespace io {

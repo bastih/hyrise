@@ -1,9 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/storage_types_helper.h"
-
+#include <algorithm>
 #include <stdexcept>
 #include <string>
-#include <algorithm>
+
+#include "storage/storage_types_helper.h"
 
 namespace hyrise {
 

@@ -1,15 +1,12 @@
 // Copyright (c) 2014 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/PipelineUnion.h"
-#include "log4cxx/logger.h"
-
 #include "access/UnionAll.h"
 #include "access/system/OperationData-Impl.h"
-
-#include "storage/AbstractTable.h"
-#include "storage/HorizontalTable.h"
-
 #include "helper/types.h"
 #include "helper/vector_helpers.h"
+#include "log4cxx/logger.h"
+#include "storage/AbstractTable.h"
+#include "storage/HorizontalTable.h"
 
 namespace hyrise {
 namespace access {

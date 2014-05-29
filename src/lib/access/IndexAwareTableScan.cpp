@@ -1,37 +1,31 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/IndexAwareTableScan.h"
-
+#include <chrono>
 #include <memory>
 
-#include "access/system/BasicParser.h"
-#include "access/json_converters.h"
-#include "access/system/QueryParser.h"
-
-#include "io/StorageManager.h"
-#include "io/TransactionManager.h"
-
-#include "storage/InvertedIndex.h"
-#include "storage/Store.h"
-#include "storage/meta_storage.h"
-#include "storage/PointerCalculator.h"
-#include "storage/GroupkeyIndex.h"
-#include "storage/DeltaIndex.h"
-#include "storage/storage_types.h"
-
-#include "helper/checked_cast.h"
-#include "helper/PositionsIntersect.h"
-
-#include "access/expressions/pred_buildExpression.h"
-#include "access/expressions/pred_GreaterThanExpression.h"
-#include "access/expressions/pred_EqualsExpression.h"
-#include "access/expressions/pred_LessThanExpression.h"
-#include "access/expressions/pred_CompoundExpression.h"
-#include "access/expressions/expression_types.h"
+#include "access/IndexAwareTableScan.h"
 #include "access/IntersectPositions.h"
 #include "access/SimpleTableScan.h"
+#include "access/expressions/expression_types.h"
+#include "access/expressions/pred_CompoundExpression.h"
+#include "access/expressions/pred_EqualsExpression.h"
+#include "access/expressions/pred_GreaterThanExpression.h"
+#include "access/expressions/pred_LessThanExpression.h"
+#include "access/expressions/pred_buildExpression.h"
+#include "access/json_converters.h"
+#include "access/system/BasicParser.h"
+#include "access/system/QueryParser.h"
 #include "access/system/ResponseTask.h"
-
-#include <chrono>
+#include "helper/PositionsIntersect.h"
+#include "helper/checked_cast.h"
+#include "io/StorageManager.h"
+#include "io/TransactionManager.h"
+#include "storage/DeltaIndex.h"
+#include "storage/GroupkeyIndex.h"
+#include "storage/InvertedIndex.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
+#include "storage/meta_storage.h"
+#include "storage/storage_types.h"
 
 #define EXPR_SPECIFIC(EXPR, COMP, TYPE)                                                                 \
   {                                                                                                     \

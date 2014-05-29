@@ -1,15 +1,14 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/RadixJoin.h"
-
-#include "access/UnionAll.h"
 #include "access/Barrier.h"
-#include "access/system/BasicParser.h"
-#include "access/system/ResponseTask.h"
-#include "access/system/QueryParser.h"
+#include "access/RadixJoin.h"
+#include "access/UnionAll.h"
 #include "access/radixjoin/Histogram.h"
 #include "access/radixjoin/NestedLoopEquiJoin.h"
 #include "access/radixjoin/PrefixSum.h"
 #include "access/radixjoin/RadixCluster.h"
+#include "access/system/BasicParser.h"
+#include "access/system/QueryParser.h"
+#include "access/system/ResponseTask.h"
 #include "helper/types.h"
 #include "log4cxx/logger.h"
 

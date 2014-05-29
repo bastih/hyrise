@@ -1,31 +1,27 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/system/RequestParseTask.h"
-
 #include <array>
 #include <iomanip>
 #include <map>
-#include <string>
 #include <sstream>
-#include <vector>
+#include <string>
 #include <thread>
+#include <vector>
 
-#include "boost/lexical_cast.hpp"
-
-#include "access/system/ResponseTask.h"
 #include "access/system/PlanOperation.h"
 #include "access/system/QueryTransformationEngine.h"
+#include "access/system/RequestParseTask.h"
+#include "access/system/ResponseTask.h"
 #include "access/tx/Commit.h"
-
-#include "helper/epoch.h"
+#include "boost/lexical_cast.hpp"
 #include "helper/HttpHelper.h"
-#include "helper/numerical_converter.h"
 #include "helper/PapiTracer.h"
+#include "helper/epoch.h"
+#include "helper/numerical_converter.h"
 #include "helper/sha1.h"
 #include "helper/vector_helpers.h"
 #include "io/TransactionManager.h"
-#include "net/Router.h"
 #include "net/AbstractConnection.h"
-
+#include "net/Router.h"
 #include "taskscheduler/AbstractTaskScheduler.h"
 #include "taskscheduler/SharedScheduler.h"
 

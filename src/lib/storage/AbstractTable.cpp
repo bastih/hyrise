@@ -1,23 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <helper/locking.h>
 #include <storage/AbstractTable.h>
-
-#include <storage/MutableVerticalTable.h>
-#include <storage/Table.h>
+#include <storage/ColumnMetadata.h>
 #include <storage/DictionaryFactory.h>
-#include <storage/Store.h>
-#include <storage/ColumnMetadata.h>
-#include <storage/ColumnMetadata.h>
-#include <storage/storage_types.h>
+#include <storage/MutableVerticalTable.h>
 #include <storage/PrettyPrinter.h>
-#include <storage/storage_types_helper.h>
+#include <storage/Store.h>
+#include <storage/Table.h>
 #include <storage/TableDiff.h>
 #include <storage/TableUtils.h>
 #include <storage/meta_storage.h>
-
-#include <helper/locking.h>
-
+#include <storage/storage_types.h>
+#include <storage/storage_types_helper.h>
 #include <fstream>
-
 #include <iostream>
 
 namespace hyrise {

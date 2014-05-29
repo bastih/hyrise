@@ -3,11 +3,11 @@
 #include <gtest/gtest.h>
 #include <string>
 
-#include "io/StorageManager.h"
+#include "access/AdhocSelection.h"
 #include "access/MaterializingScan.h"
 #include "access/SimpleTableScan.h"
 #include "access/expressions/predicates.h"
-#include "access/AdhocSelection.h"
+#include "io/StorageManager.h"
 
 using namespace hyrise;
 using namespace hyrise::access;

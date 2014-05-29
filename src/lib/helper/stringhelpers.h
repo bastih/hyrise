@@ -3,7 +3,7 @@
 
 #include <string>
 #include <sstream>
-
+#include <vector>
 
 void inline splitString(std::vector<std::string>& result, const std::string& s, const std::string& delim) {
   std::stringstream ss(s);

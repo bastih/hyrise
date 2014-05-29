@@ -1,10 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/ExpressionScan.h"
-
 #include "access/system/QueryParser.h"
 #include "storage/DictionaryFactory.h"
-#include "storage/OrderIndifferentDictionary.h"
 #include "storage/MutableVerticalTable.h"
+#include "storage/OrderIndifferentDictionary.h"
 #include "storage/Table.h"
 #include "storage/storage_types.h"
 

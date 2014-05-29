@@ -1,15 +1,11 @@
 #include "IndexScanProc.h"
-
 #include "access/IndexScan.h"
-#include "access/tx/Commit.h"
 #include "access/storage/GetTable.h"
 #include "access/system/ResponseTask.h"
-
-#include "io/TransactionManager.h"
-
-#include "taskscheduler/SharedScheduler.h"
-
+#include "access/tx/Commit.h"
 #include "helper/HttpHelper.h"
+#include "io/TransactionManager.h"
+#include "taskscheduler/SharedScheduler.h"
 
 
 

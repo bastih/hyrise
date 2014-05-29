@@ -1,8 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "ReplaceTable.h"
-
 #include "access/system/QueryParser.h"
-
 #include "io/StorageManager.h"
 
 namespace hyrise {

@@ -1,5 +1,6 @@
-#include "access/Print.h"
 #include <iostream>
+
+#include "access/Print.h"
 
 namespace hyrise {
 namespace access {

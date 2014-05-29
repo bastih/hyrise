@@ -1,26 +1,24 @@
-#include "testing/test.h"
-#include "io/BufferedLogger.h"
-#include "io/shortcuts.h"
-#include "io/StorageManager.h"
-#include "storage/Store.h"
-#include "io/TransactionManager.h"
+#include <fcntl.h>
+#include <helper/Settings.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fstream>
+#include <thread>
+#include <vector>
+
+#include "access/Checkpoint.h"
 #include "access/InsertScan.h"
 #include "access/PosUpdateScan.h"
 #include "access/tx/Commit.h"
 #include "access/tx/Rollback.h"
-#include "access/Checkpoint.h"
+#include "io/BufferedLogger.h"
+#include "io/StorageManager.h"
+#include "io/TransactionManager.h"
+#include "io/shortcuts.h"
 #include "storage/PointerCalculator.h"
-
-
-#include <fstream>
-#include <thread>
-#include <vector>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-
-#include <helper/Settings.h>
+#include "storage/Store.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/TableBuilder.h"
-
 #include "storage/AbstractTable.h"
 #include "storage/DictionaryFactory.h"
+#include "storage/MutableVerticalTable.h"
 #include "storage/OrderIndifferentDictionary.h"
 #include "storage/Table.h"
-#include "storage/MutableVerticalTable.h"
+#include "storage/TableBuilder.h"
 
 namespace hyrise {
 namespace storage {

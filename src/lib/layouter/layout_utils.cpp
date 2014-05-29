@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <boost/foreach.hpp>
 #include <iostream>
 
-#include <boost/foreach.hpp>
 #include "layout_utils.h"
 
 namespace hyrise {

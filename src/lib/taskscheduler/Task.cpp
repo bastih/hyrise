@@ -6,13 +6,12 @@
  *      Author: jwust
  */
 
-#include "taskscheduler/Task.h"
-
-#include "log4cxx/logger.h"
-
+#include <algorithm>
 #include <iostream>
 #include <thread>
-#include <algorithm>
+
+#include "log4cxx/logger.h"
+#include "taskscheduler/Task.h"
 
 namespace {
 log4cxx::LoggerPtr _logger(log4cxx::Logger::getLogger("hyrise.taskscheduler"));

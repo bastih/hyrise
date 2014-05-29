@@ -8,20 +8,19 @@
  * Based on TPC-C Standard Specification Revision 5.0.
  */
 
-#include "common.h"
-#include "datagen.h"
-
+#include <errno.h>
+#include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sstream>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
-#include <getopt.h>
+#include <sstream>
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <errno.h>
+#include "common.h"
+#include "datagen.h"
 
 #define CUSTOMER_DATA "customer.tbl"
 #define DISTRICT_DATA "district.tbl"

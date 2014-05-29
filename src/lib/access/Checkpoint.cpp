@@ -1,13 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include <access/Checkpoint.h>
-
+#include <helper/Settings.h>
 #include <io/StorageManager.h>
 #include <io/TableDump.h>
 #include <io/logging.h>
-#include "io/TransactionManager.h"
-
 #include <storage/Store.h>
-#include <helper/Settings.h>
+
+#include "io/TransactionManager.h"
 
 namespace hyrise {
 namespace access {

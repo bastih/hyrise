@@ -1,12 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/SequentialHeapMerger.h"
-
 #include <queue>
 
 #include "helper/vector_helpers.h"
-#include "storage/DictionaryIterator.h"
 #include "storage/ColumnMetadata.h"
 #include "storage/DictionaryFactory.h"
+#include "storage/DictionaryIterator.h"
+#include "storage/SequentialHeapMerger.h"
 
 namespace hyrise {
 namespace storage {

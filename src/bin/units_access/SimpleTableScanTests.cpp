@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/SimpleTableScan.h"
-#include "access/expressions/predicates.h"
 #include "access/UnionAll.h"
+#include "access/expressions/predicates.h"
 #include "io/shortcuts.h"
 #include "testing/test.h"
 

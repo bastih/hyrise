@@ -1,12 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "pred_buildExpression.h"
-
 #include <json.h>
 
-#include "expression_types.h"
 #include "../json_converters.h"
-#include "predicates.h"
+#include "expression_types.h"
+#include "pred_buildExpression.h"
 #include "pred_expression_factory.h"
+#include "predicates.h"
 #include "storage/meta_storage.h"
 
 namespace hyrise {

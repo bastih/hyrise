@@ -1,8 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/system/ParallelizablePlanOperation.h"
 #include "access/NoOp.h"
-#include "testing/test.h"
+#include "access/system/ParallelizablePlanOperation.h"
 #include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

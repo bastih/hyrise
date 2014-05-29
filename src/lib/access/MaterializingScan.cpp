@@ -1,12 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/MaterializingScan.h"
-
 #include <random>
 #include <set>
 
+#include "access/MaterializingScan.h"
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
-
 #include "storage/Table.h"
 
 namespace hyrise {

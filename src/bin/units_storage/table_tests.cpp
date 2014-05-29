@@ -1,20 +1,17 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include "helper.h"
-
 #include "io/shortcuts.h"
-
 #include "storage/AbstractTable.h"
+#include "storage/ConcurrentUnorderedDictionary.h"
 #include "storage/DictionaryFactory.h"
 #include "storage/FixedLengthVector.h"
 #include "storage/OrderIndifferentDictionary.h"
 #include "storage/OrderPreservingDictionary.h"
-#include "storage/ConcurrentUnorderedDictionary.h"
 #include "storage/RawTable.h"
 #include "storage/SimpleStore.h"
-#include "storage/storage_types.h"
 #include "storage/Store.h"
+#include "storage/storage_types.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

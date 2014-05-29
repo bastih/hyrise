@@ -1,16 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "TableLoad.h"
-
 #include "access/system/QueryParser.h"
-
+#include "helper/checked_cast.h"
+#include "io/StorageManager.h"
 #include "io/loaders.h"
 #include "io/shortcuts.h"
-#include "io/StorageManager.h"
-
-#include "storage/Store.h"
-#include "helper/checked_cast.h"
-
 #include "log4cxx/logger.h"
+#include "storage/Store.h"
 
 namespace hyrise {
 namespace access {

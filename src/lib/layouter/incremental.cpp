@@ -1,9 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "base.h"
-#include "incremental.h"
-
 #include <boost/foreach.hpp>
 #include <map>
+
+#include "base.h"
+#include "incremental.h"
 
 namespace hyrise {
 namespace layouter {

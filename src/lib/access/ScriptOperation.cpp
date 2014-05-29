@@ -1,13 +1,11 @@
-#include "access/ScriptOperation.h"
-
-#include <storage/PointerCalculator.h>
-#include <storage/MutableVerticalTable.h>
-#include <storage/TableBuilder.h>
-#include <storage/FixedLengthVector.h>
-
 #include <helper/Settings.h>
 #include <helper/types.h>
+#include <storage/FixedLengthVector.h>
+#include <storage/MutableVerticalTable.h>
+#include <storage/PointerCalculator.h>
+#include <storage/TableBuilder.h>
 
+#include "access/ScriptOperation.h"
 #include "log4cxx/logger.h"
 
 #ifdef WITH_V8

@@ -1,13 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <io/ResourceManager.h>
+#include <io/shortcuts.h>
+#include <storage/AbstractIndex.h>
+#include <storage/AbstractResource.h>
+#include <storage/Table.h>
 #include <memory>
 
 #include "testing/test.h"
-
-#include <io/shortcuts.h>
-#include <io/ResourceManager.h>
-#include <storage/AbstractResource.h>
-#include <storage/AbstractIndex.h>
-#include <storage/Table.h>
 
 namespace hyrise {
 namespace io {

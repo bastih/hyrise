@@ -1,7 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include <iostream>
 #include <stdio.h>
 #include <cstdlib>
+#include <iostream>
+
 #include "hash.h"
 
 u_int64_t fnv_64a_int(u_int64_t hash, u_int64_t integer, size_t size) {

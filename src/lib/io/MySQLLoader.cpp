@@ -1,23 +1,18 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #ifdef WITH_MYSQL
 
-#include "io/MySQLLoader.h"
-
+#include <boost/algorithm/string/erase.hpp>
+#include <boost/assign.hpp>
+#include <mysql/mysql.h>
 #include <iostream>
 #include <limits>
 #include <map>
 
-#include <boost/assign.hpp>
-#include <boost/algorithm/string/erase.hpp>
-
-#include <mysql/mysql.h>
-
-
+#include "io/MySQLLoader.h"
 #include "storage/ColumnMetadata.h"
 #include "storage/MutableVerticalTable.h"
-#include "storage/storage_types.h"
-#include "storage/storage_types.h"
 #include "storage/TableBuilder.h"
+#include "storage/storage_types.h"
 
 namespace hyrise {
 namespace io {

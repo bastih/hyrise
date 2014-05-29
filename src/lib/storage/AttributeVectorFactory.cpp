@@ -1,8 +1,7 @@
 #include "storage/AttributeVectorFactory.h"
-
-#include "storage/FixedLengthVector.h"
-#include "storage/ConcurrentFixedLengthVector.h"
 #include "storage/BitCompressedVector.h"
+#include "storage/ConcurrentFixedLengthVector.h"
+#include "storage/FixedLengthVector.h"
 
 namespace hyrise {
 namespace storage {

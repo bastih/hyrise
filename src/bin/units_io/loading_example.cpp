@@ -1,8 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include <io/CSVLoader.h>
 #include <io/Loader.h>
+
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

@@ -1,9 +1,8 @@
 #include "access/OperationListingHandler.h"
-
-#include "json.h"
-#include "net/AsyncConnection.h"
-#include "net/AbstractConnection.h"
 #include "access/system/QueryParser.h"
+#include "json.h"
+#include "net/AbstractConnection.h"
+#include "net/AsyncConnection.h"
 
 namespace hyrise {
 namespace access {

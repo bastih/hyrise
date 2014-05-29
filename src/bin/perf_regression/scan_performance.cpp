@@ -1,24 +1,19 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include <gtest/gtest-bench.h>
-#include <vector>
-#include <random>
 #include <cstdint>
-
-#include "helper/types.h"
-#include "storage/storage_types.h"
+#include <random>
+#include <vector>
 
 #include "access/TableScan.h"
-#include "access/expressions/pred_EqualsExpression.h"
-
-#include "io/VectorLoader.h"
-#include "io/StringLoader.h"
-#include "io/Loader.h"
-
-#include "helper/make_unique.h"
-
-#include "storage/AbstractTable.h"
-
 #include "access/expressions/ExampleExpression.h"
+#include "access/expressions/pred_EqualsExpression.h"
+#include "helper/make_unique.h"
+#include "helper/types.h"
+#include "io/Loader.h"
+#include "io/StringLoader.h"
+#include "io/VectorLoader.h"
+#include "storage/AbstractTable.h"
+#include "storage/storage_types.h"
 //#include "gperftools/profiler.h"
 
 namespace hyrise {

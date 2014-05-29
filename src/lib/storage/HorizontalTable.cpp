@@ -1,10 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/HorizontalTable.h"
-
 #include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <iterator>
+
+#include "storage/HorizontalTable.h"
 
 namespace hyrise {
 namespace storage {

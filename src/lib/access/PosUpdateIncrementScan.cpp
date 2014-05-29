@@ -1,15 +1,14 @@
 #include "access/PosUpdateIncrementScan.h"
-
+#include "access/json_converters.h"
 #include "access/system/QueryParser.h"
 #include "access/system/ResponseTask.h"
 #include "helper/checked_cast.h"
+#include "io/TransactionError.h"
 #include "io/TransactionManager.h"
 #include "storage/AbstractTable.h"
 #include "storage/PointerCalculator.h"
 #include "storage/Store.h"
-#include "access/json_converters.h"
 #include "storage/meta_storage.h"
-#include "io/TransactionError.h"
 
 using namespace hyrise;
 using namespace access;

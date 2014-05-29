@@ -1,11 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include <io/GroupCommitter.h>
-
 #include <helper/HwlocHelper.h>
 #include <helper/Settings.h>
+#include <io/GroupCommitter.h>
 #include <io/logging.h>
-
 #include <sys/time.h>
 #include <iostream>
 

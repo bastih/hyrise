@@ -1,13 +1,13 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
+#include <helper/HttpHelper.h>
+
 #include "HyriseStoredProcedure.h"
 #include "TpccDeliveryProcedure.h"
 #include "TpccNewOrderProcedure.h"
 #include "TpccOrderStatusProcedure.h"
 #include "TpccPaymentProcedure.h"
 #include "TpccStockLevelProcedure.h"
-
-#include <helper/HttpHelper.h>
 
 
 namespace hyrise {

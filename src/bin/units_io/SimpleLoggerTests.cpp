@@ -1,10 +1,10 @@
-#include "testing/test.h"
-#include "io/SimpleLogger.h"
-#include "helper/Settings.h"
-
 #include <fstream>
 #include <thread>
 #include <vector>
+
+#include "helper/Settings.h"
+#include "io/SimpleLogger.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

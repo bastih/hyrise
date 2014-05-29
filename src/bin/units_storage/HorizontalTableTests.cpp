@@ -1,12 +1,10 @@
-#include "testing/test.h"
-
-#include "storage/Store.h"
-#include "storage/MutableVerticalTable.h"
-#include "storage/Table.h"
 #include "storage/HorizontalTable.h"
-
+#include "storage/MutableVerticalTable.h"
+#include "storage/Store.h"
+#include "storage/Table.h"
 #include "storage/TableBuilder.h"
 #include "storage/storage_types.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

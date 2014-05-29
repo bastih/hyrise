@@ -1,8 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/system/OperationData-Impl.h"
-
 #include <string>
 
+#include "access/system/OperationData-Impl.h"
 #include "storage/AbstractTable.h"
 #include "storage/HashTable.h"
 

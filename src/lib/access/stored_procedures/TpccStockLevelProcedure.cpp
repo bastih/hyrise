@@ -1,11 +1,10 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccStockLevelProcedure.h"
-
 #include <storage/AbstractTable.h>
 
-#include "access/CompoundIndexScan.h"
+#include "TpccStockLevelProcedure.h"
 #include "access/CompoundIndexRangeScan.h"
+#include "access/CompoundIndexScan.h"
 #include "storage/PointerCalculator.h"
 
 namespace hyrise {

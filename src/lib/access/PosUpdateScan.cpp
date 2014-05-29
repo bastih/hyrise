@@ -1,18 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/PosUpdateScan.h"
 #include <access/system/ResponseTask.h>
 
-#include "json_converters.h"
-
-#include "helper/vector_helpers.h"
+#include "access/PosUpdateScan.h"
 #include "helper/checked_cast.h"
-
-#include "io/TransactionManager.h"
-
-#include "storage/Store.h"
-#include "storage/PointerCalculator.h"
-#include "storage/meta_storage.h"
+#include "helper/vector_helpers.h"
 #include "io/TransactionError.h"
+#include "io/TransactionManager.h"
+#include "json_converters.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
+#include "storage/meta_storage.h"
 
 
 namespace hyrise {

@@ -1,9 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/TableDump.h"
-
+#include <boost/lexical_cast.hpp>
+#include <cereal/archives/binary.hpp>
+#include <cereal/types/memory.hpp>
 #include <errno.h>
+#include <sys/mman.h>
 #include <sys/stat.h>
-
 #include <algorithm>
 #include <fstream>
 #include <initializer_list>
@@ -12,32 +13,24 @@
 #include <sstream>
 #include <stdexcept>
 #include <vector>
-#include <sys/mman.h>
-#include <sys/stat.h>
-
-#include <boost/lexical_cast.hpp>
-
-#include "io/LoaderException.h"
-#include "io/GenericCSV.h"
-#include "io/CSVLoader.h"
-#include "io/StorageManager.h"
 
 #include "helper/checked_cast.h"
+#include "helper/dir.h"
 #include "helper/stringhelpers.h"
 #include "helper/vector_helpers.h"
-#include "helper/dir.h"
-
+#include "io/CSVLoader.h"
+#include "io/GenericCSV.h"
+#include "io/LoaderException.h"
+#include "io/StorageManager.h"
+#include "io/TableDump.h"
 #include "storage/AbstractTable.h"
+#include "storage/ConcurrentUnorderedDictionary.h"
+#include "storage/DeltaIndex.h"
+#include "storage/GroupkeyIndex.h"
 #include "storage/Store.h"
+#include "storage/meta_storage.h"
 #include "storage/storage_types.h"
 #include "storage/storage_types_helper.h"
-#include "storage/meta_storage.h"
-#include "storage/GroupkeyIndex.h"
-#include "storage/DeltaIndex.h"
-#include "storage/ConcurrentUnorderedDictionary.h"
-
-#include <cereal/archives/binary.hpp>
-#include <cereal/types/memory.hpp>
 
 #define DUMP_ACTUAL_INDICES
 

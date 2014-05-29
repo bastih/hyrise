@@ -1,16 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "access/CompoundIndexRangeScan.h"
-
-#include "access/system/BasicParser.h"
-#include "access/json_converters.h"
-#include "access/system/QueryParser.h"
-#include "io/StorageManager.h"
-#include "helper/checked_cast.h"
-#include "storage/storage_types.h"
-
 #include <algorithm>
 #include <iostream>
+
+#include "access/CompoundIndexRangeScan.h"
+#include "access/json_converters.h"
+#include "access/system/BasicParser.h"
+#include "access/system/QueryParser.h"
+#include "helper/checked_cast.h"
+#include "io/StorageManager.h"
+#include "storage/storage_types.h"
 
 namespace hyrise {
 namespace access {

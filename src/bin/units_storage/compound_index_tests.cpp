@@ -2,15 +2,15 @@
 
 #include <vector>
 
-#include "io/shortcuts.h"
+#include "access/InsertScan.h"
 #include "io/StorageManager.h"
-#include "storage/GroupkeyIndex.h"
+#include "io/shortcuts.h"
+#include "storage/CompoundValueIdKeyBuilder.h"
+#include "storage/CompoundValueKeyBuilder.h"
 #include "storage/DeltaIndex.h"
+#include "storage/GroupkeyIndex.h"
 #include "storage/Store.h"
 #include "testing/test.h"
-#include "storage/CompoundValueKeyBuilder.h"
-#include "storage/CompoundValueIdKeyBuilder.h"
-#include "access/InsertScan.h"
 
 namespace hyrise {
 namespace storage {

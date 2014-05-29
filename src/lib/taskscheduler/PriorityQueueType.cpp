@@ -1,6 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
 #include "PriorityQueueType.h"
+
 namespace hyrise {
 namespace taskscheduler {
 void PriorityQueueType::push(const std::shared_ptr<Task>& task) { _runQueue.push(task); }

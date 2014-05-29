@@ -1,9 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "SpawnedTask.h"
-
-#include <thread>
 #include <random>
+#include <thread>
 
+#include "SpawnedTask.h"
 #include "access/system/QueryParser.h"
 
 namespace hyrise {

@@ -1,12 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #ifdef WITH_MYSQL
 
-#include "testing/test.h"
-#include <stdlib.h>
 #include <io/loaders.h>
-#include "storage/AbstractTable.h"
-
+#include <stdlib.h>
 #include <unistd.h>
+
+#include "storage/AbstractTable.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace io {

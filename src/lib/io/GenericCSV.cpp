@@ -1,17 +1,16 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/GenericCSV.h"
-
+#include <libcsv/csv.h>
+#include <string.h>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <fstream>
 #include <iostream>
 #include <istream>
-#include <stdexcept>
 #include <memory>
+#include <stdexcept>
 
-#include <string.h>
-#include <libcsv/csv.h>
+#include "io/GenericCSV.h"
 
 namespace hyrise {
 namespace io {

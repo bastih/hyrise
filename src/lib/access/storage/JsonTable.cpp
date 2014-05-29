@@ -1,25 +1,19 @@
-#include "boost/lexical_cast.hpp"
-
-#include "JsonTable.h"
-
-
+#include <helper/stringhelpers.h>
 #include <helper/types.h>
 #include <helper/vector_helpers.h>
-#include <helper/stringhelpers.h>
-
-#include <io/TransactionManager.h>
-
-#include <storage/storage_types.h>
-#include <storage/meta_storage.h>
-#include <storage/Store.h>
-#include <storage/Serial.h>
-#include <storage/TableBuilder.h>
-
 #include <io/ResourceManager.h>
-
+#include <io/TransactionManager.h>
+#include <storage/Serial.h>
+#include <storage/Store.h>
+#include <storage/TableBuilder.h>
+#include <storage/meta_storage.h>
+#include <storage/storage_types.h>
 #include <algorithm>
-#include <iterator>
 #include <functional>
+#include <iterator>
+
+#include "JsonTable.h"
+#include "boost/lexical_cast.hpp"
 
 namespace hyrise {
 namespace access {

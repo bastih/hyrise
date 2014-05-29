@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
+#include <json.h>
 
 #include "io/shortcuts.h"
 #include "storage/AbstractTable.h"
 #include "storage/Store.h"
-
-#include <json.h>
+#include "testing/test.h"
 
 namespace hyrise {
 namespace storage {

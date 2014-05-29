@@ -1,12 +1,11 @@
-#include "ValidatePositions.h"
-
+#include <access/system/QueryParser.h>
+#include <helper/checked_cast.h>
+#include <io/TransactionManager.h>
+#include <log4cxx/logger.h>
 #include <storage/PointerCalculator.h>
 #include <storage/Store.h>
-#include <access/system/QueryParser.h>
-#include <io/TransactionManager.h>
 
-#include <helper/checked_cast.h>
-#include <log4cxx/logger.h>
+#include "ValidatePositions.h"
 
 namespace hyrise {
 namespace access {

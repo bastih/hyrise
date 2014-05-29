@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/storage/ReplaceTable.h"
-#include "io/shortcuts.h"
 #include "io/StorageManager.h"
+#include "io/shortcuts.h"
 #include "testing/test.h"
 
 namespace hyrise {

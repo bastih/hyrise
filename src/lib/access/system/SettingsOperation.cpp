@@ -1,8 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/system/SettingsOperation.h"
-
 #include "access/system/QueryParser.h"
-
+#include "access/system/SettingsOperation.h"
 #include "helper/Settings.h"
 
 namespace hyrise {

@@ -1,10 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include <gtest/gtest-bench.h>
 #include <gtest/gtest.h>
-#include <string>
-
 #include <io/loaders.h>
 #include <storage/AbstractTable.h>
+#include <string>
 
 namespace hyrise {
 namespace access {

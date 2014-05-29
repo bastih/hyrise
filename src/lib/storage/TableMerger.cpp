@@ -1,12 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/TableMerger.h"
-
 #include <cassert>
 
 #include "storage/AbstractMerger.h"
 #include "storage/ColumnMetadata.h"
-#include "storage/Table.h"
 #include "storage/MutableVerticalTable.h"
+#include "storage/Table.h"
+#include "storage/TableMerger.h"
 
 namespace hyrise {
 namespace storage {

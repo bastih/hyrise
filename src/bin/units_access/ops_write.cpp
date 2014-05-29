@@ -1,12 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
 #include <string>
 
-#include "helper.h"
-
 #include "access/InsertScan.h"
-#include "io/shortcuts.h"
+#include "helper.h"
 #include "io/TransactionManager.h"
+#include "io/shortcuts.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

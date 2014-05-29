@@ -1,12 +1,11 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
+#include <access/Checkpoint.h>
 #include <access/CheckpointDaemon.h>
 #include <helper/HwlocHelper.h>
-#include <access/Checkpoint.h>
-
 #include <sys/time.h>
-#include <iostream>
 #include <chrono>
+#include <iostream>
 
 namespace hyrise {
 namespace io {

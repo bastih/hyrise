@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "RawTableLoader.h"
-#include "CSVLoader.h"
-#include "GenericCSV.h"
-
+#include <storage/RawTable.h>
 #include <fstream>
 
-#include <storage/RawTable.h>
+#include "CSVLoader.h"
+#include "GenericCSV.h"
+#include "RawTableLoader.h"
 
 namespace hyrise {
 namespace io {

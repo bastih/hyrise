@@ -3,7 +3,6 @@
 #include <gtest/gtest.h>
 #include <string>
 
-
 #include "access/HashValueJoin.hpp"
 #include "access/MaterializingScan.h"
 #include "helper/types.h"

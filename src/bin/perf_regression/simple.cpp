@@ -1,6 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include <gtest/gtest.h>
 #include <gtest/gtest-bench.h>
+#include <gtest/gtest.h>
 #include <string>
 
 /*class ProjectionBase : public ::testing::Benchmark

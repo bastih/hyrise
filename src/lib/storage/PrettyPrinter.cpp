@@ -1,18 +1,17 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "storage/PrettyPrinter.h"
-
-#include <numeric>
 #include <iostream>
+#include <numeric>
 #include <sstream>
 #include <string>
 
-#include "helper/types.h"
 #include "helper/RangeIter.h"
+#include "helper/types.h"
 #include "storage/AbstractTable.h"
-#include "storage/Store.h"
+#include "storage/PrettyPrinter.h"
 #include "storage/RawTable.h"
-#include "storage/storage_types.h"
+#include "storage/Store.h"
 #include "storage/TableDiff.h"
+#include "storage/storage_types.h"
 
 namespace hyrise {
 namespace storage {

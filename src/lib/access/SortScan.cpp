@@ -1,10 +1,8 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/SortScan.h"
-
 #include <algorithm>
 
+#include "access/SortScan.h"
 #include "access/system/QueryParser.h"
-
 #include "storage/AbstractTable.h"
 #include "storage/PointerCalculator.h"
 #include "storage/Table.h"

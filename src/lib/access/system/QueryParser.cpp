@@ -1,11 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include "access/system/ParallelizablePlanOperation.h"
+#include "access/system/PlanOperation.h"
 #include "access/system/QueryParser.h"
-
-#include "io/StorageManager.h"
 #include "helper/HwlocHelper.h"
 #include "helper/vector_helpers.h"
-#include "access/system/PlanOperation.h"
-#include "access/system/ParallelizablePlanOperation.h"
+#include "io/StorageManager.h"
 
 namespace hyrise {
 namespace access {

@@ -1,12 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
+#include <boost/algorithm/string.hpp>
 #include <storage/ColumnMetadata.h>
-
-#include <string>
 #include <sstream>
 #include <stdexcept>
-
-#include <boost/algorithm/string.hpp>
+#include <string>
 
 namespace hyrise {
 namespace storage {

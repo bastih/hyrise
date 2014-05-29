@@ -1,15 +1,15 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "dir.h"
-
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <dirent.h>
-#include <sys/stat.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include <iostream>
 #include <stdexcept>
-#include <unistd.h>
+
+#include "dir.h"
 
 void _mkdir(const std::string dir) {
   struct stat sb;

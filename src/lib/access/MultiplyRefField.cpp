@@ -1,6 +1,5 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/MultiplyRefField.h"
-
 #include "access/system/BasicParser.h"
 #include "access/system/QueryParser.h"
 #include "storage/ColumnMetadata.h"

@@ -1,12 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "access/SimpleTableScan.h"
-
 #include "access/expressions/pred_buildExpression.h"
-
-#include "storage/Store.h"
-#include "storage/PointerCalculator.h"
-
 #include "helper/checked_cast.h"
+#include "storage/PointerCalculator.h"
+#include "storage/Store.h"
 
 namespace hyrise {
 namespace access {

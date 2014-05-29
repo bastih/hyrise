@@ -1,10 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "io/CSVLoader.h"
-
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 
+#include "io/CSVLoader.h"
 #include "io/GenericCSV.h"
 #include "io/MetadataCreation.h"
 #include "storage/AbstractTable.h"

@@ -3,20 +3,16 @@
 
 #include "access/InsertScan.h"
 #include "access/system/ResponseTask.h"
-
-#include "json_converters.h"
-
-#include "helper/vector_helpers.h"
 #include "helper/checked_cast.h"
 #include "helper/stringhelpers.h"
-
-#include "io/TransactionManager.h"
-#include "io/logging.h"
+#include "helper/vector_helpers.h"
 #include "io/ResourceManager.h"
 #include "io/StorageManager.h"
-
-#include "storage/Store.h"
+#include "io/TransactionManager.h"
+#include "io/logging.h"
+#include "json_converters.h"
 #include "storage/Serial.h"
+#include "storage/Store.h"
 #include "storage/meta_storage.h"
 
 namespace hyrise {

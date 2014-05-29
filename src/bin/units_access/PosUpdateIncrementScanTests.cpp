@@ -6,8 +6,8 @@
 #include "access/tx/Commit.h"
 #include "access/tx/ValidatePositions.h"
 #include "helper/types.h"
-#include "io/shortcuts.h"
 #include "io/TransactionManager.h"
+#include "io/shortcuts.h"
 #include "testing/test.h"
 
 namespace hyrise {

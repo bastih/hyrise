@@ -1,8 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "testing/test.h"
-
 #include "io/shortcuts.h"
 #include "storage/GroupkeyIndex.h"
+#include "testing/test.h"
 
 
 

@@ -1,17 +1,14 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
+#include <iostream>
+
 #include "access/MetaData.h"
-
-#include "access/system/QueryParser.h"
 #include "access/system/BasicParser.h"
-
+#include "access/system/QueryParser.h"
 #include "io/StorageManager.h"
-
-#include "storage/storage_types.h"
-#include "storage/TableBuilder.h"
 #include "storage/ColumnMetadata.h"
 #include "storage/Table.h"
-
-#include <iostream>
+#include "storage/TableBuilder.h"
+#include "storage/storage_types.h"
 
 namespace hyrise {
 namespace access {

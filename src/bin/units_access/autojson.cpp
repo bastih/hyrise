@@ -1,18 +1,16 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include <iostream>
+#include <boost/filesystem.hpp>
 #include <algorithm>
+#include <iostream>
 #include <iterator>
 
-#include <boost/filesystem.hpp>
-
-#include "testing/test.h"
-#include "helper.h"
-
 #include "access/system/PlanOperation.h"
-#include "io/TransactionManager.h"
-#include "io/StorageManager.h"
+#include "helper.h"
 #include "helper/HttpHelper.h"
+#include "io/StorageManager.h"
+#include "io/TransactionManager.h"
 #include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

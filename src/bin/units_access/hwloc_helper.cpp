@@ -1,8 +1,9 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "helper/HwlocHelper.h"
-#include "testing/test.h"
-#include "testing/TableEqualityTest.h"
 #include <hwloc.h>
+
+#include "helper/HwlocHelper.h"
+#include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

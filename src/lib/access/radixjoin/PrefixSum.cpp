@@ -1,9 +1,7 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "PrefixSum.h"
-
 #include "Histogram.h"
+#include "PrefixSum.h"
 #include "access/system/QueryParser.h"
-
 #include "storage/Table.h"
 
 namespace hyrise {

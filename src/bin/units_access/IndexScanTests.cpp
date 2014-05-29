@@ -1,6 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/IndexScan.h"
 #include "access/CreateIndex.h"
+#include "access/IndexScan.h"
 #include "helper/types.h"
 #include "io/shortcuts.h"
 #include "testing/test.h"

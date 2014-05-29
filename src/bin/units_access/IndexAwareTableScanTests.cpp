@@ -1,18 +1,17 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/IndexAwareTableScan.h"
-#include "access/CreateGroupkeyIndex.h"
 #include "access/CreateDeltaIndex.h"
-
-#include "helper/types.h"
-#include "io/shortcuts.h"
-#include "testing/test.h"
-#include "helper/checked_cast.h"
+#include "access/CreateGroupkeyIndex.h"
+#include "access/IndexAwareTableScan.h"
 #include "access/InsertScan.h"
-#include "storage/Store.h"
-#include "io/TransactionManager.h"
-#include "access/expressions/pred_LessThanExpression.h"
 #include "access/expressions/pred_CompoundExpression.h"
+#include "access/expressions/pred_LessThanExpression.h"
+#include "helper/checked_cast.h"
+#include "helper/types.h"
+#include "io/TransactionManager.h"
+#include "io/shortcuts.h"
+#include "storage/Store.h"
 #include "testing/TableEqualityTest.h"
+#include "testing/test.h"
 
 namespace hyrise {
 namespace access {

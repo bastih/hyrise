@@ -1,13 +1,12 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "SimpleStoreMerger.h"
-
 #include <memory>
 #include <set>
 
 #include "OrderPreservingDictionary.h"
-#include "meta_storage.h"
 #include "RawTable.h"
 #include "SimpleStore.h"
+#include "SimpleStoreMerger.h"
+#include "meta_storage.h"
 
 
 namespace hyrise {

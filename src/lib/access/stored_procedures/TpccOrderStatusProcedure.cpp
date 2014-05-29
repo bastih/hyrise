@@ -1,9 +1,8 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccOrderStatusProcedure.h"
-
 #include <storage/AbstractTable.h>
 
+#include "TpccOrderStatusProcedure.h"
 #include "access/CompoundIndexScan.h"
 
 namespace hyrise {

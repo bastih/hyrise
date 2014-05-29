@@ -1,7 +1,6 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "access/HashJoinProbe.h"
 #include "access/HashBuild.h"
-
+#include "access/HashJoinProbe.h"
 #include "io/shortcuts.h"
 #include "storage/AbstractHashTable.h"
 #include "testing/TableEqualityTest.h"

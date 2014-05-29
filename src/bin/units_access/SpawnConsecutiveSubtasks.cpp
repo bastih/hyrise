@@ -1,6 +1,5 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 #include "SpawnConsecutiveSubtasks.h"
-
 #include "access/system/QueryParser.h"
 #include "access/system/ResponseTask.h"
 #include "taskscheduler/SharedScheduler.h"

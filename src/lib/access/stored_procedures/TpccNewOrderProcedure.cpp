@@ -1,14 +1,13 @@
 // Copyright (c) 2013 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
 
-#include "TpccNewOrderProcedure.h"
-
-#include <iomanip>
-
 #include <helper/make_unique.h>
 #include <storage/AbstractTable.h>
+#include <iomanip>
 
+#include "TpccNewOrderProcedure.h"
 #include "access/CompoundIndexScan.h"
 #include "access/IndexAwareTableScan.h"
+
 namespace hyrise {
 namespace access {
 

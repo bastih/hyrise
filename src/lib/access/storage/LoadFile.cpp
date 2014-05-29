@@ -1,12 +1,10 @@
 // Copyright (c) 2012 Hasso-Plattner-Institut fuer Softwaresystemtechnik GmbH. All rights reserved.
-#include "LoadFile.h"
-
 #include <stdexcept>
 
+#include "LoadFile.h"
 #include "access/system/QueryParser.h"
-
-#include "io/shortcuts.h"
 #include "io/StorageManager.h"
+#include "io/shortcuts.h"
 
 namespace hyrise {
 namespace access {
