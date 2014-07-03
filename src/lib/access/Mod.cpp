@@ -6,6 +6,8 @@
 
 #include "storage/AbstractTable.h"
 #include "storage/MutableVerticalTable.h"
+#include "storage/meta_storage.h"
+#include "storage/storage_types.h"
 #include "storage/TableBuilder.h"
 
 #include <cmath>
@@ -17,82 +19,62 @@ namespace {
 auto _ = QueryParser::registerPlanOperation<Mod>("Mod");
 }
 
+void requireJsonKeys(const Json::Value& data, const std::initializer_list<const char*>& fields) {
+  for (auto& f : fields)
+    if (!data.isMember(f))
+      throw std::runtime_error(std::string() + "'" + f + "' is missing");
+}
+
+const std::string& stringForType(DataType dt) {
+  if (dt == IntegerType)
+    return types::integer_name;
+  if (dt == FloatType)
+    return types::float_name;
+  throw std::runtime_error("mssing dt");
+}
+
+struct ModFunctor {
+  using value_type = void;
+  storage::atable_ptr_t source, target;
+  size_t source_col;
+  float divisor;
+
+  hyrise_int_t mod(hyrise_int_t value, float divisor) { return value % static_cast<hyrise_int_t>(divisor); }
+  hyrise_float_t mod(hyrise_float_t value, float divisor) { return std::fmod(value, divisor); }
+
+  template <typename T>
+  void operator()() {
+    for (size_t row = 0, e = source->size(); row < e; row++) {
+      target->setValue<T>(0, row, mod(source->getValue<T>(source_col, row), divisor));
+    }
+  }
+};
+
 void Mod::executePlanOperation() {
-
   auto in = std::const_pointer_cast<storage::AbstractTable>(input.getTable(0));
-
   storage::TableBuilder::param_list list;
-
-  if (getVType() == 0) {
-    list.append().set_type("INTEGER").set_name(getColName());
-  } else {
-    list.append().set_type("FLOAT").set_name(getColName());
-  }
-
+  list.append().set_type(stringForType(_vtype)).set_name(_targetColName);
   auto resultTable = storage::TableBuilder::build(list);
-
   resultTable->resize(in->size());
-
-  if (getVType() == 0) {
-    for (size_t row = 0; row < in->size(); row++) {
-      resultTable->setValue<hyrise_int_t>(0, row, in->getValue<int>(_field_definition[0], row) % int(getDivisor()));
-    }
-  } else {
-    for (size_t row = 0; row < in->size(); row++) {
-      resultTable->setValue<hyrise_float_t>(
-          0, row, std::fmod(in->getValue<float>(_field_definition[0], row), getDivisor()));
-    }
-  }
-
+  ModFunctor mf{in, resultTable, in->numberOfColumn(_sourceColName), _divisor};
+  // Limit type switch to integer and float (0, 1)
+  storage::type_switch<boost::mpl::vector<hyrise_int_t, hyrise_float_t>>()(_vtype, mf);
   addResult(std::make_shared<storage::MutableVerticalTable>(std::vector<storage::atable_ptr_t>{in, resultTable}));
 }
 
 std::shared_ptr<PlanOperation> Mod::parse(const Json::Value& data) {
-  std::shared_ptr<Mod> instance = BasicParser<Mod>::parse(data);
+  requireJsonKeys(data, {"fields", "divisor", "as", "vtype"});
 
-  if (!data.isMember("fields") || data["fields"].size() != 1) {
+  if (data["fields"].size() != 1)
     throw std::runtime_error("Exactly one field in 'fields' required");
-  }
 
-  if (data.isMember("divisor")) {
-    instance->setDivisor(data["divisor"].asFloat());
-  } else {
-    throw std::runtime_error("'divisor' is missing");
-  }
+  if (data["vtype"].asInt() != 0 and data["vtype"].asInt() != 1)
+    throw std::runtime_error("vtype has to be 0 or 1 for int or float");
 
-  if (data.isMember("as")) {
-    instance->setColName(data["as"].asString());
-  } else {
-    throw std::runtime_error("'as' has to be defined");
-  }
-
-  if (data.isMember("vtype")) {
-    instance->setVType(data["vtype"].asInt());
-    if (instance->getVType() != 1 && instance->getVType() != 0) {
-      throw std::runtime_error("vtype has to be 0 or 1 for int or float");
-    }
-  } else {
-    throw std::runtime_error("'vtype' has to be defined (0 or 1 for int or float)");
-  }
-
-  return instance;
+  return std::make_shared<Mod>(data["divisor"].asFloat(),
+                               data["fields"][0].asString(),
+                               data["as"].asString(),
+                               static_cast<DataType>(data["vtype"].asUInt()));
 }
-
-void Mod::setDivisor(const float& divisor) {
-  if (divisor == 0.0f) {
-    throw std::runtime_error("'divisor' connot be zero.");
-  }
-  _divisor = divisor;
-}
-
-void Mod::setVType(const int& vtype) { _vtype = vtype; }
-
-void Mod::setColName(const std::string& colName) { _colName = colName; }
-
-float Mod::getDivisor() const { return _divisor; }
-
-int Mod::getVType() const { return _vtype; }
-
-std::string Mod::getColName() const { return _colName; }
 }
 }

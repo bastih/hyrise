@@ -28,21 +28,19 @@ namespace access {
 
 class Mod : public ParallelizablePlanOperation {
  public:
+  Mod(float divisor, std::string sourceColName, std::string targetColName, DataType vtype)
+      : _divisor(divisor), _sourceColName(sourceColName), _targetColName(targetColName), _vtype(vtype) {
+    assert(divisor != 0.f);
+  }
+
   void executePlanOperation();
   static std::shared_ptr<PlanOperation> parse(const Json::Value& data);
 
-  void setDivisor(const float& divisor);
-  void setVType(const int& vtype);
-  void setColName(const std::string& colName);
-
-  float getDivisor() const;
-  int getVType() const;
-  std::string getColName() const;
-
  private:
   float _divisor = 1.f;
-  int _vtype = IntegerType;
-  std::string _colName;
+  std::string _sourceColName;
+  std::string _targetColName;
+  DataType _vtype = IntegerType;
 };
 }
 }

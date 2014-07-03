@@ -162,12 +162,8 @@ TEST_F(MathTests, float_division_divideZero_test) {
 }
 
 TEST_F(MathTests, int_modulo_test) {
-  Mod modInt;
+  Mod modInt(5.f, "COL1", "MOD", IntegerType);
   modInt.addInput(inputTable);
-  modInt.addField(0);
-  modInt.setVType(IntegerType);
-  modInt.setDivisor(5.f);
-  modInt.setColName("MOD");
 
   modInt.execute();
   const auto& result = modInt.getResultTable();
@@ -180,13 +176,8 @@ TEST_F(MathTests, int_modulo_test) {
 }
 
 TEST_F(MathTests, float_modulo_test) {
-  Mod modFloat;
+  Mod modFloat(3.f, "COL4", "MOD", FloatType);
   modFloat.addInput(inputTable);
-  modFloat.addField(4);
-  modFloat.setVType(FloatType);
-  modFloat.setDivisor(3.f);
-  modFloat.setColName("MOD");
-
   modFloat.execute();
   const auto& result = modFloat.getResultTable();
 
@@ -195,12 +186,6 @@ TEST_F(MathTests, float_modulo_test) {
   ASSERT_FLOAT_EQ(2.9f, result->getValue<storage::hyrise_float_t>(5, 1));
   ASSERT_NEAR(0.1f, result->getValue<storage::hyrise_float_t>(5, 2), 0.00001f);
   ASSERT_FLOAT_EQ(-1.1f, result->getValue<storage::hyrise_float_t>(5, 3));
-}
-
-TEST_F(MathTests, modulo_divideZero_test) {
-  Mod modFloat;
-
-  ASSERT_THROW(modFloat.setDivisor(0.f), std::runtime_error);
 }
 }
 }
